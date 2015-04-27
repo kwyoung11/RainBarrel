@@ -1,0 +1,216 @@
+// Place all the styles related to the RainBarrel controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.title {
+	margin: 0px auto;
+	text-align: center;
+}
+
+.water_quality_link {
+	color: #ccc;
+	padding-top: 30px;
+	text-decoration: none;
+	text-align: center;
+	border: 0px solid red;
+	display: block;
+	height: 100%;
+}
+
+.link_text {
+	position: absolute;
+	top: 90%;
+	left: 15%;
+	margin: 0 auto;
+	color: #ccc;
+	text-decoration: none;
+	text-align: center;
+	border: 0px solid red;
+	display: block;
+	height: 100%;	
+	pointer-events: none;
+}
+
+
+#wrapper {
+	position: relative;
+	height: 600px;
+	width: 300px;
+	margin: 0 auto;
+	border: 0px solid red;
+}
+
+#barrel {
+	position: absolute;
+	top: 33%;
+	left: 27%;
+	border: 8px solid #444;
+	border-radius: 20%;
+	height: 250px;
+	width: 130px;
+	overflow: hidden;
+	text-shadow: 0 0.3px 3px #111;
+
+}
+
+#water_level {
+	position: absolute;
+	text-align: center;
+	top: 100%;
+	left: -2px;
+	background: #39f;
+	border: 1px solid #39f;
+	height: 0px;
+	width: 140px;
+}
+
+#legend_wrapper {
+	width: 80%;
+	max-width: 800px;
+	border: 0px solid #444;
+	margin: 20px auto;
+}
+
+#legend {
+	width: 100%;
+	border: 0px solid #444;
+	display: inline-block;
+}
+
+
+.legend-elt {
+	border: 0px solid #444;	
+	float: left;
+	width: 24%;
+	min-width: 100px;
+	vertical-align: top;
+}
+
+.legend-box {
+	display: inline-block;
+	height: 22px;
+	width: 22px;
+}
+
+#legend-label {
+	min-width: 120px;
+	font-weight: bold;
+}
+
+#ideal .legend-box {	
+	background-color: green;
+}
+#drinkable .legend-box {
+	background-color: yellow;
+}
+#unsafe .legend-box {
+	background-color: red;
+}
+
+#data {
+	margin: 40px auto;
+	border: 0px solid black;
+	width: 80%;
+	max-width: 800px;
+}
+
+.data-elt-wrapper {
+	position: relative;
+	border: 0px solid red;
+	display: inline-block;
+	padding-bottom: 20px;
+}
+
+.data-elt {
+	position: relative;
+	float: left;
+	width: 20%;
+	min-width: 140px;
+	border: 0px solid #444;
+	padding-bottom: 15px;
+
+}
+
+.explanation {
+	position: relative;
+	float: left;
+	width: 70%;
+	border: 0px solid #444;
+}
+
+.green_highlight {
+	color: green;
+	font-weight: bold;
+}
+
+
+.yellow_highlight {
+	color: yellow;
+	font-weight: bold;
+}
+
+.red_highlight {
+	color: red;
+	font-weight: bold;
+}
+
+#alert {
+	text-align: center;
+	width: 70%;
+	max-width: 500px;
+	border: 1px dashed #e23;
+	margin: 0 auto;
+}
+
+.warning {
+	position: relative;
+	// float: left;
+	height: 20px;
+	width: 30px;
+	margin: 15px;
+	border: 0px solid red;
+}
+
+.warning:before {
+	content: "!";
+	position: absolute;
+  z-index: 2;
+  margin-top: 2px;
+  margin-left: -1px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+.warning:after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+  border-width: 0 11px 18px;
+  border-style: solid;
+  border-color: #F8D201 transparent;
+  border-radius: 20%;
+  margin-top: 0px;
+  margin-left: -10px;
+  background: transparent;
+}
+
+.warning-text {
+	padding: 10px;
+}
+
+.run_sim {
+
+}
+
+.end_sim {
+	disabled: true;
+}
+
+
+
+
+
+
+

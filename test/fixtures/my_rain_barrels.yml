@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  capacity_in_gallons: 1.5
+  current_volume: 1.5
+  pH: 1.5
+  temperature: 1
+  total_dissolved_solids: 1
+
+two:
+  capacity_in_gallons: 1.5
+  current_volume: 1.5
+  pH: 1.5
+  temperature: 1
+  total_dissolved_solids: 1

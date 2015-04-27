@@ -1,0 +1,12 @@
+<h1 class="title">  </h1>
+<div id="wrapper">
+	<%= button_to "Run Simulation", "rain_barrel/run_sim", {method: :get, class: "run_sim"} %>
+	<%= button_to "End Simulation", "rain_barrel/end_sim", {method: :get, class: "end_sim"} %>
+	<div id="barrel"> 
+		<div id="water_level"> 
+			<%= link_to "","/rain_barrel/water_quality", {class: 'water_quality_link'} %> 
+		</div>
+		<div class="link_text"> Water Quality </div></div>
+
+</div>
+

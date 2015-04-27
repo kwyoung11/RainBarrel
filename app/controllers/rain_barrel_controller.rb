@@ -1,0 +1,53 @@
+class RainBarrelController < ApplicationController
+	respond_to :json, :html
+
+  def index
+  	@water_quality = MyRainBarrel.where(id: "1").first
+  	@ph_color = "green_highlight"
+  	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
+  	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
+  	@TDS_color = "green_highlight"
+  	@TDS_color = "yellow_highlight" if (@water_quality.total_dissolved_solids > 50 && @water_quality.total_dissolved_solids < 400)
+  	@TDS_color = "red_highlight" if (@water_quality.total_dissolved_solids > 400);
+  	@alerts = []
+  	@alerts << "pH is too high" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
+  	@alerts << "TDS is too high" if (@water_quality.total_dissolved_solids > 400)
+  end
+
+  def water_quality
+  	@water_quality = MyRainBarrel.where(id: "1").first
+  	@ph_color = "green_highlight"
+  	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
+  	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
+  	@TDS_color = "green_highlight"
+  	@TDS_color = "yellow_highlight" if (@water_quality.total_dissolved_solids > 50 && @water_quality.total_dissolved_solids < 400)
+  	@TDS_color = "red_highlight" if (@water_quality.total_dissolved_solids > 400);
+  end
+
+  def filter_life
+  end
+
+  def stats
+  	respond_with MyRainBarrel.where(id: "1").first.to_json
+  end
+
+  def run_sim 	
+  	pid = fork do
+  		Signal.trap("TERM") { exit }
+  		MyRainBarrel.simulation
+  		exit
+  	end	
+  	flash[:notice] = 'The simulation has started.'
+  	puts pid
+  	msg = {:pid => "#{pid}"}
+  	respond_with msg.to_json
+  end
+
+  def end_sim
+  	puts params
+  	Process.kill("TERM", params["pid"].to_i)
+  	Process.wait 
+  	msg = {:status => "ending sim"}
+  	respond_with msg.to_json
+  end
+end

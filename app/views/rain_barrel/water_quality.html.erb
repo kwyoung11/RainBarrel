@@ -1,0 +1,37 @@
+<div id="legend_wrapper">
+	<div id="legend">
+		<div id="legend-label" class="legend-elt"> Legend: </div>
+		<div id="ideal" class="legend-elt"> <div class="legend-box"></div> Ideal </div>
+		<div id="drinkable" class="legend-elt"> <div class="legend-box"></div> Drinkable </div>
+		<div id="unsafe" class="legend-elt"> <div class="legend-box"></div> Unsafe </div>
+	</div>
+</div>
+
+<div id="data"> 
+	<div id="pH" class="data-elt-wrapper"> 
+		<div class="data-elt"> Current pH: 
+			<span class=<%= @ph_color %>> <%= @water_quality.ph %> </span>
+		</div>
+		<div class="explanation"> pH measures the total acidity of the water 
+			stored in your rain barrel. The range is from 0-14, with 0 being the most 
+			acidic and 14 being the most basic. The ideal range for drinking water 
+			is from 6.5-7.5, acceptable drinking range is from 6 - 8, and it is unsafe 
+			to drink otherwise. </div> 
+	</div>
+
+	<div id="TDS" class="data-elt-wrapper"> 
+		<div class="data-elt"> Current TDS: 
+			<span class=<%= @TDS_color %>><%= @water_quality.total_dissolved_solids %> </span> 
+		</div>
+		<div class="explanation"> The TDS level is the Total Dissolved Solids. The 
+			ideal range for drinking water is from 0-50, drinkable is from 50-400, 
+			and unsafe to drink otherwise. </div>
+	</div>
+
+	<div id="NTU" class="data-elt-wrapper"> 
+		<div class="data-elt"> Current NTU: TODO </div>
+		<div class="explanation"> Turbidity measures the cloudiness or haziness of water. 
+			The ideal range for drinking is from 0-0.3 NTU, drinkable from 0-1.0 NTU, and 
+			unsafe to drink otherwise. </div>
+	</div>
+</div>
