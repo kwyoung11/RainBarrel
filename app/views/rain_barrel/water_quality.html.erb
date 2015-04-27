@@ -10,28 +10,56 @@
 <div id="data"> 
 	<div id="pH" class="data-elt-wrapper"> 
 		<div class="data-elt"> Current pH: 
-			<span class=<%= @ph_color %>> <%= @water_quality.ph %> </span>
+			<span class="<%= @ph_color + " data-bit" %>"> <%= @water_quality.ph %> </span>
 		</div>
 		<div class="explanation"> pH measures the total acidity of the water 
 			stored in your rain barrel. The range is from 0-14, with 0 being the most 
 			acidic and 14 being the most basic. The ideal range for drinking water 
 			is from 6.5-7.5, acceptable drinking range is from 6 - 8, and it is unsafe 
-			to drink otherwise. </div> 
+			to drink otherwise. 
+
+			<p> <%= link_to "Click for intructions when pH levels are unsafe", "#ph_fix", {class: "fix_link"} %> </p>
+		
+			<div class="fix"> 
+				<a name="ph_fix"> </a>
+				[Fix Text Here]
+			</div>
+		</div> 
+
+		
+
 	</div>
 
 	<div id="TDS" class="data-elt-wrapper"> 
 		<div class="data-elt"> Current TDS: 
-			<span class=<%= @TDS_color %>><%= @water_quality.total_dissolved_solids %> </span> 
+			<span class="<%= @TDS_color + " data-bit" %>"><%= @water_quality.total_dissolved_solids %> </span> 
 		</div>
 		<div class="explanation"> The TDS level is the Total Dissolved Solids. The 
 			ideal range for drinking water is from 0-50, drinkable is from 50-400, 
-			and unsafe to drink otherwise. </div>
+			and unsafe to drink otherwise.  
+
+			<p> <%= link_to "Click for intructions when TDS levels are unsafe.", "#tds_fix", {class: "fix_link"} %> </p>
+
+			<div class="fix">
+				<a name="tds_fix"> </a>
+				[Fix Text Here]
+			</div>
+		</div>
+
+		
 	</div>
 
 	<div id="NTU" class="data-elt-wrapper"> 
 		<div class="data-elt"> Current NTU: TODO </div>
 		<div class="explanation"> Turbidity measures the cloudiness or haziness of water. 
 			The ideal range for drinking is from 0-0.3 NTU, drinkable from 0-1.0 NTU, and 
-			unsafe to drink otherwise. </div>
+			unsafe to drink otherwise. 
+			<p> <%= link_to "Click for intructions when NTU levels are unsafe.", "#ntu_fix", {class: "fix_link"} %> </p>
+			<div class="fix">
+				<a name="ntu_fix"> </a>
+				[Fix Text Here]
+			</div>	
+		</div>
+
 	</div>
 </div>

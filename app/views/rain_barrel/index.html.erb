@@ -1,12 +1,46 @@
 <h1 class="title">  </h1>
-<div id="wrapper">
-	<%= button_to "Run Simulation", "rain_barrel/run_sim", {method: :get, class: "run_sim"} %>
-	<%= button_to "End Simulation", "rain_barrel/end_sim", {method: :get, class: "end_sim"} %>
-	<div id="barrel"> 
-		<div id="water_level"> 
-			<%= link_to "","/rain_barrel/water_quality", {class: 'water_quality_link'} %> 
-		</div>
-		<div class="link_text"> Water Quality </div></div>
-
+<div id="nav-bar-wrap">
+	<div id="nav_bar"> 
+		<h3> RainSense </h3>
+		<ul id="nav_list">
+			<li> 
+				<a href="/rain_barrel/water_quality">
+					<strong> Water Quality <br/></strong>
+					<small> Stats & explanations </small>
+				</a>
+			</li>
+			<li> 
+				<a href="/rain_barrel/filter_life">
+					<strong> Water Usage History <br/> </strong>
+					<small> Stats, logs & weather </small>
+				</a>
+			</li>
+			<li> 
+				<a href="/rain_barrel/filter_life">
+					<strong> Filter <br/> </strong>
+					<small> Life, buy </small>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="app-wrapper">
+	<div id="wrapper">
+		<!-- Simulations: -->
+		<% link_to "regular rainstorm", "rain_barrel/run_sim?type=simple" %>
+		<% link_to "acid rainstorm (high pH)", "rain_barrel/run_sim?type=ph" %>
+		<% link_to "high tds", "rain_barrel/run_sim?type=TDS" %>
+		<% link_to "high pH + high TDS", "rain_barrel/run_sim?type=ph_and_TDS" %>
+			<div class="circle-wrap circle-wq">
+				<div class="big-circle"></div>
+				<div class="little-circle"> </div>
+			</div>
+			<div id="barrel"> 
+				<div id="water_level"> 
+					<%= link_to "","/rain_barrel/water_quality", {class: 'water_quality_link'} %> 
+				</div>
+				
+			</div>
+	</div>
 </div>
 

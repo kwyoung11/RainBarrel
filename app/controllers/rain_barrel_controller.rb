@@ -34,17 +34,19 @@ class RainBarrelController < ApplicationController
   def run_sim 	
   	pid = fork do
   		Signal.trap("TERM") { exit }
-  		MyRainBarrel.simulation
+  		MyRainBarrel.simulation(params["type"])
   		exit
   	end	
   	flash[:notice] = 'The simulation has started.'
-  	puts pid
   	msg = {:pid => "#{pid}"}
-  	respond_with msg.to_json
+  	if params["type"]
+  		redirect_to "/"
+  	else
+  		respond_with msg.to_json
+  	end
   end
 
   def end_sim
-  	puts params
   	Process.kill("TERM", params["pid"].to_i)
   	Process.wait 
   	msg = {:status => "ending sim"}

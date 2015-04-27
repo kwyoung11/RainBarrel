@@ -2,11 +2,65 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$blue-white: #d1d3ef;
+$text-color: #e5e8ee;
+$blue: #39f;
+$font-stack: "Lucida Grande", verdana, sans-serif;
+
+body {
+	background: #171d25;
+	color: $blue-white;
+	font: 15px $font-stack;
+}
+
+a {
+	color: $blue-white;
+	text-decoration: none;
+}
+
+small {
+	font: 11px $font-stack;
+	color: #bbb;
+}
+
+h3 {
+	padding-left: 13px;
+	color: #aaa;
+}
 
 .title {
 	margin: 0px auto;
 	text-align: center;
 }
+
+
+
+
+
+/* wrappers */
+
+#nav-bar-wrap {
+	position: relative;
+	height: 98vh;
+	width: 20%;
+	min-width: 160px;
+	float: left;
+	border: 0px dotted green;
+}
+
+#app-wrapper {
+	width: 70%;
+	height: 100%;
+	float: left;
+	position: relative;
+	border: 1px dotted green;
+}
+
+
+
+
+
+/* barrel graphic */
 
 .water_quality_link {
 	color: #ccc;
@@ -18,37 +72,23 @@
 	height: 100%;
 }
 
-.link_text {
-	position: absolute;
-	top: 90%;
-	left: 15%;
-	margin: 0 auto;
-	color: #ccc;
-	text-decoration: none;
-	text-align: center;
-	border: 0px solid red;
-	display: block;
-	height: 100%;	
-	pointer-events: none;
-}
-
-
 #wrapper {
 	position: relative;
 	height: 600px;
 	width: 300px;
 	margin: 0 auto;
-	border: 0px solid red;
+	border: 1px solid red;
 }
 
 #barrel {
 	position: absolute;
-	top: 33%;
-	left: 27%;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 15%;
 	border: 8px solid #444;
 	border-radius: 20%;
-	height: 250px;
-	width: 130px;
+	height: 375px;
+	width: 195px;
 	overflow: hidden;
 	text-shadow: 0 0.3px 3px #111;
 
@@ -59,11 +99,17 @@
 	text-align: center;
 	top: 100%;
 	left: -2px;
-	background: #39f;
+	background: rgba(30, 90, 250, 0.8);
 	border: 1px solid #39f;
 	height: 0px;
-	width: 140px;
+	width: 210px;
 }
+
+
+
+
+
+/* legend, explanations */
 
 #legend_wrapper {
 	width: 80%;
@@ -139,21 +185,29 @@
 	border: 0px solid #444;
 }
 
+
+
+
+/* highlights */ 
+
 .green_highlight {
 	color: green;
 	font-weight: bold;
 }
-
-
 .yellow_highlight {
 	color: yellow;
 	font-weight: bold;
 }
-
 .red_highlight {
 	color: red;
 	font-weight: bold;
 }
+
+
+
+
+
+/* alerts */
 
 #alert {
 	text-align: center;
@@ -161,6 +215,7 @@
 	max-width: 500px;
 	border: 1px dashed #e23;
 	margin: 0 auto;
+	display: none;
 }
 
 .warning {
@@ -200,16 +255,134 @@
 	padding: 10px;
 }
 
-.run_sim {
-
-}
-
-.end_sim {
-	disabled: true;
+.fix {
+	display: none;
 }
 
 
 
+
+/* home icon */
+
+.icon_home {
+	width: 1px;
+	position: absolute;
+	left: 5px;
+  border-bottom: .938em solid $blue-white;
+  border-left: .938em solid transparent;
+  border-right: .938em solid transparent;
+}
+
+.icon_home::before {
+	content: "";
+	position: absolute;
+	margin-top: 15px;
+	margin-left: -10px;
+  width: 8px;
+  height: 11px;
+  background: $blue-white;
+}
+
+.icon_home::after {
+	content: "";
+	position: absolute;
+	margin-top: 15px;
+	margin-left: 3px;
+  width: 8px;
+  height: 11px;
+  background: $blue-white;
+}
+
+.icon_home_link {
+	position: absolute;
+	margin: -5px -20px;
+	padding: 5px;
+	z-index: 100;
+	width: 30px;
+  height: 30px;
+	display: block;
+	border: 1px dotted $blue;
+	border-radius: 50%;
+	-webkit-animation: rotate 12s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  from{ -webkit-transform: rotate(0deg);   }
+  to{   -webkit-transform: rotate(360deg); }
+}
+
+.icon_home_link:hover {
+	border: 1px solid $blue;
+}
+
+
+
+
+
+/* navigation */
+
+#nav_bar {
+	position: absolute;
+  top: 33%;
+  transform: translateY(-50%);
+	border: 0px solid red;
+}
+
+#nav_list {
+	list-style-type: none;
+	text-align: left;
+	padding: 0;
+	li {
+		margin: 15px;
+	}
+
+	a {
+		display: block;
+		padding: 0 12px 0 0px;
+		height: auto;
+		border: 0px solid red;
+	}
+
+	a:hover:before {
+		content: "";
+		position: absolute;
+		left: 0px;
+		height: 20px;
+		width: 0px;
+		border: 3px solid #39f;
+	}
+}
+
+
+
+
+
+
+/* circles, previews */
+
+.circle-wq {
+	margin-top: 100%;
+}
+
+.circle-wrap {
+	border: 1px solid green;
+	height: 50px;
+	width: 50px;
+}
+
+.big-circle {
+	height: 40px;
+	width: 40px;
+	border: 1px solid red;
+	border-radius: 50%;
+}
+
+.little-circle {
+	height: 10px;
+	width: 10px;
+	border: 1px solid red;
+	border-radius: 50%;	
+}
 
 
 
