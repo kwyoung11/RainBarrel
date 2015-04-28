@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: rain_barrel_production
-  username: rain_barrel
+  username: postgres
   password: <%= ENV['RAIN_BARREL_DATABASE_PASSWORD'] %>

@@ -2,6 +2,7 @@ class RainBarrelController < ApplicationController
 	respond_to :json, :html
 
   def index
+    puts "HELLO"
   	@water_quality = MyRainBarrel.where(id: "1").first
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
