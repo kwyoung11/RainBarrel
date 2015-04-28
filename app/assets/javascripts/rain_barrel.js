@@ -127,9 +127,9 @@ $(document).ready(function() {
 				if ((rain_barrel.ph > 6 && rain_barrel.ph < 8) && rain_barrel.total_dissolved_solids < 400) {
 					$("#alert").css('display', 'none');
 				}
-				// console.log(rain_barrel);
+				console.log(rain_barrel);
 				
-				// wait 5 seconds
+				// wait 1 second
 				setTimeout(function () {
 					ping();	
 				}, 1000);
