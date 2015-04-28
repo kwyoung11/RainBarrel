@@ -3,7 +3,7 @@ class MyRainBarrel < ActiveRecord::Base
  	# initial state: current_volume: 12, capacity: 40, TDS: 30, ph: 7.2
  	rain_barrel = MyRainBarrel.where(id: "1").first
  	if type == "simple"
- 		until rain_barrel.current_volume == rain_barrel.capacity_in_gallons do
+ 		until rain_barrel.current_volume > rain_barrel.capacity_in_gallons do
  			rain_barrel.current_volume = rain_barrel.current_volume + 4;
  			rain_barrel.save
  			sleep(1)
