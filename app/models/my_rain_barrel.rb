@@ -35,7 +35,7 @@ class MyRainBarrel < ActiveRecord::Base
  	# reset
  	rain_barrel.current_volume = 12
  	rain_barrel.ph = 7.2
- 	rain_barrel.total_dissolved_solids = 320
+ 	rain_barrel.total_dissolved_solids = 30
  	rain_barrel.save
  end
 end
