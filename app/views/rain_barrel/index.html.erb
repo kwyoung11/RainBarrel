@@ -1,7 +1,17 @@
 <h1 class="title">  </h1>
 <div id="nav-bar-wrap">
 	<div id="nav_bar"> 
-		<h3> RainSense </h3>
+		<h3 class="logo"> 
+			<span>R</span>
+			<span>a</span>
+			<span>i</span>
+			<span>n</span>
+			<span>S</span>
+			<span>e</span>
+			<span>n</span>
+			<span>s</span>
+			<span>e</span> 
+		</h3>
 		<ul id="nav_list">
 			<li> 
 				<a href="/rain_barrel/water_quality">
@@ -10,15 +20,15 @@
 				</a>
 			</li>
 			<li> 
-				<a href="/rain_barrel/filter_life">
+				<a href="/rain_barrel/water_usage">
 					<strong> Water Usage History <br/> </strong>
-					<small> Stats, logs & weather </small>
+					<small> Stats, conservation & logs </small>
 				</a>
 			</li>
 			<li> 
 				<a href="/rain_barrel/filter_life">
-					<strong> Filter <br/> </strong>
-					<small> Life, buy </small>
+					<strong> Water Filter <br/> </strong>
+					<small> Life remaining, where to buy </small>
 				</a>
 			</li>
 		</ul>
@@ -31,9 +41,10 @@
 		<% link_to "acid rainstorm (high pH)", "rain_barrel/run_sim?type=ph" %>
 		<% link_to "high tds", "rain_barrel/run_sim?type=TDS" %>
 		<% link_to "high pH + high TDS", "rain_barrel/run_sim?type=ph_and_TDS" %>
-			<div class="circle-wrap circle-wq">
-				<div class="big-circle"></div>
-				<div class="little-circle"> </div>
+			<div class="circle-wrap circle-wl">
+				<div class="wl-label circle label"><span class="circle-text"> Water Level </span></div>
+				<div class="wl-percent circle"><span class="circle-text"> 33% </span></div>
+				<div class="wl-gallons circle"><span class="circle-text"> 12g </span></div>
 			</div>
 			<div id="barrel"> 
 				<div id="water_level"> 

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'rain_barrel/water_quality'
 
+  get 'rain_barrel/water_usage'
+
   get 'rain_barrel/filter_life'
 
   get 'rain_barrel/stats'

@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+
+	$(".label").click(function() {
+		$(this).siblings().css('opacity', '1');
+		$(this).css('opacity', '0');
+	});	
+
+
 	// get the current water level and update the graphic	by pinging server every second
 	var ph_flag = 0;
 	var tds_flag = 0;
@@ -25,6 +32,12 @@ $(document).ready(function() {
 	
 				});
 
+				$(".circle-wl").animate({
+					"margin-top": "-" + height_target + "px",
+				}, 2000, function() {
+	
+				});
+
 				$("#pH .data-elt .data-bit").html(rain_barrel.ph);
 				$("#TDS .data-elt .data-bit").html(rain_barrel.total_dissolved_solids);
 
@@ -41,6 +54,7 @@ $(document).ready(function() {
 					$("#pH .data-elt .data-bit").addClass("red_highlight");
 					$("#pH .fix").css('display', 'block');
 					$("#pH .fix").css('background-color', 'yellow');
+					$(".logo span").css('color', 'red');
 				} else if (rain_barrel.ph > 8.0) {
 					alerts["pH"] = "";
 					alerts["pH"] = "pH is too high (" + rain_barrel.ph + ")";
@@ -49,14 +63,17 @@ $(document).ready(function() {
 					$("#pH .data-elt .data-bit").addClass("red_highlight");
 					$("#pH .fix").css('display', 'block');
 					$("#pH .fix").css('background-color', 'yellow');
+					$(".logo span").css('color', 'red');
 				} else if ((rain_barrel.ph >= 6 && rain_barrel.ph <= 6.5) || (rain_barrel.ph <= 8.0 && rain_barrel.ph >= 7.5)) {
 					$("#pH .data-elt .data-bit").removeClass("green_highlight red_highlight");
 					$("#pH .data-elt .data-bit").addClass("yellow_highlight");
+					$(".logo span").css('color', 'yellow');
 					// $("#pH .fix").css('display', 'none');
 					// $("#pH .fix").css('background-color', 'transparent');
 				} else if (rain_barrel.ph > 6.5 && rain_barrel.ph < 7.5) {
 					$("#pH .data-elt .data-bit").removeClass("yellow_highlight red_highlight");
 					$("#pH .data-elt .data-bit").addClass("green_highlight");
+					$(".logo span").css('color', 'green');
 					// $("#pH .fix").css('display', 'none');
 					// $("#pH .fix").css('background-color', 'transparent');
 				}
@@ -65,11 +82,13 @@ $(document).ready(function() {
 				if (rain_barrel.total_dissolved_solids <= 50) {
 					$("#TDS .data-elt .data-bit").removeClass("yellow_highlight red_highlight");
 					$("#TDS .data-elt .data-bit").addClass("green_highlight");
+					$(".logo span").css('color', 'green');
 					// $("#TDS .fix").css('display', 'none');
 					// $("#TDS .fix").css('background-color', 'transparent');
 				} else if (rain_barrel.total_dissolved_solids > 50 && rain_barrel.total_dissolved_solids <= 400) {
 					$("#TDS .data-elt .data-bit").removeClass("green_highlight red_highlight");
 					$("#TDS .data-elt .data-bit").addClass("yellow_highlight");
+					$(".logo span").css('color', 'yellow');
 					// $("#TDS .fix").css('display', 'none');
 					// $("#TDS .fix").css('background-color', 'transparent');
 				} else if (rain_barrel.total_dissolved_solids > 400) {
@@ -80,6 +99,7 @@ $(document).ready(function() {
 					$("#TDS .data-elt .data-bit").addClass("red_highlight");
 					$("#TDS .fix").css('display', 'block');
 					$("#TDS .fix").css('background-color', 'yellow');
+					$(".logo span").css('color', 'red');
 				}
 
 				// update alerts

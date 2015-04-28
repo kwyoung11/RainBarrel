@@ -24,6 +24,10 @@ class RainBarrelController < ApplicationController
   	@TDS_color = "red_highlight" if (@water_quality.total_dissolved_solids > 400);
   end
 
+  def water_usage
+
+  end
+
   def filter_life
   end
 

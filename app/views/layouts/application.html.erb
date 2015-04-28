@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RainBarrel</title>
+  <title>RainSense</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<% if request.fullpath != "/" %>
-		<div class="icon_home"> <%= link_to "", root_path, {class: "icon_home_link"} %> </div>
-	<% end %>
-	<div id='alert'> 
-		<div class="warning-text">
-			<span class="warning"> </span>
-			Warning: Water is unsafe to drink. Reasons:
+		<div class="icon_home"> 
+			<%= link_to "", root_path, {	class: "icon_home_link"} %> 
 		</div>
-		
-		<%= link_to "More info >>", "/rain_barrel/water_quality" %>
+	<% end %>
+	<div class="page-wrap">
+		<div id='alert'> 
+			<div class="warning-text">
+				<span class="warning"> </span>
+				Warning: Water is unsafe to drink. Reasons:
+			</div>
+			
+			<%= link_to "More info >>", "	/rain_barrel/water_quality" %>
+		</div>
+		<%= yield %>
 	</div>
-<%= yield %>
-
 </body>
 </html>
