@@ -159,24 +159,27 @@ h3 {
 
 #data {
 	margin: 40px auto;
-	border: 0px solid black;
+	border: $wrap-borders;
 	width: 80%;
 	max-width: 800px;
 }
 
 .data-elt-wrapper {
 	position: relative;
-	border: 0px solid red;
+	border: $wrap-borders;
 	display: inline-block;
+	width: 100%;
 	padding-bottom: 20px;
+	text-align: left;
 }
 
 .data-elt {
 	position: relative;
 	float: left;
+	margin: 15px;
 	width: 20%;
 	min-width: 140px;
-	border: 0px solid #444;
+	border: $barrel-borders;
 	padding-bottom: 15px;
 
 }
@@ -185,7 +188,13 @@ h3 {
 	position: relative;
 	float: left;
 	width: 70%;
-	border: 0px solid #444;
+	border: $barrel-borders;
+	margin: 15px;
+}
+
+.usage-section .data-bit {
+	color: #a78fd9;
+	padding: 0px 5px;
 }
 
 
