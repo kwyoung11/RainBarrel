@@ -1,0 +1,18 @@
+<div class="login">
+	<p class="title"> Log In To Your Account </p>
+		<%= form_tag login_path do %>
+  		<div class="field">
+    		<%= text_field_tag :email, params[:email], :size => "25", :placeholder => " email" %>
+  		</div>
+
+  		<div class="field">
+    		<%= password_field_tag :password, params[:password], :size => "25", :placeholder => " password" %>
+  		</div>
+
+  		<div class="actions">
+				<%= submit_tag "Log in" %>
+			</div>
+			
+		<% end %>
+		
+</div>

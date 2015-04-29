@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  water_collected: 1
+  water_used: 1
+  overflowed: false
+  amount_overflown: 1
+  ph: 1
+  tds: 1
+
+two:
+  water_collected: 1
+  water_used: 1
+  overflowed: false
+  amount_overflown: 1
+  ph: 1
+  tds: 1

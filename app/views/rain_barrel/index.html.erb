@@ -1,3 +1,16 @@
+<div class="top-bar"> 
+	<div class="sessions">
+		<%= link_to 'Sign Up', new_user_path %>
+		<% if logged_in? %>
+			<%= link_to "#{current_user.name.split(" ")[0]}", edit_user_path(current_user) %>
+		<% else %>
+			<%= link_to 'Login',  login_path, {class: 'login-link'} %>
+		<% end %>
+	</div>
+	<div class="login-popup"> 
+		<%= render "sessions/new" %>
+	</div>
+</div>
 <h1 class="title">  </h1>
 <div id="nav-bar-wrap">
 	<div id="nav_bar"> 

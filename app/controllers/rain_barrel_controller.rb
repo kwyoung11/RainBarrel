@@ -1,9 +1,12 @@
 class RainBarrelController < ApplicationController
-	respond_to :json, :html
+	respond_to :json
 
   def index
-    puts "HELLO"
-  	@water_quality = MyRainBarrel.where(id: "1").first
+  	if current_user
+      @water_quality = MyRainBarrel.where(user_id: current_user.id).first
+    else
+      @water_quality = MyRainBarrel.where(user_id: 6).first
+    end
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
   	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
@@ -16,7 +19,11 @@ class RainBarrelController < ApplicationController
   end
 
   def water_quality
-  	@water_quality = MyRainBarrel.where(id: "1").first
+  	if current_user
+      @water_quality = MyRainBarrel.where(user_id: current_user.id).first
+    else
+      @water_quality = MyRainBarrel.where(user_id: 6).first
+    end
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
   	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
@@ -30,16 +37,54 @@ class RainBarrelController < ApplicationController
   end
 
   def filter_life
+    if current_user
+      @filter = MyRainBarrel.where(user_id: current_user.id).first
+    else
+      @filter = MyRainBarrel.where(user_id: 6).first
+    end
+  end
+
+  def email_alert
+    UserMailer.email_alert(current_user, params["alerts"]).deliver
+    msg = {:pid => "hello"}
+    # respond_to do |format|
+    #   format.json { render json: MyRainBarrel.where(id: "1").first.to_json }
+    # end
+    respond_with msg.to_json
+  end
+
+  def filter_reset
+    if current_user
+      rb = MyRainBarrel.where(user_id: current_user.id).first
+    else
+      rb = MyRainBarrel.where(user_id: 6).first
+    end
+  
+    rb.filter_life_remaining = rb.filter_life
+    rb.save
+    redirect_to rain_barrel_filter_life_path
   end
 
   def stats
-  	respond_with MyRainBarrel.where(id: "1").first.to_json
+    if current_user
+      rb = MyRainBarrel.where(user_id: current_user.id).first
+    else
+      rb = MyRainBarrel.where(user_id: 6).first
+    end
+  	respond_with rb.to_json
   end
 
   def run_sim 	
-  	pid = fork do
+    puts current_user.to_s
+    pid = fork do
   		Signal.trap("TERM") { exit }
-  		MyRainBarrel.simulation(params["type"])
+
+      if current_user
+  		  MyRainBarrel.simulation(current_user.id, params["type"]) 
+      else 
+        MyRainBarrel.simulation(6, params["type"]) 
+      end
+
   		exit
   	end	
   	flash[:notice] = 'The simulation has started.'

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>	Warning: Your water is unsafe to drink. Reasons: </p>
+
+      <ul>
+        <%= @alert_reasons.each do |alert| %>
+          <li> alert </li>
+        <% end %>
+      </ul>
+    
+     <br />
+     <br />
+    
+     <p> View more information and what to do on <%= link_to "RainSense", root_url %> </p>
+  </body>
+</html>

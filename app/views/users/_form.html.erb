@@ -1,0 +1,75 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Name*" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "Email*" %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "Password*" %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id, "Product ID*" %><br>
+    <%= f.number_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :street_address, "Street Address" %> 
+    <div class="help">
+        <div class="tooltip_triangle"> </div>
+        <div class="tooltip"> 
+          <small> We use your address to calculate how much water you can expect to collect, based on the rainfall patterns in your area and your roof's square footage, among other statistics. </small>
+        </div>
+    </div><br>
+    <%= f.text_field :street_address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city, "City" %><br>
+    <%= f.text_field :city %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "State" %>
+    <%= f.select(:state, User.states, {}, style: "height: 32px; width: 180px") %>
+  </div>
+  
+  <!-- <div class="field">
+    <%= f.label :state, "State" %><br>
+    <%= f.number_field :state %>
+  </div> -->
+
+  <div class="field">
+    <%= f.label :zip_code, "Zip Code" %><br>
+    <%= f.number_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email_alerts, "Email alerts" %> 
+    <div class="help">
+        <div class="tooltip_triangle"> </div>
+        <div class="tooltip"> 
+          <small> We can send e-mail alerts to your inbox when your collected water becomes unsafe, for example if the water is too acidic to drink (high pH) or there are excess total dissolved solids (high TDS) in the water. These e-mails are not frequent, but are useful to be notified about. </small>
+        </div>
+    </div><br>
+    <%= f.check_box :email_alerts %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Sign Up", {class: "btn"}) %>
+  </div>
+<% end %>
