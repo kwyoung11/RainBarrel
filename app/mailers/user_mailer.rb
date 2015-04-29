@@ -9,10 +9,11 @@ class UserMailer < ActionMailer::Base
   #
 
   def email_alert(user, alert_reasons)
+    puts "ABOUT TO SEND MAIL"
+
     @user = user
     alert_reasons = alert_reasons.split(',');
     @alert_reasons = alert_reasons
-    puts "ABOUT TO SEND MAIL"
     mail :to => user.email, :subject => "RainSense Alerts: #{alert_reasons}"
   end
 
