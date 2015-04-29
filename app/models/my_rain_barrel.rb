@@ -1,7 +1,11 @@
 class MyRainBarrel < ActiveRecord::Base
  def self.simulation(user_id, type)
  	# initial state: current_volume: 12, capacity: 40, TDS: 30, ph: 7.2
- 	rain_barrel = MyRainBarrel.where(user_id: user_id).first
+ 	rain_barrel = MyRainBarrel.where(id: 1).first
+ 	if user_id != "none"
+ 		rain_barrel = MyRainBarrel.where(user_id: user_id).first
+ 	end
+ 	
  	puts rain_barrel.to_s
  	if type == "simple"
  		until rain_barrel.current_volume > rain_barrel.capacity_in_gallons do

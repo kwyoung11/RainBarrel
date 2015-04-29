@@ -5,7 +5,7 @@ class RainBarrelController < ApplicationController
   	if current_user
       @water_quality = MyRainBarrel.where(user_id: current_user.id).first
     else
-      @water_quality = MyRainBarrel.where(user_id: 6).first
+      @water_quality = MyRainBarrel.where(id: 1).first
     end
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
@@ -22,7 +22,7 @@ class RainBarrelController < ApplicationController
   	if current_user
       @water_quality = MyRainBarrel.where(user_id: current_user.id).first
     else
-      @water_quality = MyRainBarrel.where(user_id: 6).first
+      @water_quality = MyRainBarrel.where(id: 1).first
     end
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
@@ -40,7 +40,7 @@ class RainBarrelController < ApplicationController
     if current_user
       @filter = MyRainBarrel.where(user_id: current_user.id).first
     else
-      @filter = MyRainBarrel.where(user_id: 6).first
+      @filter = MyRainBarrel.where(id: 1).first
     end
   end
 
@@ -57,7 +57,7 @@ class RainBarrelController < ApplicationController
     if current_user
       rb = MyRainBarrel.where(user_id: current_user.id).first
     else
-      rb = MyRainBarrel.where(user_id: 6).first
+      rb = MyRainBarrel.where(id: 1).first
     end
   
     rb.filter_life_remaining = rb.filter_life
@@ -69,7 +69,7 @@ class RainBarrelController < ApplicationController
     if current_user
       rb = MyRainBarrel.where(user_id: current_user.id).first
     else
-      rb = MyRainBarrel.where(user_id: 6).first
+      rb = MyRainBarrel.where(id: 1).first
     end
   	respond_with rb.to_json
   end
@@ -82,7 +82,7 @@ class RainBarrelController < ApplicationController
       if current_user
   		  MyRainBarrel.simulation(current_user.id, params["type"]) 
       else 
-        MyRainBarrel.simulation(6, params["type"]) 
+        MyRainBarrel.simulation("none", params["type"]) 
       end
 
   		exit
