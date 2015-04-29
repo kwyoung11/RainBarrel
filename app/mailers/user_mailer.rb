@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
     @alert_reasons = alert_reasons
         puts "AFTER ALERT REASONS"
 
-    string_alert_reasons.join.gsub(',', ', ');
+    string_alert_reasons = alert_reasons.join.gsub(',', ', ')
 
     mail(to: user.email, subject: "RainSense Alerts: #{string_alert_reasons}")
         puts "FINISHED"
