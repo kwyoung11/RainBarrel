@@ -52,6 +52,7 @@ class RainBarrelController < ApplicationController
   end
 
   def email_alert
+    puts "HELLOOOOOOO"
     UserMailer.email_alert(current_user, params["alerts"]).deliver
     msg = {:pid => "hello"}
     # respond_to do |format|
@@ -82,7 +83,6 @@ class RainBarrelController < ApplicationController
   end
 
   def run_sim 	
-    puts current_user.to_s
     pid = fork do
   		Signal.trap("TERM") { exit }
 

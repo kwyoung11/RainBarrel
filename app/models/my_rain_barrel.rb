@@ -6,7 +6,6 @@ class MyRainBarrel < ActiveRecord::Base
  		rain_barrel = MyRainBarrel.where(user_id: user_id).first
  	end
  	
- 	puts rain_barrel.to_s
  	if type == "simple"
  		until rain_barrel.current_volume > rain_barrel.capacity_in_gallons do
  			rain_barrel.current_volume = rain_barrel.current_volume + 4;
