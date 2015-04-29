@@ -77,7 +77,7 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       :address => 'smtp.gmail.com',
       :port => 587,
-      :domain => 'rainsense.herokuapp.com',
+      :domain => 'gmail.com',
       :authentication => :plain,
       :user_name => 'rainsenseapp@gmail.com',
       :password =>  ENV["EMAIL_PWD"],
