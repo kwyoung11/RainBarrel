@@ -12,9 +12,17 @@ class UserMailer < ActionMailer::Base
     puts "ABOUT TO SEND MAIL"
 
     @user = user
-    alert_reasons = alert_reasons.split(',');
+        puts "AFTER USER"
+
+    alert_reasons = alert_reasons.split(',')
+        puts "AFTER ALERT REASONS .split"
+
     @alert_reasons = alert_reasons
+        puts "AFTER ALERT REASONS"
+
     mail :to => user.email, :subject => "RainSense Alerts: #{alert_reasons}"
+        puts "FINISHED"
+
   end
 
   # def deliver_invitation(user, invitation)

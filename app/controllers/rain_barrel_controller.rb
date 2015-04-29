@@ -54,6 +54,7 @@ class RainBarrelController < ApplicationController
   def email_alert
     puts "HELLOOOOOOO"
     UserMailer.email_alert(current_user, params["alerts"]).deliver
+    puts "SUPER FINISHED"
     msg = {:pid => "hello"}
     # respond_to do |format|
     #   format.json { render json: MyRainBarrel.where(id: "1").first.to_json }
