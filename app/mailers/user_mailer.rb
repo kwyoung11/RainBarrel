@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
     @alert_reasons = alert_reasons
         puts "AFTER ALERT REASONS"
 
-    mail :to => user.email, :subject => "RainSense Alerts: #{alert_reasons}"
+    mail(to: user.email, subject: "RainSense Alerts: #{alert_reasons}")
         puts "FINISHED"
 
   end
