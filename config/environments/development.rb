@@ -39,7 +39,7 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       :address => 'smtp.gmail.com',
       :port => 587,
-      :domain => 'gmail.com',
+      :domain => 'localhost',
       :authentication => :plain,
       :user_name => 'rainsenseapp@gmail.com',
       :password =>  ENV["EMAIL_PWD"],
