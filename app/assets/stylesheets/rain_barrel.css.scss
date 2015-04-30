@@ -53,6 +53,7 @@
 
 $blue-white: #d1d3ef;
 $text-color: #e5e8ee;
+$background: #171d25;
 $blue: #39f;
 $barrel_height: 375px;
 $barrel_width: 195px;
@@ -62,7 +63,7 @@ $barrel-borders: 0px dotted red;
 
 
 body {
-	background: #171d25;
+	background: $background;
 	color: $blue-white;
 	font: 15px $font-stack;
 }
@@ -191,6 +192,7 @@ h3 {
 
 #water_level {
 	position: absolute;
+	display: block;
 	text-align: center;
 	top: 100%;
 	left: -2px;
@@ -558,6 +560,55 @@ h3 {
 	left: 103%;
 }
 
+.reset-fl-link {
+	border: 0px solid red;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	z-index: 2000;
+}
+
+.icon-undo {
+	position: absolute;
+	display: block;
+	left: 84%;
+	margin-top: 5px;
+	width: 0px;
+	height: 0px;
+	border: 0px solid green;
+	cursor: pointer;
+	z-index: 2000;
+}
+
+.icon-undo a::before {
+	content: "";
+	cursor: pointer;
+	position: absolute;
+  left: 1px;
+  width: 9px;
+  height: 9px;
+  border: 3px solid #c55500;
+  margin-top: -6px;
+  background: transparent;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+.icon-undo a::after {
+	content: "";
+	cursor: pointer;
+	position: absolute;
+	left: 9px;
+  border: 4px solid $background;
+  border-width: 5px 2px 5px 5px;
+  border-left-color: #c55500;
+  margin: -9px 0 0;
+  background: transparent;
+}
+  
+
 
 
 
@@ -593,74 +644,20 @@ h3 {
 		content: "";
 		position: absolute;
 		left: 0px;
-		height: 20px;
+		height: 30px;
 		width: 0px;
-		border: 3px solid #39f;
+		border: 2px solid #39f;
 	}
 }
 
-
-
-
-
-
-/* circles, previews */
-
-.circle-wrap {
-	border: 0px solid green;
-	height: 100px;
-	width: 100px;
-}
-
-.circle {
-	background: #14bfff;
-	border: 1px solid #14bfff;
-	border-radius: 50%;
-	display: block;
-	text-align: center;
-}
-
-.circle-wl {
+.selected:before {
+	content: "";
 	position: absolute;
-	left: -10px;
-	top: 50%;
-	transform: translateY(-50%);
-	transform: translateY(187px);
-}
-
-.wl-label {
-	position: absolute;
-	height: 60px;
-	width: 60px;
-	z-index: 1000;
-}
-
-.wl-percent {
-	opacity: 0;
-	position: absolute;
-	height: 60px;
-	width: 60px;
-	z-index: 500;
-}
-
-.wl-gallons {
-	opacity: 0;
-	position: absolute;
+	left: 0px;
 	height: 30px;
-	width: 30px;
-	left: 50%;
-	top: 50%;
-	z-index: 500;
+	width: 0px;
+	border: 2px solid #39f;
 }
-
-.circle-text {
-	position: absolute;
-
-	top: 10px;
-	left: 0;
-}
-
-
 
 
 
@@ -672,6 +669,15 @@ h3 {
 
 .page-wrap {
 	margin: 20px;
+}
+
+/* filter life page */
+.filter-reset {
+	position: absolute;
+	display: inline-block;
+	border: 0px solid red;
+	left: 70%;
+	z-index: 1000;
 }
 
 /* responsive modifications */

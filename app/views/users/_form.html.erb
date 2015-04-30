@@ -24,7 +24,13 @@
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :product_id, "Product ID*" %><br>
+    <%= f.label :product_id, "Product ID*" %>
+     <div class="help">
+        <div class="tooltip_triangle"> </div>
+        <div class="tooltip"> 
+          <small> Your Product ID is the identification number associated with your rain barrel. </small>
+        </div>
+    </div><br>
     <%= f.number_field :product_id %>
   </div>
   <div class="field">

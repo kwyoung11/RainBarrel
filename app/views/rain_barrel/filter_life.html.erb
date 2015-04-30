@@ -1,23 +1,25 @@
+<%= button_to 'Reset Filter Life', rain_barrel_filter_reset_path, {class: "highlight btn filter-reset", method: :get} %>
+<div class="icon-undo"> <a href="#" title="undo" class="reset-fl-link"></a></div>
+
 <div id="data"> 
-		<%= link_to 'Reset Filter Life', rain_barrel_filter_reset_path, {class: "highlight"} %>
 		<div id="filter" class="data-elt-wrapper"> 
 			<div class="data-elt"> Filter: 
 				<span class="data-bit"> Brita Filter </span>
 			</div>
-			<div class="explanation"> <%= button_to "Order New", "http://amazon.com" %> </div> 
+			<div class="explanation"> <%= button_to "Order New", "http://amazon.com", {class: "btn"} %> </div> 
 		</div>
 	
-		<div id="filter-life-remaining" class="data-elt-wrapper"> 
-			<div class="data-elt"> Filter life: 
-				<span class="data-bit"> <%= @filter.filter_life %> days </span> 
+		<div id="fl-remaining" class="data-elt-wrapper"> 
+			<div class="data-elt"> Filter life remaining: 
+				<span class="data-bit"> <%= @filter.filter_life_remaining %> days </span> 
 			</div>
 			<div class="explanation"> The number of days remaining for which the filter will work as intended. 
 			</div>
 		</div>
 
-		<div id="water-passed-through" class="data-elt-wrapper"> 
-			<div class="data-elt"> Filter life remaining: 
-				<span class="data-bit"> <%= @filter.filter_life_remaining %> days </span> 
+		<div id="fl" class="data-elt-wrapper"> 
+			<div class="data-elt"> Filter life: 
+				<span class="data-bit"> <%= @filter.filter_life %> days </span> 
 			</div>
 			<div class="explanation"> The number of days remaining for which the filter will work as intended. 
 			</div>

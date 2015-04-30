@@ -1,5 +1,67 @@
 $(document).ready(function() {
 
+	function setCookie(key, value) {
+      var expires = new Date();
+      expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+      document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+  }
+
+  function getCookie(key) {
+      var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+      return keyValue ? keyValue[2] : null;
+  }
+
+  if ($(".filter-reset").length > 0) {
+  	setCookie("filter_life_remaining", $("#fl-remaining .data-bit"));
+  }
+
+
+	/************ barrel graphic state handlers **************/
+
+
+
+	// click
+	$('.circle-wrap').click(function() {
+		$(".preview").hide();
+		$(".preview-graphic").hide();
+		$(".label").show();
+		$(this).find(".label").hide();
+		$(this).find(".preview").show();
+		$("." + $(this).find(".label").attr("id")).show();
+	});
+
+
+	// hover
+	$('#nav_list a').hover(function() {
+		// remove other selections
+		$("#nav_list a").removeClass('selected');
+		$(this).removeClass('selected').addClass('selected');
+
+		$(".preview").hide();
+		$(".preview-graphic").hide();
+		$(".label").show();
+		if ($(this).hasClass('wl-link')) {
+				$(".wl-label").hide();
+				$(".circle-wl").find('.preview').show();
+				$("#water_level").show();
+		} else if ($(this).hasClass('wq-link')) {
+				$(".wq-label").hide();
+				$(".circle-wq").find('.preview').show();
+				$(".pH-bar").show();
+				$(".tds-bar").show();
+		} else if ($(this).hasClass('fl-link')) {
+				$(".fl-label").hide();
+				$(".circle-fl").find('.preview').show();
+				$(".fl-bar").show();
+		}
+	}, function() {
+
+	});
+
+
+
+	/********* end barrel graphic state handlers ********************/
+
 	$('.help').click(function() {
 		if ($(this).find(".tooltip").css('display') == 'none') {
 			$(this).find(".tooltip").css('display', 'block');
@@ -19,11 +81,6 @@ $(document).ready(function() {
 		
 	});
 
-	$(".label").click(function() {
-		$(this).siblings().css('opacity', '1');
-		$(this).css('opacity', '0');
-	});	
-
 	// get the current water level and update the graphic	by pinging server every second
 	var ph_flag = 0;
 	var tds_flag = 0;
@@ -40,18 +97,41 @@ $(document).ready(function() {
 				var times_full =  current_water_level/capacity_in_gallons;
 				var percent_filled = (current_water_level/capacity_in_gallons) * 100;
 				
-				var top_target = 100 - percent_filled;
-				var height_target = rain_barrel_height * times_full;
-	
+				/* wl */
+				var wl_top_target = 100 - percent_filled;
+				var wl_height_target = rain_barrel_height * times_full;
+
 				$("#water_level").animate({
-					top: top_target + "%",
-					height: height_target + "px",
+					top: wl_top_target + "%",
+					height: wl_height_target + "px",
 				}, 2000, function() {
 	
 				});
 
+				/* wq */
+				// var wq_ph_top_target =
+				// var wq_ph_height_target =
+
+				// var wq_tds_top_target =
+				// var wq_tds_height_target =
+
+
+				// $(".pH-bar").animate({
+				// 	top: top_target + "%",
+				// 	height: height_target + "px",
+				// }, 2000, function() {
+	
+				// });
+
+				// $(".tds-bar").animate({
+				// 	top: top_target + "%",
+				// 	height: height_target + "px",
+				// }, 2000, function() {
+	
+				// });
+
 				$(".circle-wl").animate({
-					"margin-top": "-" + height_target + "px",
+					"margin-top": "-" + wl_height_target + "px",
 				}, 2000, function() {
 	
 				});

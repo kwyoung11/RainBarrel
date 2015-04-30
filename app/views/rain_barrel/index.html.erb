@@ -27,19 +27,19 @@
 		</h3>
 		<ul id="nav_list">
 			<li> 
-				<a href="/rain_barrel/water_quality">
-					<strong> Water Quality <br/></strong>
-					<small> Stats & explanations </small>
-				</a>
-			</li>
-			<li> 
-				<a href="/rain_barrel/water_usage">
+				<a href="/rain_barrel/water_usage" class="wl-link selected">
 					<strong> Water Usage History <br/> </strong>
 					<small> Stats, conservation & logs </small>
 				</a>
 			</li>
 			<li> 
-				<a href="/rain_barrel/filter_life">
+				<a href="/rain_barrel/water_quality" class="wq-link">
+					<strong> Water Quality <br/></strong>
+					<small> Stats & explanations </small>
+				</a>
+			</li>
+			<li> 
+				<a href="/rain_barrel/filter_life" class="fl-link">
 					<strong> Water Filter <br/> </strong>
 					<small> Life remaining, where to buy </small>
 				</a>
@@ -55,14 +55,39 @@
 		<% link_to "high tds", "rain_barrel/run_sim?type=TDS" %>
 		<% link_to "high pH + high TDS", "rain_barrel/run_sim?type=ph_and_TDS" %>
 			<div class="circle-wrap circle-wl">
-				<div class="wl-label circle label"><span class="circle-text"> Water Level </span></div>
-				<div class="wl-percent circle"><span class="circle-text"> 33% </span></div>
-				<div class="wl-gallons circle"><span class="circle-text"> 12g </span></div>
+				<div id="wl-graphic" class="wl-label circle label"><span class="circle-text"> Water Level </span></div>
+				<div class="wl-gallons preview"><span class="circle-text"> 12 gallons </span></div>
+				<div class="wl-line preview"> </div>
+				<div class="wl-percent preview"><span class="circle-text"> 33% full </span></div>
+				
 			</div>
+
+			<div class="circle-wrap circle-wq">
+				<div id="wq-graphic" class="wq-label circle label"><span class="circle-text"> Water Quality </span></div>
+				<div class="wq-status circle preview"><span class="circle-text"> Status: </span></div>
+				<!-- <div class="pH-bar preview"> </div>
+				<div class="tds-bar preview"> </div> -->
+			</div>
+
+			<div class="circle-wrap circle-fl">
+				<div id="fl-graphic" class="fl-label circle label"><span class="circle-text"> Filter </span></div>
+				<div class="fl-status circle preview"><span class="circle-text"> Status: </span></div>
+				<!-- <div class="fl-bar preview"> </div> -->
+			</div>
+
 			<div id="barrel"> 
-				<div id="water_level"> 
+
+				<!-- water level graphic -->
+				<div id="water_level" class='wl-graphic preview-graphic'> 
 					<%= link_to "","/rain_barrel/water_quality", {class: 'water_quality_link'} %> 
 				</div>
+
+				<!-- water quality graphic -->
+				<div class="pH-bar wq-graphic preview-graphic"> </div>
+				<div class="tds-bar wq-graphic preview-graphic"> </div>
+
+				<!-- filter life graphic -->
+				<div class="fl-bar fl-graphic preview-graphic"> </div>
 				
 			</div>
 	</div>
