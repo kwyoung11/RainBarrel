@@ -560,55 +560,6 @@ h3 {
 	left: 103%;
 }
 
-.reset-fl-link {
-	border: 0px solid red;
-	display: inline-block;
-	width: 100%;
-	height: 100%;
-	cursor: pointer;
-	z-index: 2000;
-}
-
-.icon-undo {
-	position: absolute;
-	display: block;
-	left: 81.5%;
-	margin-top: 5px;
-	width: 0px;
-	height: 0px;
-	border: 0px solid green;
-	cursor: pointer;
-	z-index: 2000;
-}
-
-.icon-undo a::before {
-	content: "";
-	cursor: pointer;
-	position: absolute;
-  left: 1px;
-  width: 9px;
-  height: 9px;
-  border: 3px solid #c55500;
-  margin-top: -6px;
-  background: transparent;
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-  border-radius: 16px;
-}
-
-.icon-undo a::after {
-	content: "";
-	cursor: pointer;
-	position: absolute;
-	left: 9px;
-  border: 4px solid $background;
-  border-width: 5px 2px 5px 5px;
-  border-left-color: #c55500;
-  margin: -9px 0 0;
-  background: transparent;
-}
-  
-
 
 
 
@@ -672,11 +623,68 @@ h3 {
 }
 
 /* filter life page */
-.filter-reset {
+
+.reset-fl-link {
 	position: absolute;
 	display: inline-block;
-	border: 0px solid red;
-	left: 70%;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	z-index: 2000;
+}
+
+.icon-undo {
+	position: relative;
+	float: left;
+	width: 40%;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 10px;
+	cursor: pointer;
+	z-index: 2000;
+}
+
+.icon-undo a::before {
+	content: "";
+	cursor: pointer;
+	position: absolute;
+  left: 1px;
+  width: 9px;
+  height: 9px;
+  border: 3px solid #c55500;
+  margin-top: -6px;
+  background: transparent;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+.icon-undo a::after {
+	content: "";
+	cursor: pointer;
+	position: absolute;
+	left: 9px;
+  border: 4px solid $background;
+  border-width: 5px 2px 5px 5px;
+  border-left-color: #c55500;
+  margin: -9px 0 0;
+  background: transparent;
+}
+
+.filter-reset-wrap {
+	position: relative;
+	min-width: 300px;
+	height: 50px;
+	margin: 0px;
+}
+
+.filter-reset {
+	position: relative;
+	float: left;
+	width: 50%;
+	min-width: 150px;
+	max-width: 300px;
+	display: inline-block;
 	z-index: 1000;
 }
 

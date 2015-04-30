@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'rain_barrel/stats'
 
+  get 'rain_barrel/reset_filter_life_remaining'
+
   get 'rain_barrel/run_sim'
 
   get 'rain_barrel/email_alert'

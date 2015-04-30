@@ -39,6 +39,18 @@ class RainBarrelController < ApplicationController
     # rb.update ...
   end
 
+  def reset_filter_life_remaining
+    if current_user
+      rb = MyRainBarrel.where(user_id: current_user.id).first
+    else
+      rb = MyRainBarrel.where(id: 1).first
+    end
+
+    rb.filter_life_remaining = params[:days]
+    rb.save
+    respond_with rb.to_json
+  end
+
   def water_usage
 
   end

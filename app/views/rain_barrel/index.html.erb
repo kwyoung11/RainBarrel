@@ -1,6 +1,8 @@
 <div class="top-bar"> 
 	<div class="sessions">
-		<%= link_to 'Sign Up', new_user_path %>
+		<% if !logged_in? %>
+			<%= link_to 'Sign Up', new_user_path %>
+		<% end %>
 		<% if logged_in? %>
 			<%= link_to "#{current_user.name.split(" ")[0]}", edit_user_path(current_user) %>
 		<% else %>
@@ -64,18 +66,17 @@
 
 			<div class="circle-wrap circle-wq">
 				<div id="wq-graphic" class="wq-label circle label"><span class="circle-text"> Water Quality </span></div>
-				<div class="wq-status circle preview"><span class="circle-text"> Status: </span></div>
-				<!-- <div class="pH-bar preview"> </div>
-				<div class="tds-bar preview"> </div> -->
+				<div class="wq-status circle preview"><span class="circle-text"> </span></div>
+				
 			</div>
 
 			<div class="circle-wrap circle-fl">
 				<div id="fl-graphic" class="fl-label circle label"><span class="circle-text"> Filter </span></div>
 				<div class="fl-status circle preview"><span class="circle-text"> Status: </span></div>
-				<!-- <div class="fl-bar preview"> </div> -->
 			</div>
 
 			<div id="barrel"> 
+				<div class="ph-scale"></div>
 
 				<!-- water level graphic -->
 				<div id="water_level" class='wl-graphic preview-graphic'> 
@@ -83,12 +84,19 @@
 				</div>
 
 				<!-- water quality graphic -->
-				<div class="pH-bar wq-graphic preview-graphic"> </div>
-				<div class="tds-bar wq-graphic preview-graphic"> </div>
+
+				<div class="pH-bar wq-graphic preview-graphic"> 
+					<div class="bar-label"> ph  </div>
+				</div>
+
+				<div class="tds-bar wq-graphic preview-graphic">
+					<div class="bar-label"> tds </div>
+				</div>
 
 				<!-- filter life graphic -->
 				<div class="fl-bar fl-graphic preview-graphic"> </div>
 				
+				<div class="tds-scale"></div>
 			</div>
 	</div>
 </div>

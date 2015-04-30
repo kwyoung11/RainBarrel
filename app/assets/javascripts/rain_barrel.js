@@ -12,15 +12,32 @@ $(document).ready(function() {
   }
 
   if ($(".filter-reset").length > 0) {
-  	setCookie("filter_life_remaining", $("#fl-remaining .data-bit"));
+  	console.log($("#fl-remaining .data-bit").html().split(" ")[1]);
+  	if ($("#fl-remaining .data-bit").html().split(" ")[1] !== "300") {
+  		setCookie("filter_life_remaining", $("#fl-remaining .data-bit").html().split(" ")[1]);	
+  	}
   }
+
+  $(".reset-fl-link").click(function() {
+  	var num = getCookie("filter_life_remaining");
+  	console.log(num);
+  	$.ajax({
+  		url: "/rain_barrel/reset_filter_life_remaining",
+  		type: "GET",
+  		data: { days: num },
+  		success: function(response) {
+  			$("#fl-remaining .data-bit").html(response.filter_life_remaining + " days");
+  		}
+  	});
+
+  });
 
 
 	/************ barrel graphic state handlers **************/
 
 
 
-	// click
+	// clicking on labels
 	$('.circle-wrap').click(function() {
 		$(".preview").hide();
 		$(".preview-graphic").hide();
@@ -31,7 +48,7 @@ $(document).ready(function() {
 	});
 
 
-	// hover
+	// hovering over navbar links
 	$('#nav_list a').hover(function() {
 		// remove other selections
 		$("#nav_list a").removeClass('selected');
@@ -57,6 +74,8 @@ $(document).ready(function() {
 	}, function() {
 
 	});
+
+	/* water quality barrel graphics (pH and tds) */
 
 
 
@@ -104,40 +123,83 @@ $(document).ready(function() {
 				$("#water_level").animate({
 					top: wl_top_target + "%",
 					height: wl_height_target + "px",
-				}, 2000, function() {
+				}, 1000, function() {
 	
 				});
 
 				/* wq */
-				// var wq_ph_top_target =
-				// var wq_ph_height_target =
+				var ph_scale = 100 / 14;
+				var wq_ph_top_target = 100 - (rain_barrel.ph * ph_scale);
+				var wq_ph_height_target = rain_barrel_height * ((rain_barrel.ph * ph_scale)/100);
 
-				// var wq_tds_top_target =
-				// var wq_tds_height_target =
+				var tds_scale = 100 / 400;
+				var wq_tds_top_target = 100 - (rain_barrel.total_dissolved_solids * tds_scale); 
+				var wq_tds_height_target = rain_barrel_height * ((rain_barrel.total_dissolved_solids * tds_scale)/100);
 
 
-				// $(".pH-bar").animate({
-				// 	top: top_target + "%",
-				// 	height: height_target + "px",
-				// }, 2000, function() {
+				$(".pH-bar").animate({
+					top: wq_ph_top_target + "%",
+					height: wq_ph_height_target + "px",
+				}, 2000, function() {
 	
-				// });
+				});
 
-				// $(".tds-bar").animate({
-				// 	top: top_target + "%",
-				// 	height: height_target + "px",
-				// }, 2000, function() {
+				$(".tds-bar").animate({
+					top: wq_tds_top_target + "%",
+					height: wq_tds_height_target + "px",
+				}, 2000, function() {
 	
-				// });
+				});
 
 				$(".circle-wl").animate({
 					"margin-top": "-" + wl_height_target + "px",
-				}, 2000, function() {
+				}, 1000, function() {
 	
 				});
 
 				$("#pH .data-elt .data-bit").html(rain_barrel.ph);
 				$("#TDS .data-elt .data-bit").html(rain_barrel.total_dissolved_solids);
+
+
+				// update the data
+				$(".wl-gallons .circle-text").html(rain_barrel.current_volume + " gallons");
+				$(".wl-percent .circle-text").html(Math.floor(percent_filled) + "% full");
+
+
+				var status;
+				ph_ideal = rain_barrel.ph > 6.5 && rain_barrel.ph < 7.5;
+				tds_ideal = rain_barrel.total_dissolved_solids <= 50;
+				ph_drinkable = (rain_barrel.ph >= 6 && rain_barrel.ph <= 6.5) || (rain_barrel.ph <= 8.0 && rain_barrel.ph >= 7.5);
+				tds_drinkable = rain_barrel.total_dissolved_solids > 50 && rain_barrel.total_dissolved_solids <= 400;
+				ph_unsafe = rain_barrel.ph < 6 || rain_barrel.ph > 8;
+				tds_unsafe = rain_barrel.total_dissolved_solids > 400;
+				if (ph_unsafe || tds_unsafe) {
+					status = "unsafe";
+				} else if (ph_drinkable || tds_drinkable) {
+					status = "drinkable";
+				} else {
+					status = "ideal";
+				}
+
+				$(".wq-status .circle-text").html(status + " <small> status <small> ");
+				if (ph_ideal) {
+					$(".pH-bar").css('background', 'green');
+				} else if (ph_drinkable) {
+					$(".pH-bar").css('background', 'yellow');
+				} else {
+					$(".pH-bar").css('background', 'red');
+				}
+
+				if (tds_ideal) {
+					$(".tds-bar").css('background', 'green');
+				} else if (tds_drinkable) {
+					$(".tds-bar").css('background', 'yellow');
+				} else {
+					$(".tds-bar").css('background', 'red');
+				}
+
+
+
 
 
 				// update the alerts

@@ -117,7 +117,7 @@ $barrel-borders: 0px dotted red;
 	left: 90%;
 	top: 50%;
 	transform: translateY(-50%);
-	display: none;
+	display: block;
 }
 
 .wq-label {
@@ -157,39 +157,60 @@ $barrel-borders: 0px dotted red;
 
 .pH-bar {
 	position: absolute;
+	overflow: visible !important;
 	top: 100%;
 	left: 25%;
 	height: 0px;
-	width: 20px;
-	display: block;
+	width: 30px;
+	display: none;
 	border: $barrel-borders;
 }
 
 .tds-bar {
 	position: absolute;
+	overflow: visible !important;
 	top: 100%;
-	left: 75%;
+	left: 60%;
 	height: 0px;
-	width: 20px;
-	display: block;
+	width: 30px;
+	display: none;
 	border: $barrel-borders;
+}
+
+.bar-label {
+	margin-top: 5px;
+	text-align: center;
+	font-size: 11px;
+	color: #bbb;
+}
+
+.ph-scale {
+	border-image: -webkit-linear-gradient(top, #af3823 0%,#c62a1f 21%,#eaea25 29%,#dee82c 37%,#24b733 50%,#dce52d 63%,#dce52d 72%,#ea352e 82%,#ef3921 100%);
+}
+
+.tds-scale {
+
 }
 
 /* filter life */
 .circle-fl {
 	position: absolute;
-	left: 40%;
-	top: 10%;
+	left: 47%;
+	top: 25.3%;
 	transform: translateY(-50%);
-	display: none;
+	display: block;
 }
 
 .fl-label {
-	position: relative;
+	position: absolute;
 	display: block;
-	height: 60px;
-	width: 60px;
+	height: 10px;
+	width: 10px;
 	z-index: 1000;
+
+	.circle-text {
+		display: none;
+	}
 }
 
 .fl-bar {
