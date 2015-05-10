@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   post   'login'   => 'sessions#create'
 
+  get 'rain_barrel/conductivity_sensor' => 'rain_barrel#print_sensor'
+
   get 'logout'  => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

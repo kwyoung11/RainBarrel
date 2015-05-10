@@ -122,4 +122,10 @@ class RainBarrelController < ApplicationController
   	msg = {:status => "ending sim"}
   	respond_with msg.to_json
   end
+
+  def print_sensor
+	somefile = File.open("testfile.txt", "w")
+	somefile.puts "Hello World"
+	puts "Hello World"
+  end
 end
