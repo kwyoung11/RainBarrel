@@ -58,8 +58,8 @@ $blue: #39f;
 $barrel_height: 375px;
 $barrel_width: 195px;
 $font-stack: "Lucida Grande", verdana, sans-serif;
-$wrap-borders: 0px dotted green;
-$barrel-borders: 0px dotted red;
+$wrap-borders: 1px dotted green;
+$barrel-borders: 1px dotted red;
 
 
 body {
@@ -138,6 +138,23 @@ h3 {
 	height: 30px;
 }
 
+#top-bar-nav {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	white-space: nowrap;
+	min-width: 195px;
+	border: 1px solid green;
+	li {
+		display: inline-block;
+		width: 49%;
+		min-width: 95px;
+		text-align: center;
+		border: 1px solid blue;
+		// float: left;
+	}
+}
+
 .login-popup {
 	position: absolute;
 	display: none;
@@ -150,8 +167,11 @@ h3 {
 }
 
 .sessions {
-	width: 15%;
+	width: 25%;
+	max-width: 250px;
+	min-width: 180px;
 	float: right;
+	text-align: center;
 	border: $barrel-borders;
 	a {
 		padding: 0 15px;
@@ -695,9 +715,13 @@ h3 {
 	/* navigation */
 	#nav-bar-wrap {
 		height: 200px;
-		width: 50%;
+		width: 32%;
+		min-width: 230px;
+		left: 1%;
 		float: none;
 		margin: 0 auto;
+		border: 0px solid red;
+		z-index: 5000;
 	}
 
 	#nav_bar {

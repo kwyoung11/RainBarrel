@@ -124,8 +124,10 @@ class RainBarrelController < ApplicationController
   end
 
   def print_sensor
-	somefile = File.open("testfile.txt", "w")
-	somefile.puts "Hello World"
-	puts "Hello World"
+	 somefile = File.open("testfile.txt", "w")
+	 somefile.puts "Hello World"
+	 puts "Hello World"
+   
+
   end
 end
