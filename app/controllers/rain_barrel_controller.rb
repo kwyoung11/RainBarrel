@@ -1,5 +1,6 @@
 class RainBarrelController < ApplicationController
 	respond_to :json
+  skip_before_filter :verify_authenticity_token, only: :print_sensor
 
   def index
   	if current_user
@@ -127,7 +128,7 @@ class RainBarrelController < ApplicationController
 	 somefile = File.open("testfile.txt", "w")
 	 somefile.puts "Hello World"
 	 puts "Hello World"
-   
+
 
   end
 end
