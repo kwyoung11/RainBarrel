@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   post   'login'   => 'sessions#create'
 
-  post 'rain_barrel/conductivity_sensor' => 'rain_barrel#print_sensor'
+  post 'rain_barrel/conductivity_sensor' => 'rain_barrel#receive_arduino'
 
   get 'logout'  => 'sessions#destroy'
 
