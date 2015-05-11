@@ -125,10 +125,10 @@ class RainBarrelController < ApplicationController
   end
 
   def receive_arduino
-	 somefile = File.open("testfile.txt", "w")
-	 somefile.puts "Hello World"
-	 puts "Hello World"
-
-
+	File.open("test.txt", "a") do |f|
+		f.puts "Hi"
+	end
+	#somefile = File.open("testfile.txt", "w")
+	#somefile <<  "Hello World\n"
   end
 end
