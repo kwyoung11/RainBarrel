@@ -45,6 +45,9 @@ $(document).ready(function() {
 		$(this).find(".label").hide();
 		$(this).find(".preview").show();
 		$("." + $(this).find(".label").attr("id")).show();
+		if ($(this).hasClass('circle-fl')) {
+			// $("#barrel").addClass("rotate");
+		}
 	});
 
 
@@ -113,6 +116,7 @@ $(document).ready(function() {
 				var current_water_level = rain_barrel['current_volume'];
 				var capacity_in_gallons = rain_barrel['capacity_in_gallons'];
 				var rain_barrel_height = parseInt($("#barrel").css('height'));
+				var rain_barrel_width = parseInt($("#barrel").css('width'));
 				var times_full =  current_water_level/capacity_in_gallons;
 				var percent_filled = (current_water_level/capacity_in_gallons) * 100;
 				
@@ -124,6 +128,32 @@ $(document).ready(function() {
 					top: wl_top_target + "%",
 					height: wl_height_target + "px",
 				}, 1000, function() {
+	
+				});
+
+				/* filter life graphic */
+				var fl = rain_barrel.filter_life;
+				var fl_remaining = rain_barrel.filter_life_remaining;
+				var fl_scale = 100 / fl;
+
+				fl_top = 100 - (rain_barrel.filter_life * fl_scale);
+				fl_width_target = fl * fl_scale;
+				fl_remaining_top = rain_barrel.filter_life_remaining * fl_scale;
+				fl_remaining_width_target = fl_remaining * fl_scale;
+
+				console.log(fl_top);
+				console.log("remaining: " + fl_remaining_top);
+
+				$(".fl-bar").animate({
+					top: 100 - (rain_barrel.filter_life * fl_scale) + '%',
+					height: fl_width_target + "%",
+				}, 2000, function() {
+	
+				});
+
+				$(".fl-remaining-bar").animate({
+					height: fl_remaining_width_target + "%",
+				}, 3000, function() {
 	
 				});
 

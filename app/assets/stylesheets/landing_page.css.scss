@@ -1,0 +1,180 @@
+@mixin triangle-down($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-left: $dimension solid transparent;
+	border-right: $dimension solid transparent;
+	border-top: $dimension solid $color;
+}
+
+@mixin triangle-up($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-left: $dimension solid transparent;
+	border-right: $dimension solid transparent;
+	border-bottom: $dimension solid $color;
+}
+
+@mixin triangle-left($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-top: $dimension solid transparent;
+	border-bottom: $dimension solid transparent;
+	border-right: $dimension solid $color;
+}
+
+@mixin triangle-right($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-top: $dimension solid transparent;
+	border-bottom: $dimension solid transparent;
+	border-left: $dimension solid $color;
+}
+
+@mixin rounded-corners($radius: 5px) {
+	 border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin simple-vert-gradient($c-stop1: #f00, $c-stop2: lighten($c-stop1, 15%)) {
+	background: #436b99; /* Old browsers */
+	background: -moz-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,$c-stop1), color-stop(90%,$c-stop2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, $c-stop1 10%,$c-stop2 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* IE10+ */
+	background: linear-gradient(to bottom, $c-stop1 10%, $c-stop2 90%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$c-stop1', endColorstr='$c-stop2',GradientType=0 ); /* IE6-9 */
+}
+
+$blue-white: #d1d3ef;
+$text-color: #e5e8ee;
+$background: #171d25;
+$blue: #39f;
+$barrel_height: 375px;
+$barrel_width: 195px;
+$font-stack: "Lucida Grande", verdana, sans-serif;
+$wrap-borders: 1px dotted green;
+$barrel-borders: 1px dotted red;
+
+/* registration */
+.pitch {
+	position: absolute;
+	left: 55%;
+	top: 25%;
+	color: #fff;
+	padding: 15px;
+	border-radius: 15px;
+	background-color: rgba(40, 40, 40, 0.7);
+	width: 350px;
+	
+}
+
+.landing-page {
+	background-image: url('/assets/Water_Barrel.jpg');
+	border-radius: 25px;
+}
+
+.new-user-wrap {
+	position: relative;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+
+	opacity: 0.9;
+  // border: $barrel-borders;
+  background: #272d35;
+  width: 30%;
+  min-width: 200px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  h1 {
+  	text-align: center;
+  }
+}
+
+.line {
+	position: relative;
+	display: inline-block;
+	// border: $barrel-borders;
+	width: 96%;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	border-bottom: 1px solid #666;
+	margin-bottom: 25px;
+		
+	input {
+		border-radius: 3px;
+		height: 25px;
+	}
+
+	input#user_street_address {
+		width: 90%;
+	}
+
+	input#user_city {
+		width: 80px;
+	}
+
+	select#user_state {
+		width: 80px;
+		height: 32px;
+		position: relative;
+		display: block;
+	}
+
+	input#user_zip_code {
+		width: 70px;
+	}
+	
+	.field {
+		// border: 1px solid red;
+		float: left;
+		display: block;
+		width: 49%;
+		min-width: 140px;
+		margin-bottom: 12px;
+	}
+
+}
+
+.line3 .field {
+	width: 100%;
+}
+
+.line4 .field {
+	min-width: 100px;
+	width: 33%;
+}
+
+.actions {
+	input {
+		text-align: center;
+		margin: 0 auto;	
+	}
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* responsive modifications */
+
+@media screen and (max-width: 800px) {
+	
+	.pitch {
+		display: none;
+	}
+
+	.line  {
+		.field {
+			width: 90%;
+		}
+
+		input {
+			width: 90% !important;
+		}
+
+		select {
+			width: 90% !important;
+		}
+	}
+
+}

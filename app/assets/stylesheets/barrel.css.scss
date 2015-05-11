@@ -225,6 +225,35 @@ $barrel-borders: 0px dotted red;
 	position: absolute;
 	height: 60px;
 	width: 60px;
+	margin-top: -40px;
 	z-index: 500;
+}
+
+.filter-wrapper {
+	position: relative;
+	display: inline-block;
+	border: 1px solid red;
+	width: 30px;
+	margin: 0 auto;
+	height: 100%;
+	display: none;
+}
+
+.fl-bar {
+	position: absolute;
+	top: 100%;
+	height: 0;
+	width: 30px;
+	background: #aaa;
+	display: none;
+}
+
+.fl-remaining-bar {
+	position: absolute;
+	background: yellow;
+	top: 0%;
+	height: 0;
+	width: 30px;
+	display: none;
 }
 

@@ -58,9 +58,13 @@ $blue: #39f;
 $barrel_height: 375px;
 $barrel_width: 195px;
 $font-stack: "Lucida Grande", verdana, sans-serif;
-$wrap-borders: 1px dotted green;
-$barrel-borders: 1px dotted red;
+$wrap-borders: 0px dotted green;
+$barrel-borders: 0px dotted red;
 
+
+.centered-text {
+	text-align: center;
+}
 
 body {
 	background: $background;
@@ -84,7 +88,7 @@ h3 {
 }
 
 .title {
-	margin: 0px auto;
+	margin: 10px auto;
 	text-align: center;
 }
 
@@ -100,16 +104,6 @@ h3 {
 	}
 }
 
-.new-user-wrap {
-	border: $barrel-borders;
-	background: #272d35;
-	padding: 75px;
-	margin-left: -50px;
-	position: absolute;
-	top: 15%;
-	transform: translateY(0%);
-}
-
 /* wrappers */
 
 #nav-bar-wrap {
@@ -123,7 +117,8 @@ h3 {
 
 #app-wrapper {
 	width: 60%;
-	height: 100%;
+	max-width: 600px;
+	height: 100vh;
 	float: left;
 	position: relative;
 	border: $wrap-borders;
@@ -144,26 +139,43 @@ h3 {
 	list-style-type: none;
 	white-space: nowrap;
 	min-width: 195px;
-	border: 1px solid green;
+	border-bottom: 1px solid #555;
+	padding-bottom: 10px;
+	margin-right: 100px;
 	li {
 		display: inline-block;
 		width: 49%;
 		min-width: 95px;
 		text-align: center;
-		border: 1px solid blue;
+		// border-bottom: 1px solid #666;
 		// float: left;
 	}
 }
 
+.login-triangle-up {
+	@include triangle-up(#444, 5px);
+	left: 49%;
+	margin-top: -25px;
+}
+
 .login-popup {
 	position: absolute;
+	background-color: rgba(40, 40, 40, 0.9);
+	padding: 20px;
+	border-radius: 15px;
 	display: none;
 	border: $barrel-borders;
 	height: auto;
 	width: 200px;
-	left: 85%;
+	margin-left: -72px;
 	top: 100%;
 	z-index: 1000;
+}
+
+.login {
+	.field {
+		margin-bottom: 10px;
+	}
 }
 
 .sessions {
@@ -194,7 +206,10 @@ h3 {
 	position: relative;
 	height: 600px;
 	width: 300px;
+	top: 33%;
+	transform: translateY(-33%);
 	border: $barrel-borders;
+	margin: 0 auto;
 }
 
 #barrel {
@@ -221,9 +236,6 @@ h3 {
 	height: 0px;
 	width: 210px;
 }
-
-
-
 
 
 /* legend, explanations */
@@ -449,6 +461,17 @@ h3 {
   to{   -webkit-transform: rotate(360deg); }
 }
 
+.rotate {
+	-webkit-animation: barrel-rotate 0.5s linear 1;
+	-webkit-animation-fill-mode: forwards;
+
+}
+
+@-webkit-keyframes barrel-rotate {
+  from{ -webkit-transform: rotate(0deg);   }
+  to{   -webkit-transform: rotate(90deg); }
+}
+
 .icon_home_link:hover {
 	border: 1px solid $blue;
 }
@@ -510,10 +533,11 @@ h3 {
 @-webkit-keyframes flash-letter{0%{opacity:0.35}30%{opacity:0.8}40%{opacity:0.45}100%{opacity:0.21}}
 
 .help {
-	position: relative;
+	position: absolute;
   color: #2385BA;
   height: 20px;
   width: 20px;
+  margin-top: -7px;
   display: inline-block;
   border: $wrap-borders;
   vertical-align: super;
@@ -596,11 +620,14 @@ h3 {
 }
 
 #nav_list {
+	font-size: 19px;
 	list-style-type: none;
 	text-align: left;
 	padding: 0;
 	li {
+		// border: 1px solid #555;
 		margin: 15px;
+		margin-bottom: 65px;
 	}
 
 	a {
@@ -615,7 +642,7 @@ h3 {
 		content: "";
 		position: absolute;
 		left: 0px;
-		height: 30px;
+		height: 42px;
 		width: 0px;
 		border: 2px solid #39f;
 	}
@@ -625,7 +652,7 @@ h3 {
 	content: "";
 	position: absolute;
 	left: 0px;
-	height: 30px;
+	height: 42px;
 	width: 0px;
 	border: 2px solid #39f;
 }
@@ -708,6 +735,9 @@ h3 {
 	z-index: 1000;
 }
 
+
+
+
 /* responsive modifications */
 
 @media screen and (max-width: 800px) {
@@ -722,6 +752,7 @@ h3 {
 		margin: 0 auto;
 		border: 0px solid red;
 		z-index: 5000;
+		margin-bottom: 50px;
 	}
 
 	#nav_bar {
@@ -731,6 +762,10 @@ h3 {
 	}
 
 	#nav_list {
+		text-align: center;
+		li {
+			margin-bottom: 25px;
+		}
 		a { 
 			margin-bottom: 0px; 
 		}

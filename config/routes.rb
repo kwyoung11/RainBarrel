@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   
+  require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
+
+  # Root URL
+  root to: 'rain_barrel#index', constraints: LoggedInConstraint.new
+  root to: 'users#new', as: :unauthenticated_root
+  
+
   get 'sessions/create'
 
   get 'sessions/destroy'
 
   resources :users
-
-  root 'rain_barrel#index'
 
   get 'rain_barrel/index'
 

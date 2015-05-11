@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
  	   # user.save!(validate: false)
  	   # Direct user to perform workouts on mobile, else to profile
  	   # redirect_to( mobile_device? ? performable_user_workouts_path(user) : user_path(user) )
- 	   redirect_to root_url 
+ 	   redirect_to root_url
  	 else
  	   flash.now[:notice] = "Invalid email or password"
  	   render "new"

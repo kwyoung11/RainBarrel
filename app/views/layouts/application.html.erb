@@ -7,7 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if request.fullpath != "/" %>
+	<div class="top-bar"> 
+		<div class="sessions">
+			<ul id="top-bar-nav">
+				<% if logged_in? %>
+					<li> 
+						<%= link_to "#{current_user.name.split(" ")[0]}", edit_user_path(	current_user) %> 
+					</li>
+					<li> <%= link_to "Logout", logout_path %> </li>
+				<% else %>
+					<li> 
+						<%= link_to 'Login',  login_path, {class: 'login-link'} %> 
+
+		<div class="login-popup"> 
+			<div class="login-triangle-up"> </div>
+			<%= render "sessions/new" %>
+		</div>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<% if request.fullpath != "/"%>
 		<div class="icon_home"> 
 			<%= link_to "", root_path, {	class: "icon_home_link"} %> 
 		</div>

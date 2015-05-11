@@ -1,26 +1,3 @@
-<div class="top-bar"> 
-	<div class="sessions">
-		<ul id="top-bar-nav">
-			<% if !logged_in? %>
-				<li> 
-					<%= link_to 'Sign Up', new_user_path %> 
-				</li>
-			<% end %>
-			<% if logged_in? %>
-				<li> 
-					<%= link_to "#{current_user.name.split(" ")[0]}", edit_user_path(current_user) %> 
-				</li>
-			<% else %>
-				<li> 
-					<%= link_to 'Login',  login_path, {class: 'login-link'} %> 
-				</li>
-			<% end %>
-		</ul>
-	</div>
-	<div class="login-popup"> 
-		<%= render "sessions/new" %>
-	</div>
-</div>
 <h1 class="title">  </h1>
 <div id="nav-bar-wrap">
 	<div id="nav_bar"> 
@@ -80,7 +57,7 @@
 
 			<div class="circle-wrap circle-fl">
 				<div id="fl-graphic" class="fl-label circle label"><span class="circle-text"> Filter </span></div>
-				<div class="fl-status circle preview"><span class="circle-text"> Status: </span></div>
+				<div class="fl-status circle preview"><span class="circle-text"> </span></div>
 			</div>
 
 			<div id="barrel"> 
@@ -102,8 +79,15 @@
 				</div>
 
 				<!-- filter life graphic -->
-				<div class="fl-bar fl-graphic preview-graphic"> </div>
-				
+				<div class="filter-wrapper fl-graphic preview-graphic">
+					<div class="fl-bar fl-graphic preview-graphic"> 
+						<div class="bar-label"> used </div>
+					</div>
+					<div class="fl-remaining-bar fl-graphic preview-graphic"> 
+						<div class="bar-label"> remaining </div>
+					</div>
+				</div>
+
 				<div class="tds-scale"></div>
 			</div>
 	</div>
