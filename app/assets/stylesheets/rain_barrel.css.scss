@@ -129,8 +129,16 @@ h3 {
 
 .top-bar {
 	position: relative;
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
 	border: $barrel-borders;
 	height: 30px;
+}
+
+.landing .top-bar {
+	float: none;
+	display: block;
 }
 
 #top-bar-nav {
@@ -480,6 +488,7 @@ h3 {
 	margin-bottom: 30px;
 }
 
+
 .tooltip {
 	display: none;
 	background: #222;
@@ -604,6 +613,29 @@ h3 {
 	left: 103%;
 }
 
+.arrow {
+  color: #495269;
+  display: block;
+  font-size: 12px;
+  line-height: 12px;
+  float: left;
+  margin: 3px 8px 0 22px;
+}
+
+.where-i-am {
+	display: inline-block;
+	border: 0px solid red;
+	h4 {
+		display: inline;
+		padding-left: 33px;
+	}
+}
+
+.logo-small {
+	display: inline-block;
+	font-size: 15px;
+	padding: 0;
+}
 
 
 
@@ -637,27 +669,28 @@ h3 {
 		height: auto;
 		border: $barrel-borders;
 	}
-
-	a:hover:before {
-		content: "";
-		position: absolute;
-		left: 0px;
-		height: 42px;
-		width: 0px;
-		border: 2px solid #39f;
-	}
 }
 
-.selected:before {
+.legend {
 	content: "";
 	position: absolute;
-	left: 0px;
+	background: #384151;
+	border-radius: 50%;
+	display: block;
+	text-align: center;
+	z-index: 1000;
+	left: -40px;
 	height: 42px;
-	width: 0px;
-	border: 2px solid #39f;
+	width: 42px;
 }
 
+.selected {
+	-webkit-animation: fill-selected 1.2s linear 1;
+	-webkit-animation-fill-mode: forwards;
+	background: #39f;
+}
 
+@-webkit-keyframes fill-selected{0%{opacity:0.35}30%{opacity:0.8}40%{opacity:0.95}100%{opacity:1.0}}
 
 /* water usage page */
 .usage-section h3 {
@@ -742,6 +775,11 @@ h3 {
 
 @media screen and (max-width: 800px) {
 	
+	.top-bar {
+		display: block;
+		float: none;
+	}
+
 	/* navigation */
 	#nav-bar-wrap {
 		height: 200px;

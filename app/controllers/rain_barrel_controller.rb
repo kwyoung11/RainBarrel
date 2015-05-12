@@ -1,6 +1,8 @@
 class RainBarrelController < ApplicationController
 	respond_to :json
   skip_before_filter :verify_authenticity_token, only: :print_sensor
+  include RainBarrelHelper
+
 
   def index
   	if current_user
@@ -38,6 +40,12 @@ class RainBarrelController < ApplicationController
     # user = User.where(product_id: params[:product_id])
     # rb = MyRainBarrel.where(user_id: user.id).first
     # rb.update ...
+  end
+
+  def get_history
+    respond_to do |format|
+      format.json { render json: get_metric_data(params[:metric], params[:time]) }
+    end
   end
 
   def reset_filter_life_remaining

@@ -1,4 +1,50 @@
 <section id="usage" class="usage-section">
+	<div class="graph_wrap">
+		<div id="chart_select">
+			<p id="chart_title"> <span class="title_text"> </span> </p>
+				<%= select("metric", "select", %w[Water\ Collected\ (gallons) Water\ Used\ (gallons) Amount\ Overflown\ (gallons)]) %> 
+			
+			<ul id="time_scale">
+				<li class="time-period">Months</li>
+				<li class="time-period">Weeks</li>
+				<li class="time-period current">Days</li>
+				<li> Select time period: </li>
+			</ul>
+		</div>
+		<div class="graph-legend"> 
+			<div class="overflow-key"> = Overflowed </div>
+		</div>
+		
+		<div id="date-period"> </div>
+		
+		
+		<!-- Graph goes here -->	
+		<div id="graphContainer"></div>
+			
+		<div id="meta_stats">
+			<!-- WORKOUT STATS-->
+  		<div id="workout_stats">
+  	 		<h3> Total Water Collected </h3>
+  	    <p><%= DailyWaterLog.sum(:water_collected).to_i %> gallons</p>
+			</div>
+			<!-- LOAD VOLUME STATS -->
+			<div id="load_volume_stats">
+		 		<h3> Water Used </h3>
+  	  	<p><%= DailyWaterLog.sum(:water_used).to_i %> gallons <p>
+			</div>	
+			<!-- TIME STATS-->
+			<div id="time_stats">
+				<h3> Water Overflown </h3>
+				<p> <%= DailyWaterLog.sum(:amount_overflown).to_i %> gallons <p>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
 	<h3> Usage </h3>
 	<div id="data"> 
 		<div id="twc" class="data-elt-wrapper"> 

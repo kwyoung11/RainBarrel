@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   get 'rain_barrel/filter_reset'
 
+  get 'rain_barrel/get_history'
+
   get    'login'   => 'sessions#new'
 
   post   'login'   => 'sessions#create'

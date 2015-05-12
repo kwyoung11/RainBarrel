@@ -1,5 +1,15 @@
 $(document).ready(function() {
-
+	
+	console.log(window.location.pathname);
+	
+	if (window.location.pathname == "/") {
+		if ($(".landing-page").length > 0) {
+			$("body").addClass("landing");	
+		} else {
+			$("body").addClass("home");
+		}
+	}
+	
 	function setCookie(key, value) {
       var expires = new Date();
       expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
@@ -35,6 +45,15 @@ $(document).ready(function() {
 
 	/************ barrel graphic state handlers **************/
 
+	prev_text = "";
+	$('.wq-label, .wl-label, .fl-label').on({
+			mouseenter: function() {
+			prev_text = $(this).children('.circle-prev-text').html();
+			$(this).children('.circle-prev-text').html("");
+		}, mouseleave: function () {
+			$(this).children('.circle-prev-text').html(prev_text);
+		}
+	});
 
 
 	// clicking on labels
@@ -45,6 +64,45 @@ $(document).ready(function() {
 		$(this).find(".label").hide();
 		$(this).find(".preview").show();
 		$("." + $(this).find(".label").attr("id")).show();
+		
+		$("#wrapper .circle-wrap").addClass("inactive");
+		$(this).removeClass("inactive");
+		$(this).addClass("active");
+
+		$("#nav_list div").removeClass('selected');
+		if ($(this).hasClass('circle-wl')) {
+			$(".wl-link").siblings('.legend').addClass('selected');
+		} else if ($(this).hasClass('circle-wq')) {
+			$(".wq-link").siblings('.legend').addClass('selected');
+			$(".pH-bar").animate({
+					top: wq_ph_top_target + "%",
+					height: wq_ph_height_target + "px",
+				}, 2000, function() {
+			
+				});
+		
+				$(".tds-bar").animate({
+					top: wq_tds_top_target + "%",
+					height: wq_tds_height_target + "px",
+				}, 2000, function() {
+			
+				});
+		} else {
+			$(".fl-link").siblings('.legend').addClass('selected');
+			$(".fl-bar").animate({
+				top: 100 - (fl * fl_scale) + '%'
+			}, 2000, function() {
+			
+			});
+		
+			$(".fl-remaining-bar").animate({
+				height: fl_remaining_width_target + "%",
+			}, 3000, function() {
+			
+			});
+		}
+
+			siblings('.legend').removeClass('selected').addClass('selected');
 		if ($(this).hasClass('circle-fl')) {
 			// $("#barrel").addClass("rotate");
 		}
@@ -54,9 +112,9 @@ $(document).ready(function() {
 	// hovering over navbar links
 	$('#nav_list a').hover(function() {
 		// remove other selections
-		$("#nav_list a").removeClass('selected');
-		$(this).removeClass('selected').addClass('selected');
-
+		$("#nav_list div").removeClass('selected');
+		$(this).siblings('.legend').removeClass('selected').addClass('selected');
+	
 		$(".preview").hide();
 		$(".preview-graphic").hide();
 		$(".label").show();
@@ -64,15 +122,56 @@ $(document).ready(function() {
 				$(".wl-label").hide();
 				$(".circle-wl").find('.preview').show();
 				$("#water_level").show();
+
+				$("#wrapper .circle-wrap").addClass("inactive");
+				$('.circle-wl').removeClass("inactive");
+				$('.circle-wl').addClass("active");
+
 		} else if ($(this).hasClass('wq-link')) {
 				$(".wq-label").hide();
 				$(".circle-wq").find('.preview').show();
 				$(".pH-bar").show();
 				$(".tds-bar").show();
+
+				$("#wrapper .circle-wrap").addClass("inactive");
+				$('.circle-wq').removeClass("inactive");
+				$('.circle-wq').addClass("active");
+
+				$(".pH-bar").animate({
+					top: wq_ph_top_target + "%",
+					height: wq_ph_height_target + "px",
+				}, 2000, function() {
+			
+				});
+		
+				$(".tds-bar").animate({
+					top: wq_tds_top_target + "%",
+					height: wq_tds_height_target + "px",
+				}, 2000, function() {
+			
+				});
 		} else if ($(this).hasClass('fl-link')) {
 				$(".fl-label").hide();
 				$(".circle-fl").find('.preview').show();
 				$(".fl-bar").show();
+				$(".fl-remaining-bar").show();
+				$('.filter-wrapper').show();
+
+				$("#wrapper .circle-fl").addClass("inactive");
+				$('.circle-fl').removeClass("inactive");
+				$('.circle-fl').addClass("active");
+
+				$(".fl-bar").animate({
+					top: 100 - (fl * fl_scale) + '%'
+				}, 2000, function() {
+			
+				});
+		
+				$(".fl-remaining-bar").animate({
+					height: fl_remaining_width_target + "%",
+				}, 3000, function() {
+			
+				});
 		}
 	}, function() {
 
@@ -108,7 +207,7 @@ $(document).ready(function() {
 	var tds_flag = 0;
 	var filter_flag = 0;
 	var ping = function () {
-		console.log("in ping");
+		// console.log("in ping");
 		$.ajax({
 			url: "/rain_barrel/stats",
 			type: "GET",
@@ -128,57 +227,81 @@ $(document).ready(function() {
 					top: wl_top_target + "%",
 					height: wl_height_target + "px",
 				}, 1000, function() {
-	
+					
 				});
 
 				/* filter life graphic */
-				var fl = rain_barrel.filter_life;
-				var fl_remaining = rain_barrel.filter_life_remaining;
-				var fl_scale = 100 / fl;
+				fl = rain_barrel.filter_life;
+				fl_remaining = rain_barrel.filter_life_remaining;
+				fl_scale = 100 / fl;
 
 				fl_top = 100 - (rain_barrel.filter_life * fl_scale);
 				fl_width_target = fl * fl_scale;
 				fl_remaining_top = rain_barrel.filter_life_remaining * fl_scale;
 				fl_remaining_width_target = fl_remaining * fl_scale;
 
-				console.log(fl_top);
-				console.log("remaining: " + fl_remaining_top);
+				// $('.fl-bar').css('display', 'block');
+				// $(".fl-bar").animate({
+				// 	top: 100 - (rain_barrel.filter_life * fl_scale) + '%'
+				// }, 2000, function() {
+			
+				// });
+				
+				// $(".fl-remaining-bar").css('display', 'block');
+				// $(".fl-remaining-bar").animate({
+				// 	height: fl_remaining_width_target + "%",
+				// }, 3000, function() {
+			
+				// });
 
-				$(".fl-bar").animate({
-					top: 100 - (rain_barrel.filter_life * fl_scale) + '%',
-					height: fl_width_target + "%",
-				}, 2000, function() {
-	
-				});
-
-				$(".fl-remaining-bar").animate({
-					height: fl_remaining_width_target + "%",
-				}, 3000, function() {
-	
-				});
+				
 
 				/* wq */
 				var ph_scale = 100 / 14;
-				var wq_ph_top_target = 100 - (rain_barrel.ph * ph_scale);
-				var wq_ph_height_target = rain_barrel_height * ((rain_barrel.ph * ph_scale)/100);
+				wq_ph_top_target = 100 - (rain_barrel.ph * ph_scale);
+				wq_ph_height_target = rain_barrel_height * ((rain_barrel.ph * ph_scale)/100);
 
 				var tds_scale = 100 / 400;
-				var wq_tds_top_target = 100 - (rain_barrel.total_dissolved_solids * tds_scale); 
-				var wq_tds_height_target = rain_barrel_height * ((rain_barrel.total_dissolved_solids * tds_scale)/100);
+				wq_tds_top_target = 100 - (rain_barrel.total_dissolved_solids * tds_scale); 
+				wq_tds_height_target = rain_barrel_height * ((rain_barrel.total_dissolved_solids * tds_scale)/100);
 
 
-				$(".pH-bar").animate({
-					top: wq_ph_top_target + "%",
-					height: wq_ph_height_target + "px",
-				}, 2000, function() {
-	
-				});
-
-				$(".tds-bar").animate({
-					top: wq_tds_top_target + "%",
-					height: wq_tds_height_target + "px",
-				}, 2000, function() {
-	
+				/* animations */
+				$('.circle-wrap').on('click', function() {
+					if ($(this).hasClass('circle-fl')) { // filter life animation
+						$(".fl-bar").animate({
+							top: 100 - (rain_barrel.filter_life * fl_scale) + '%'
+						}, 2000, function() {
+			
+						});
+		
+						$(".fl-remaining-bar").animate({
+							height: fl_remaining_width_target + "%",
+						}, 3000, function() {
+			
+						});
+					} else if ($(this).hasClass('circle-wq')) { // water quality animations
+						$(".pH-bar").animate({
+							top: wq_ph_top_target + "%",
+							height: wq_ph_height_target + "px",
+						}, 2000, function() {
+			
+						});
+		
+						$(".tds-bar").animate({
+							top: wq_tds_top_target + "%",
+							height: wq_tds_height_target + "px",
+						}, 2000, function() {
+			
+						});
+					} else if ($(this).hasClass('circle-wl')) { // water level animation
+						$("#water_level").animate({
+							top: wl_top_target + "%",
+							height: wl_height_target + "px",
+						}, 1000, function() {
+					
+						});
+					}
 				});
 
 				$(".circle-wl").animate({
@@ -227,6 +350,8 @@ $(document).ready(function() {
 				} else {
 					$(".tds-bar").css('background', 'red');
 				}
+
+				$(".fl-status .circle-text").html(rain_barrel.filter_life_remaining + " days remaining");
 
 
 
@@ -311,9 +436,9 @@ $(document).ready(function() {
 					$(".logo span").css('color', 'red');
 				}
 
-				console.log(rain_barrel);
+				// console.log(rain_barrel);
 				// filter life alert
-				console.log(rain_barrel.filter_life_remaining);
+				// console.log(rain_barrel.filter_life_remaining);
 				if (rain_barrel.filter_life_remaining < 8) {
 					alerts["filter"] = ""
 					alerts["filter"] = "Filter life remaining: " + rain_barrel.filter_life_remaining + " days";
@@ -369,7 +494,7 @@ $(document).ready(function() {
 				if ((rain_barrel.ph > 6 && rain_barrel.ph < 8) && rain_barrel.total_dissolved_solids < 400 && rain_barrel.filter_life_remaining >= 8) {
 					$("#alert").css('display', 'none');
 				}
-				console.log(rain_barrel);
+				// console.log(rain_barrel);
 				
 				// wait 1 second
 				setTimeout(function () {

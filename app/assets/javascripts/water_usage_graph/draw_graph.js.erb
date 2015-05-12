@@ -1,0 +1,164 @@
+function draw(w, h, margin, barWidth, user_id, view) {
+  // Transition animation variables
+  var delay = function(d, i) { return i * 5; };
+  var duration = 750;
+  
+  // Define graph area and margin areas.
+  h = h - margin.top - margin.bottom, 
+  padding = 0;
+  /*****************************************/   
+
+function toIntArray(arr) {
+    for (var i = 0; i < arr.length; i++) { 
+        arr[i]["load_volume"] = +arr[i]["load_volume"]; 
+    } 
+    return arr;
+}
+
+  // Initialize domain and svg for graph
+  function initialize(view) {
+    var metric = "water_collected";
+    var time = "Days";
+
+    var promise = sendAjaxRequest(time, metric);
+    promise.success(function(data) {
+      data = toIntArray(data);
+      data = convertToMilliseconds(data); 
+      
+      // Set the X and Y scales.   
+      var x = setXDomain(time, w, margin);
+      var y = setYDomain(data, h, margin);
+
+      d3.select("#date-period").html("" + strftime('%b %e %Y', new Date(x.domain()[0])) + " - " + strftime('%b %e %Y', new Date(x.domain()[1])));
+
+      // Set the xAxis.
+      var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(d3.time.days, 1).tickFormat(d3.time.format('%d')).tickSize(0).tickPadding(8);
+      var tooltip = d3.select("body").append("div").attr("class", "graph-tooltip"); 
+  
+      // Create the SVG graph.
+      var svg = d3.select("#graphContainer").insert("svg", "#usage_stats")
+          .attr("class", "chart").attr("width", w).attr("height", h)
+        .append("g").attr("transform", "translate(" + (margin.left) + "," + margin.top + ")").attr("id", "graph");
+          
+      enterSelections(data, svg, x, y, tooltip, xAxis, time, metric);
+      toolTipMouseOver(tooltip);
+
+      // Update graph when time scale changes
+      $("ul#time_scale li, #metric_select").on('click change', function () {
+        if ($(this).hasClass('time-period')) {
+          $("#time_scale li").removeClass("current");
+          $(this).addClass('current');
+        }
+        var newTime = $("ul#time_scale li.current").text(),
+          newMetric = $("#metric_select option:selected").attr("value").split(" ");
+          newMetric = newMetric[0] + " " + newMetric[1];
+          updateGraph(svg, x, y, xAxis, tooltip, newTime, newMetric);
+      }); 
+      
+    });
+  } // end initialize function
+
+  // Redraw graph with new data.
+  function updateGraph(svg, x, y, xAxis, tooltip, newTime, newMetric) {
+    var flag = "Update",
+    promise = sendAjaxRequest(newTime, newMetric);
+    promise.success(function(data) {
+      data = toIntArray(data);
+      data = convertToMilliseconds(data);
+
+      if (newTime == "Weeks" || newTime == "Months") {
+        for (var i = 0; i < data.length; i++) {
+          data[i].load_volume = data[i].total_load_volume;
+        }
+      }
+
+      updateXDomain(data, x, newTime);
+      updateYDomain(data, y, newTime);
+      updateTickFormat(xAxis, x, newTime);
+      d3.select("#date-period").html("" + strftime('%b %e %Y', new Date(x.domain()[0])) + " - " + strftime('%b %e %Y', new Date(x.domain()[1])));
+
+      enterSelections(data, svg, x, y, tooltip, xAxis, newTime, newMetric, flag);
+      toolTipMouseOver(tooltip);
+    }); 
+
+  } // End updateGraph() function.
+
+  // Draw bars, labels and xAxis
+  function enterSelections(data, svg, x, y, tooltip, xAxis, time, metric, flag) {
+    console.log(data);
+    var bar = svg.selectAll("rect").data(data, function(d) { return d.date; });
+    var text = svg.selectAll("text").data(data, function(d) { return d.date; });
+    var circle = svg.selectAll("circle").data(data, function(d) {return d.date; });
+    var noDataColor = "#eee";
+    var dataColor = "rgba(65,131,196,0.4)";
+    var circleDataColor = "rgba(220,131,65,0.6)";
+    var transparent = "rgba(196,131,65,0.0)";
+
+    if (flag == "Update") {
+      bar.transition().duration(duration).delay(delay)
+        .attr("x", function(d) { return x(d.date); })
+          .attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
+          .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
+          .style("fill", function(d) { return d.load_volume == 0 ? noDataColor : dataColor});
+      
+      text.transition().duration(duration).delay(delay)
+        .attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
+          .attr("y", function(d) { return y(d.load_volume) + 20; })
+          .text(function(d) { return d.load_volume == 0 ? null : format(d.load_volume, metric) });
+
+      circle.transition().duration(duration).delay(delay)
+          .attr("cx", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
+          .attr("cy", function(d) { return y(d.load_volume) + 20; });
+    }
+  
+    bar.enter().append("rect")
+        .attr("x", function(d) { return x(d.date); })
+        .attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
+        .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
+        .attr("width", barWidth).attr("class", "bar")
+        .style("fill", function(d) { return d.load_volume == 0 ? noDataColor : dataColor})
+      .on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, user_id, $("ul#time_scale li.current").text(), $("#metric_select option:selected").attr("value"), barWidth) })
+      .on("mouseout", function (d, i) { return barMouseOut(d, i, bar, tooltip) });
+        
+    text.enter().append("text")
+      .attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
+      .attr("y", function(d) { return y(d.load_volume) > (0.125 * (d3.max(data, function(d) { return d.load_volume; }))) ? y(d.load_volume) + 20 : y(d.load_volume) + 20; })
+      .attr("text-anchor", "middle")
+      .text(function(d) { 
+        return d.load_volume == 0 ? null : format(d.load_volume) 
+      });
+    
+    if (time == "Days") {
+      circle.enter().append("circle")
+        .attr("cx", function(d) { return x(d.date); })
+        .attr("cy", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
+        .attr("r", 8).attr("class", "circle")
+        .style("fill", function(d) { return d.load_volume == 0 ? transparent : circleDataColor });
+    }
+
+    svg.append('g').attr('class', 'x axis')
+      .attr('transform', 'translate(' + padding + ',' + (h - margin.bottom - margin.top) + ')')
+      .call(xAxis).selectAll("text").attr("dx", function(d) { return time == "Days" ? "0.5em" : time == "Weeks" ? "1.5em" : "1.05em" }); 
+
+    // Remove rect and text elements not in current dataset.  
+    if (flag == "Update") { bar.exit().remove(); text.exit().remove(); circle.exit().remove(); }
+
+    circle.exit().remove();
+  }
+
+  function sendAjaxRequest(time, metric) {
+    return $.ajax({ url: "/rain_barrel/get_history.json", data: { metric: metric, time: time }, dataType: "json" }); 
+  } 
+
+  initialize(view);
+} // end draw function
+
+
+
+
+
+  
+
+  
+  
+  

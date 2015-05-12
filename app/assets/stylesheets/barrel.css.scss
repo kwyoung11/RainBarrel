@@ -8,7 +8,6 @@ $barrel-borders: 0px dotted red;
 	height: 100px;
 	width: 100px;
 	z-index: 1000;
-
 }
 
 .circle-wrap:hover {
@@ -16,15 +15,23 @@ $barrel-borders: 0px dotted red;
 }
 
 .circle {
-	background: #39f;
-	border: 1px solid #14bfff;
+	background: #384151;
 	border-radius: 50%;
 	display: block;
 	text-align: center;
 	z-index: 1000;
 }
 
+.active .circle {
+	background: #39f;
+}
+
+.inactive .circle {
+	background: #384151;
+}
+
 .circle:hover {
+	background: #39f;
 	cursor: pointer;
 }
 
@@ -51,10 +58,10 @@ $barrel-borders: 0px dotted red;
 	position: absolute;
 	display: none;
 	top: 50%;
-	left: 92%;
+	left: 79%;
 	transform: translateY(-50%);
-	height: 10px;
-	width: 10px;
+	height: 38px;
+	width: 38px;
 	.circle-text {
 		display: none;
 	}
@@ -73,11 +80,11 @@ $barrel-borders: 0px dotted red;
 	animation-duration: .4s;
 	animation-fill-mode: forwards;
 	// margin-top: -30px;
-	margin-left: -30px;
+	margin-left: -18px;
 }
 
 @keyframes enlarge {
-	from {padding: 0px; margin-left: 0px; } to {padding: 30px; margin-left: -30px;}
+	from {padding: 0px; margin-left: 0px; } to {padding: 18px; margin-left: -18px;}
 }
 
 .wl-percent {
@@ -114,7 +121,7 @@ $barrel-borders: 0px dotted red;
 /* water quality */
 .circle-wq {
 	position: absolute;
-	left: 90%;
+	left: 82%;
 	top: 50%;
 	transform: translateY(-50%);
 	display: block;
@@ -123,13 +130,19 @@ $barrel-borders: 0px dotted red;
 .wq-label {
 	position: absolute;
 	display: block;
-	height: 10px;
-	width: 10px;
+	height: 40px;
+	width: 40px;
 	z-index: 1000;
+	left: -13%;
 
 	.circle-text {
 		display: none;
 	}
+}
+
+.circle-prev-text {
+	display: inline-block;
+	margin-top: 25%;
 }
 
 .wq-label:hover {
@@ -204,8 +217,10 @@ $barrel-borders: 0px dotted red;
 .fl-label {
 	position: absolute;
 	display: block;
-	height: 10px;
-	width: 10px;
+	height: 38px;
+	width: 38px;
+	top: -10%;
+	left: -10%;
 	z-index: 1000;
 
 	.circle-text {
@@ -213,11 +228,22 @@ $barrel-borders: 0px dotted red;
 	}
 }
 
-.fl-bar {
-	height: 20px;
-	width: 100px;
-	display: none;
-	border: 1px solid red;
+.fl-label:hover {
+	text-align: center;
+
+	.circle-text {
+		display: inline-block;
+		text-align: center;
+	}
+
+	animation-name: enlarge_two;
+	animation-duration: .4s;
+	animation-fill-mode: forwards;
+	margin-left: -18px;
+}
+
+@keyframes enlarge_two {
+	from {padding: 0px; margin-left: 0px; margin-top: 0px;} to {padding: 18px; margin-left: -18px; margin-top: -18px;}
 }
 
 .fl-status {
