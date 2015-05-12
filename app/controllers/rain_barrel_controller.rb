@@ -1,8 +1,7 @@
 class RainBarrelController < ApplicationController
 	respond_to :json
-  skip_before_filter :verify_authenticity_token, only: :print_sensor
+  skip_before_filter :verify_authenticity_token, only: :receive_arduino
   include RainBarrelHelper
-
 
   def index
   	if current_user
@@ -132,11 +131,11 @@ class RainBarrelController < ApplicationController
   	respond_with msg.to_json
   end
 
-  def print_sensor
-	 somefile = File.open("testfile.txt", "w")
-	 somefile.puts "Hello World"
-	 puts "Hello World"
-
-
+  def receive_arduino
+	File.open("test.txt", "a") do |f|
+		f.puts "Hi"
+	end
+	#somefile = File.open("testfile.txt", "w")
+	#somefile <<  "Hello World\n"
   end
 end
