@@ -118,18 +118,32 @@ Profile page
 }
 
 .graph-legend {
-	border: 1px solid red;
+	border: 0px solid red;
+	font-size: 12px;
 	height: 30px;
 	width: 200px;
-	display: inline-block;
 }
 
 .overflow-key {
-	display: inline-block;
-	height: 10px;
-	width: 10px;
+	height: 20px;
+	width: 20px;
 	border-radius: 50%;
 	background-color: rgba(220,131,65,0.6);
+	margin-top: 10px;
+	margin-left: 10px;
+	vertical-align: bottom;
+}
+
+.key-text {
+	vertical-align: bottom;
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.key-equal {
+	vertical-align: bottom;
+	margin-top: -10px;
+	margin-left: 30px;	
 }
 
 
@@ -205,8 +219,7 @@ Profile page
 	overflow: hidden;
 	width: 860px;
 	margin: 0px 0px 0px 30px;
-	border-bottom: 0px solid #666;
-	border: 0px solid green;
+	border-bottom: 1px solid #666;
 }
 
 #date-period {

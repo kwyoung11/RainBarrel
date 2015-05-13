@@ -1,0 +1,1 @@
+$(document).on("ready page:load",function(){var t={top:20,right:40,bottom:40,left:0},e="water_usage";$(".usage-section").length>0&&draw(900,360,t,25,1,e)});

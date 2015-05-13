@@ -75,10 +75,22 @@ function barMouseOver(d, i, x, y, bar, tooltip, user_id, time, metric, barWidth)
     clearTimeout($(".graph-tooltip").attr("d")); // Clear the timeout data-attribute.
     setDateFormat(d, time, tooltip);
     var tooltip_width = $(".graph-tooltip").width();
+    console.log("xy: " + JSON.stringify(xy, null, 4));
+    console.log("tooltip_width: " + tooltip_width);
+    console.log("x(date): " + x(new Date(d.date)));
     var tooltip_height = $(".graph-tooltip").height();
+    if (time == "Weeks") {
+      tooltip_width = tooltip_width/2;
+    }
+    var adjustment;
+    if (time == "Weeks" || time == "Months") {
+      adjustment = 48; 
+    } else {
+      adjustment = 42;
+    }
 
     // Show, position and insert data into tooltip.
-    tooltip.style("display", "block").style("left", x(new Date(d.date)) + (xy.left - tooltip_width + barWidth) + "px")
+    tooltip.style("display", "block").style("left", x(new Date(d.date)) + (xy.left - tooltip_width/2 - adjustment) + "px")
     .style("top", y(d.load_volume) - 70 + xy.top + "px")
     .transition().duration(200).style("opacity", .9);
 
