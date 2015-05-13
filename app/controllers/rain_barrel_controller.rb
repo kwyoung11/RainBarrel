@@ -9,6 +9,8 @@ class RainBarrelController < ApplicationController
     else
       @water_quality = MyRainBarrel.where(id: 1).first
     end
+
+    @check_current_user = current_user
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
   	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
@@ -135,6 +137,7 @@ class RainBarrelController < ApplicationController
 	json = params[:rain_barrel]
 	
   puts "HELLOOOOOOOO"
+
 
 	if current_user
 		@water_quality = MyRainBarrel.where(user_id: current_user.id).first

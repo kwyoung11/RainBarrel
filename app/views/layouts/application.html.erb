@@ -13,7 +13,7 @@
 			<ul id="top-bar-nav">
 				<% if logged_in? %>
 					<li> 
-						<%= link_to "#{current_user.name.split(" ")[0]}", edit_user_path(	current_user) %> 
+						<%= link_to "#{current_user.name.split(" ")[0]}", edit_user_path(current_user) %> 
 					</li>
 					<li> <%= link_to "Logout", logout_path %> </li>
 				<% else %>
