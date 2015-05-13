@@ -134,6 +134,8 @@ class RainBarrelController < ApplicationController
   def receive_arduino
 	json = params[:rain_barrel]
 	
+  puts "HELLOOOOOOOO"
+
 	if current_user
 		@water_quality = MyRainBarrel.where(user_id: current_user.id).first
 	else
@@ -143,10 +145,13 @@ class RainBarrelController < ApplicationController
 	# converting curr height of water in barrel to cm^3 (ml) then to gallons
 	current_vol = ((14.2875**2)*Math::PI*json[:current_volume])*0.000264172 
 
+
 	@water_quality.update(temperature: json[:temperature], ph: json[:ph], total_dissolved_solids: json[:tds], current_volume: current_vol, capacity_in_gallons: 4.94) 
-	File.open("posts.json", "a") do |s|
+	
+  File.open("posts.json", "a") do |s|
 		s.puts params
 	end
-        respond_with @water_quality.to_json
+  
+  respond_with @water_quality.to_json
   end
 end
