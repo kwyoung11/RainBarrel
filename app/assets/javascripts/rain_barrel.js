@@ -208,6 +208,8 @@ $(document).ready(function() {
 	var ph_flag = 0;
 	var tds_flag = 0;
 	var filter_flag = 0;
+	var temperature_flag = 0;
+	var overflow_flag = 0;
 	var ping = function () {
 		// console.log("in ping");
 		$.ajax({
@@ -359,13 +361,9 @@ $(document).ready(function() {
 
 				$(".fl-status .circle-text").html(rain_barrel.filter_life_remaining + " days remaining");
 
-
-
-
-
 				// update the alerts
 				var i;
-				var alerts = {"pH": "", "TDS": "", "filter": ""};
+				var alerts = {"pH": "", "TDS": "", "filter": "", "overflow": "", "temperature": ""};
 				
 				// pH alert
 				if (rain_barrel.ph < 6.0) {
@@ -409,8 +407,7 @@ $(document).ready(function() {
 
 					$("#pH .fix").removeClass("highlight");
 					$('#pH .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
-					// $("#pH .fix").css('display', 'none');
-					// $("#pH .fix").css('background-color', 'transparent');
+
 				}
 
 				// TDS alert
@@ -420,16 +417,14 @@ $(document).ready(function() {
 					$(".logo span").css('color', 'green');
 
 					$("#TDS .fix").removeClass("highlight");
-					// $("#TDS .fix").css('display', 'none');
-					// $("#TDS .fix").css('background-color', 'transparent');
+					$('#TDS .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
 				} else if (rain_barrel.total_dissolved_solids > 50 && rain_barrel.total_dissolved_solids <= 400) {
 					$("#TDS .data-elt .data-bit").removeClass("green_highlight red_highlight");
 					$("#TDS .data-elt .data-bit").addClass("yellow_highlight");
 					$(".logo span").css('color', 'yellow');
 
 					$("#TDS .fix").removeClass("highlight");
-					// $("#TDS .fix").css('display', 'none');
-					// $("#TDS .fix").css('background-color', 'transparent');
+					$('#TDS .data-status').addClass('legend-box');
 				} else if (rain_barrel.total_dissolved_solids > 400) {
 					alerts["TDS"] = "";
 					alerts["TDS"] = "TDS is too high (" + rain_barrel.total_dissolved_solids + ")";	
@@ -441,16 +436,35 @@ $(document).ready(function() {
 					$("#TDS .fix").addClass("highlight");
 					
 					$(".logo span").css('color', 'red');
+					$('#TDS .data-status').addClass('unsafe-icon');
 				}
 
-				// console.log(rain_barrel);
 				// filter life alert
-				// console.log(rain_barrel.filter_life_remaining);
 				if (rain_barrel.filter_life_remaining < 8) {
 					alerts["filter"] = ""
 					alerts["filter"] = "Filter life remaining: " + rain_barrel.filter_life_remaining + " days";
 					filter_flag++;
 					$(".logo span").css('color', 'red');
+				}
+
+				// overflow alert
+				if (rain_barrel.current_volume >= rain_barrel.capacity_in_gallons) {
+					alerts["overflow"] = "";
+					alerts["overflow"] = "Barrel is overflowing: drain to collect more water, or leave as is"
+					overflow_flag++;
+					$(".logo span").css('color', 'red');
+				}
+
+				// temperature alert
+				if (rain_barrel.temperature < 32) {
+					alerts["temperature"] = "";
+					alerts["temperature"] = "Temperature is below freezing: You may want to disconnect your rain barrel"
+					temperature_flag++;
+					$(".logo span").css('color', 'red');
+					$("#temp .data-status").addClass('unsafe-icon');
+				} else {
+					$("#temp .data-status").addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
+					$(".logo span").css('color', 'green');
 				}
 
 				email_alerts = []
@@ -490,6 +504,33 @@ $(document).ready(function() {
 							$("#filter_warning").html(alerts[marker]);
 						}
 					}
+
+					if (marker == "overflow" && alerts[marker] !== "") {
+						$("#alert").css('display', 'block');
+						if (overflow_flag == 1) {
+							$(".warning-text").append("<p id='overflow_warning'>"  + alerts[marker] + "</p>");	
+							if (tds_flag == 0 && ph_flag == 0) {
+								$(".warning-link").attr('href', "/rain_barrel/filter_life");
+							}
+							// email_alerts.push(alerts[marker]);
+						} else {
+							$("#overflow_warning").html(alerts[marker]);
+						}
+					}
+
+					if (marker == "temperature" && alerts[marker] !== "") {
+						$("#alert").css('display', 'block');
+						if (overflow_flag == 1) {
+							$(".warning-text").append("<p id='temperature_warning'>"  + alerts[marker] + "</p>");	
+							if (tds_flag == 0 && ph_flag == 0) {
+								$(".warning-link").attr('href', "/rain_barrel/filter_life");
+							}
+							// email_alerts.push(alerts[marker]);
+						} else {
+							$("#temperature_warning").html(alerts[marker]);
+						}	
+					}
+
 				}
 
 				if ($(".landing").length > 0) {

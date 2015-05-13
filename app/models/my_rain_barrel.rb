@@ -38,6 +38,18 @@ class MyRainBarrel < ActiveRecord::Base
  		rain_barrel.filter_life_remaining = 3
  		rain_barrel.save
  		sleep(30)
+ 	elsif type == "overflow"
+ 		until rain_barrel.current_volume > rain_barrel.capacity_in_gallons + 1 do
+ 			rain_barrel.current_volume = rain_barrel.current_volume + 0.2
+ 			rain_barrel.save
+ 			sleep(1)
+ 		end
+ 	elsif type == "temperature"
+ 		until rain_barrel.temperature < 22 do
+ 			rain_barrel.temperature = rain_barrel.temperature - 2
+ 			rain_barrel.save
+ 			sleep(1)
+ 		end
  	end
 
  	# reset
@@ -45,6 +57,7 @@ class MyRainBarrel < ActiveRecord::Base
  	rain_barrel.ph = 7.0
  	rain_barrel.total_dissolved_solids = 30
  	rain_barrel.filter_life_remaining = 10
+ 	rain_barrel.temperature = 64
  	rain_barrel.save
  end
 end

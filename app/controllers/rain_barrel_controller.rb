@@ -4,13 +4,12 @@ class RainBarrelController < ApplicationController
   include RainBarrelHelper
 
   def index
-  	if current_user
-      @water_quality = MyRainBarrel.where(user_id: current_user.id).first
-    else
-      @water_quality = MyRainBarrel.where(id: 1).first
-    end
+  	# if current_user
+   #    @water_quality = MyRainBarrel.where(user_id: current_user.id).first
+   #  else
+    @water_quality = MyRainBarrel.where(id: 1).first
+    # end
 
-    @check_current_user = current_user
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
   	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
@@ -23,11 +22,11 @@ class RainBarrelController < ApplicationController
   end
 
   def water_quality
-  	if current_user
-      @water_quality = MyRainBarrel.where(user_id: current_user.id).first
-    else
-      @water_quality = MyRainBarrel.where(id: 1).first
-    end
+  	# if current_user
+   #    @water_quality = MyRainBarrel.where(user_id: current_user.id).first
+   #  else
+    @water_quality = MyRainBarrel.where(id: 1).first
+    # end
   	@ph_color = "green_highlight"
   	@ph_color = "yellow_highlight" if (@water_quality.ph < 6.5 && @water_quality.ph > 6.0) || (@water_quality.ph > 7.5 && @water_quality.ph < 8.0)
   	@ph_color = "red_highlight" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
@@ -43,11 +42,11 @@ class RainBarrelController < ApplicationController
   end
 
   def reset_filter_life_remaining
-    if current_user
-      rb = MyRainBarrel.where(user_id: current_user.id).first
-    else
-      rb = MyRainBarrel.where(id: 1).first
-    end
+    # if current_user
+    #   rb = MyRainBarrel.where(user_id: current_user.id).first
+    # else
+    rb = MyRainBarrel.where(id: 1).first
+    # end
 
     rb.filter_life_remaining = params[:days]
     rb.save
@@ -59,11 +58,11 @@ class RainBarrelController < ApplicationController
   end
 
   def filter_life
-    if current_user
-      @filter = MyRainBarrel.where(user_id: current_user.id).first
-    else
-      @filter = MyRainBarrel.where(id: 1).first
-    end
+    # if current_user
+    #   @filter = MyRainBarrel.where(user_id: current_user.id).first
+    # else
+    @filter = MyRainBarrel.where(id: 1).first
+    # end
   end
 
   def email_alert
@@ -76,11 +75,11 @@ class RainBarrelController < ApplicationController
   end
 
   def filter_reset
-    if current_user
-      rb = MyRainBarrel.where(user_id: current_user.id).first
-    else
-      rb = MyRainBarrel.where(id: 1).first
-    end
+    # if current_user
+    #   rb = MyRainBarrel.where(user_id: current_user.id).first
+    # else
+    rb = MyRainBarrel.where(id: 1).first
+    # end
   
     rb.filter_life_remaining = rb.filter_life
     rb.save
@@ -96,11 +95,11 @@ class RainBarrelController < ApplicationController
     pid = fork do
   		Signal.trap("TERM") { exit }
 
-      if current_user
-  		  MyRainBarrel.simulation(current_user.id, params["type"]) 
-      else 
-        MyRainBarrel.simulation("none", params["type"]) 
-      end
+      # if current_user
+  		  # MyRainBarrel.simulation(current_user.id, params["type"]) 
+      # else 
+      MyRainBarrel.simulation("none", params["type"]) 
+      # end
 
   		exit
   	end	
@@ -123,18 +122,10 @@ class RainBarrelController < ApplicationController
   def receive_arduino
 	json = params[:rain_barrel]
 	
-  puts "HELLOOOOOOOO"
-
-
-	if current_user
-		@water_quality = MyRainBarrel.where(user_id: current_user.id).first
-	else
-		@water_quality = MyRainBarrel.where(id: 1).first
-	end
+	@water_quality = MyRainBarrel.where(id: 1).first
 
 	# converting curr height of water in barrel to cm^3 (ml) then to gallons
 	current_vol = ((14.2875**2)*Math::PI*json[:current_volume])*0.000264172 
-
 
 	@water_quality.update(temperature: json[:temperature], ph: json[:ph], total_dissolved_solids: json[:tds], current_volume: current_vol, capacity_in_gallons: 4.94) 
 	
