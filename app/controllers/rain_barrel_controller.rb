@@ -147,5 +147,6 @@ class RainBarrelController < ApplicationController
 	File.open("posts.json", "a") do |s|
 		s.puts params
 	end
+        respond_with @water_quality.to_json
   end
 end
