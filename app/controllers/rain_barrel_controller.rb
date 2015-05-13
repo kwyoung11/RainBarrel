@@ -36,13 +36,6 @@ class RainBarrelController < ApplicationController
   	@TDS_color = "red_highlight" if (@water_quality.total_dissolved_solids > 400);
   end
 
-  # update current users rain barrel stats when arduino sends the data
-  def update
-    # user = User.where(product_id: params[:product_id])
-    # rb = MyRainBarrel.where(user_id: user.id).first
-    # rb.update ...
-  end
-
   def get_history
     respond_to do |format|
       format.json { render json: get_metric_data(params[:metric], params[:time]) }
@@ -97,11 +90,7 @@ class RainBarrelController < ApplicationController
   end
 
   def stats
-    if current_user
-      rb = MyRainBarrel.where(user_id: current_user.id).first
-    else
-      rb = MyRainBarrel.where(id: 1).first
-    end
+    rb = MyRainBarrel.where(id: 1).first
   	respond_with rb.to_json
   end
 
