@@ -23,21 +23,43 @@
 		<!-- Graph goes here -->	
 		<div id="graphContainer"></div>
 			
-		<div id="meta_stats">
+		<div class="meta_stats" id="meta_stats_water_collected">
 			<!-- WORKOUT STATS-->
-  		<div id="workout_stats">
+  		<div class="data-stat">
   	 		<h3> Total Water Collected </h3>
   	    <p><%= DailyWaterLog.sum(:water_collected).to_i %> gallons</p>
 			</div>
-			<!-- LOAD VOLUME STATS -->
-			<div id="load_volume_stats">
-		 		<h3> Water Used </h3>
+			<div class="data-stat">
+  	 		<h3> Estimated Max Collection (annually) </h3>
+  	    <p><%= DailyWaterLog.sum(:water_collected).to_i * 7 %> gallons</p>
+			</div>
+		<!-- 	<div class="explanation"> The total amount of water, in gallons, that your rain barrel has collected. </div> 
+			<div class="explanation"> The estimated amount of water that you could potentially collect, based on the square feet of your roof and rainfall patterns in your area. </div>  -->
+		</div>
+
+		<div class="meta_stats" id="meta_stats_water_used">
+			<div class="data-stat">
+		 		<h3> Total Water Used </h3>
   	  	<p><%= DailyWaterLog.sum(:water_used).to_i %> gallons <p>
 			</div>	
-			<!-- TIME STATS-->
-			<div id="time_stats">
-				<h3> Water Overflown </h3>
-				<p> <%= DailyWaterLog.sum(:amount_overflown).to_i %> gallons <p>
+			<div class="data-stat">
+		 		<h3> Total Water Lost </h3>
+  	  	<p><%= DailyWaterLog.sum(:water_used).to_i / 2 %> gallons <p>
+			</div>
+		</div>
+
+		<div class="meta_stats" id="meta_stats_amount_overflown">
+			<div class="data-stat">
+		 		<h3> Total Water Overflown </h3>
+  	  	<p><%= DailyWaterLog.sum(:amount_overflown).to_i %> gallons <p>
+			</div>	
+			<div class="data-stat">
+		 		<h3> # of Overflow Events </h3>
+  	  	<p> <%= DailyWaterLog.where(overflowed: true).count %> <p>
+			</div>
+			<div class="data-stat">
+		 		<h3> Avg. Water Overflown </h3>
+  	  	<p> <%= DailyWaterLog.sum(:amount_overflown).to_i / DailyWaterLog.where(overflowed: true).count %> <p>
 			</div>
 		</div>
 	</div>

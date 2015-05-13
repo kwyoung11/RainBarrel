@@ -43,12 +43,20 @@ function toIntArray(arr) {
       enterSelections(data, svg, x, y, tooltip, xAxis, time, metric);
       toolTipMouseOver(tooltip);
 
-      // Update graph when time scale changes
+      // Update graph when time or metric changes
       $("ul#time_scale li, #metric_select").on('click change', function () {
+        
         if ($(this).hasClass('time-period')) {
           $("#time_scale li").removeClass("current");
           $(this).addClass('current');
+        } else if ($(this).is("#metric_select")) {
+          var newMetric = $("#metric_select option:selected").attr("value").split(" ");
+          newMetric = newMetric[0].toLowerCase() + "_" + newMetric[1].toLowerCase();
+          console.log("#meta_stats_" + newMetric);
+          $(".meta_stats").hide();
+          $("#meta_stats_" + newMetric).show();
         }
+
         var newTime = $("ul#time_scale li.current").text(),
           newMetric = $("#metric_select option:selected").attr("value").split(" ");
           newMetric = newMetric[0] + " " + newMetric[1];

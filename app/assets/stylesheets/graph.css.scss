@@ -325,46 +325,43 @@ Profile page
 
 #time_scale li.current {
 	background: rgba(65, 131, 196, 0.4);
-	border-bottom: 0px solid red;
-	
+	border-bottom: 0px solid red;	
 }
 
 .selection_label {
 	display: block;
 }
 
-#meta_stats {
-	border: 1px solid #444;
-	display: block;
-	width: 606px;
+.meta_stats {
+	border: 0px solid #333;
+	display: inline-block;
 	margin: 20px auto;
 	text-align: center;
 	overflow: hidden;
 }
 
-#workout_stats {
-	position: relative;
-	border: 1px solid #bbb;
-	width: 200px;
-	height: 100px;
-	float: left;
-	margin: 0px 0px 0px 0px;
+#meta_stats_water_collected {
+	margin-left: 13%;
 }
 
-#load_volume_stats {
-	position: relative;
-	border: 1px solid #bbb;
-	width: 200px;
-	height: 100px;
-	float: left;
-	margin: 0px 0px 0px 0px;
+#meta_stats_water_used {
+	margin-left: 27%;
+	display: none;
 }
 
-#time_stats {
+#meta_stats_amount_overflown {
+	margin-left: 6%;
+	display: none;
+}
+
+
+
+.data-stat {
 	position: relative;
-	border: 1px solid #bbb;
-	width: 200px;
-	float: left;
+	padding: 10px;
+	border: 1px solid #666;
+	width: auto;
 	height: 100px;
+	float: left;
 	margin: 0px 0px 0px 0px;
 }

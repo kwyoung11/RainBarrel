@@ -150,6 +150,8 @@ $(document).ready(function() {
 				}, 2000, function() {
 			
 				});
+				$('.bar-label1').show();
+				$('.bar-label2').show();
 		} else if ($(this).hasClass('fl-link')) {
 				$(".fl-label").hide();
 				$(".circle-fl").find('.preview').show();
@@ -265,6 +267,8 @@ $(document).ready(function() {
 				wq_tds_top_target = 100 - (rain_barrel.total_dissolved_solids * tds_scale); 
 				wq_tds_height_target = rain_barrel_height * ((rain_barrel.total_dissolved_solids * tds_scale)/100);
 
+				$('.pH-bar .bar-data').html(rain_barrel.ph);
+				$('.tds-bar .bar-data').html(rain_barrel.total_dissolved_solids);
 
 				/* animations */
 				$('.circle-wrap').on('click', function() {
@@ -294,6 +298,8 @@ $(document).ready(function() {
 						}, 2000, function() {
 			
 						});
+						$('.bar-label1').show();
+						$('.bar-label2').show();
 					} else if ($(this).hasClass('circle-wl')) { // water level animation
 						$("#water_level").animate({
 							top: wl_top_target + "%",

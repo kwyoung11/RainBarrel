@@ -127,6 +127,10 @@ $barrel-borders: 0px dotted red;
 	display: block;
 }
 
+.wq-graphic {
+	overflow: visible !important;
+}
+
 .wq-label {
 	position: absolute;
 	display: block;
@@ -169,7 +173,7 @@ $barrel-borders: 0px dotted red;
 }
 
 .pH-bar {
-	position: absolute;
+	position: relative;
 	overflow: visible !important;
 	top: 100%;
 	left: 25%;
@@ -190,11 +194,35 @@ $barrel-borders: 0px dotted red;
 	border: $barrel-borders;
 }
 
-.bar-label {
-	margin-top: 5px;
+.bar-label1 {
+	position: fixed;
 	text-align: center;
-	font-size: 11px;
+	left: 36%;
+	font-size: 13px;
 	color: #bbb;
+	top: 83%;
+	z-index: 50000;
+	display: none;
+}
+
+.bar-label2 {
+	position: fixed;
+	text-align: center;
+	left: 59%;
+	top: 83%;
+	font-size: 13px;
+	color: #bbb;
+	bottom: -25px;
+	z-index: 50000;
+	display: none;
+}
+
+
+.bar-data {
+	font-size: 14px;
+	margin: 0px auto;
+	padding-top: 5px;
+	text-align: center;
 }
 
 .ph-scale {
