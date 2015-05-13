@@ -413,7 +413,7 @@ h3 {
 }
 
 .landing #alert {
-	display: none;
+	display: none !important;
 }
 
 .landing .warning-text {

@@ -492,6 +492,10 @@ $(document).ready(function() {
 					}
 				}
 
+				if ($(".landing").length > 0) {
+					$("#alert").css('display', 'none');
+				}
+
 				if (email_alerts.length != 0) {
 					email_alert(email_alerts);	
 				}
