@@ -321,7 +321,7 @@ $(document).ready(function() {
 
 
 				// update the data
-				$(".wl-gallons .circle-text").html(rain_barrel.current_volume + " gallons");
+				$(".wl-gallons .circle-text").html((Math.round(rain_barrel.current_volume * 100) / 100) + " gallons");
 				$(".wl-percent .circle-text").html(Math.floor(percent_filled) + "% full");
 
 
@@ -408,9 +408,7 @@ $(document).ready(function() {
 					$(".logo span").css('color', 'green');
 
 					$("#pH .fix").removeClass("highlight");
-					$('#pH .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div>
-    			<div class="checkmark_stem"></div>
-    			<div class="checkmark_kick"></div>');
+					$('#pH .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
 					// $("#pH .fix").css('display', 'none');
 					// $("#pH .fix").css('background-color', 'transparent');
 				}
