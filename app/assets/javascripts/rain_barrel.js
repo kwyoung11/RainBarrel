@@ -381,7 +381,7 @@ $(document).ready(function() {
 					}
 					
 					$(".logo span").css('color', 'red');
-
+					$('#pH .data-status').addClass('unsafe-icon');
 				} else if (rain_barrel.ph > 8.0) {
 					alerts["pH"] = "";
 					alerts["pH"] = "pH is too high (" + rain_barrel.ph + ")";
@@ -395,19 +395,22 @@ $(document).ready(function() {
 					}
 
 					$(".logo span").css('color', 'red');
+					$('#pH .data-status').addClass('unsafe-icon');
 				} else if ((rain_barrel.ph >= 6 && rain_barrel.ph <= 6.5) || (rain_barrel.ph <= 8.0 && rain_barrel.ph >= 7.5)) {
 					$("#pH .data-elt .data-bit").removeClass("green_highlight red_highlight");
 					$("#pH .data-elt .data-bit").addClass("yellow_highlight");
 					$(".logo span").css('color', 'yellow');
 					$("#pH .fix").removeClass("highlight");
-					// $("#pH .fix").css('display', 'none');
-					// $("#pH .fix").css('background-color', 'transparent');
+					$('#pH .data-status').addClass('legend-box');
 				} else if (rain_barrel.ph > 6.5 && rain_barrel.ph < 7.5) {
 					$("#pH .data-elt .data-bit").removeClass("yellow_highlight red_highlight");
 					$("#pH .data-elt .data-bit").addClass("green_highlight");
 					$(".logo span").css('color', 'green');
 
 					$("#pH .fix").removeClass("highlight");
+					$('#pH .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div>
+    			<div class="checkmark_stem"></div>
+    			<div class="checkmark_kick"></div>');
 					// $("#pH .fix").css('display', 'none');
 					// $("#pH .fix").css('background-color', 'transparent');
 				}

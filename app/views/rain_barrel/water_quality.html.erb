@@ -1,15 +1,22 @@
 <div id="legend_wrapper">
 	<div id="legend">
 		<div id="legend-label" class="legend-elt"> Legend: </div>
-		<div id="ideal" class="legend-elt"> <div class="legend-box"></div> Ideal </div>
+	
+		<div id="ideal" class="legend-elt"> 
+				<span class="checkmark">
+    			<div class="checkmark_circle"></div>
+    			<div class="checkmark_stem"></div>
+    			<div class="checkmark_kick"></div>
+				</span> Ideal 
+		</div>
 		<div id="drinkable" class="legend-elt"> <div class="legend-box"></div> Drinkable </div>
-		<div id="unsafe" class="legend-elt"> <div class="legend-box"></div> Unsafe </div>
+		<div id="unsafe" class="legend-elt"> <div class="unsafe-icon"></div> Unsafe </div>
 	</div>
 </div>
 
 <div id="data"> 
 	<div id="pH" class="data-elt-wrapper"> 
-		<div class="data-elt"> Current pH: 
+		<div class="data-elt"> <div class="data-status"></div> Current pH: 
 			<span class="<%= @ph_color + " data-bit" %>"> <%= @water_quality.ph %> </span>
 		</div>
 		<div class="explanation"> pH measures the total acidity of the water 
@@ -37,7 +44,7 @@
 	</div>
 
 	<div id="TDS" class="data-elt-wrapper"> 
-		<div class="data-elt"> Current TDS: 
+		<div class="data-elt"> <div class="data-status"></div> Current TDS: 
 			<span class="<%= @TDS_color + " data-bit" %>"><%= @water_quality.total_dissolved_solids %> </span> 
 		</div>
 		<div class="explanation"> The TDS level is the Total Dissolved Solids. The 
@@ -60,19 +67,19 @@
 	</div>
 
 	<div id="NTU" class="data-elt-wrapper"> 
-		<div class="data-elt"> Current NTU: TODO </div>
-		<div class="explanation"> Turbidity measures the cloudiness or haziness of water. 
-			The ideal range for drinking is from 0-0.3 NTU, drinkable from 0-1.0 NTU, and 
-			unsafe to drink otherwise. 
+		<div class="data-elt"> Current Temperature: <%= @water_quality.temperature %> </div>
+		<div class="explanation"> The temperature of the water in the barrel. 
 			
 			<br/><br/>
 			<div class="fix-link-wrapper"> 
-				<%= link_to "Click for intructions when NTU levels are unsafe".html_safe, "#ntu_fix", {class: "fix_link"} %>
+				<%= link_to "Click for intructions when Temperature is freezing".html_safe, "#ntu_fix", {class: "fix_link"} %>
 				<div class='triangle-down'></div>
 			</div>
 			
 			<div class="fix">
-				[Fix Text Here]
+				<p>If temperatures become freezing, there is no need for alarm. You will be unable to drain water from the barrel when the water inside the barrel freezes, but this should not damage your barrel as long as there is some room inside the barrel for the water to expand. </p>
+
+				<p>If you would like to prevent the water from freezing, you can try to insulate the barrel. Some common solutions involve the use of electrical heat tape, or encasing the barrel inside a structure and filling that structure with insulating material. An example of this would be encompassing the barrel with a wooden box and insulating with hay.</p>
 			</div>	
 		</div>
 

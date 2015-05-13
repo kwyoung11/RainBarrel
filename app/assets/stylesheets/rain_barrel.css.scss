@@ -285,6 +285,7 @@ h3 {
 }
 #drinkable .legend-box {
 	background-color: yellow;
+	border-radius: 50%;
 }
 #unsafe .legend-box {
 	background-color: red;
@@ -314,7 +315,12 @@ h3 {
 	min-width: 140px;
 	border: $barrel-borders;
 	padding-bottom: 15px;
+}
 
+.data-status {
+	border: 0px solid red;
+	// height: 10px;
+	// width: 10px;
 }
 
 .explanation {
@@ -635,6 +641,100 @@ h3 {
 	font-size: 15px;
 	padding: 0;
 }
+
+.checkmark {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+}
+
+.checkmark_circle {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: green;
+    border-radius:11px;
+    left:0;
+    top:0;
+}
+
+.checkmark_stem {
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#fff;
+    left:11px;
+    top:6px;
+}
+
+.checkmark_kick {
+    position: absolute;
+    width:3px;
+    height:3px;
+    background-color:#fff;
+    left:8px;
+    top:12px;
+}
+
+
+.unsafe-icon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-color: #FA6900;
+    border-radius: 5px;
+    position: relative;
+}
+
+.unsafe-icon:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\274c";
+    font-size: 20px; 
+    color: #FFF;
+    line-height: 20px;
+    text-align: center;
+}
+
+// .unsafe-icon {
+//     width: 20px;
+//     height: 20px;
+//     display: inline-block;
+//     background-color: red;
+//     padding: 2px;
+//     position: relative;
+//     border-radius: 50%;
+// }
+
+// .unsafe-icon:before,.unsafe-icon:after{
+//     content: '';
+//     position: absolute;
+//     width: 18px;
+//     height: 2px;
+//     background-color: white;
+//     border-radius: 2px;
+//     top: 9px;
+//     // box-shadow: 0 0 2px 0 #ccc;
+// }
+
+// .unsafe-icon:before{
+//     -webkit-transform:rotate(45deg);
+//     -moz-transform:rotate(45deg);
+//     transform:rotate(45deg);
+//     left:1px;
+// }
+// .unsafe-icon:after{
+//     -webkit-transform:rotate(-45deg);
+//     -moz-transform:rotate(-45deg);
+//     transform:rotate(-45deg);
+//     right:1px;
+// }
 
 
 
