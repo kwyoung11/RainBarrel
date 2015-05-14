@@ -28,7 +28,6 @@ $(document).ready(function() {
   }
 
   if ($(".filter-reset").length > 0) {
-  	console.log($("#fl-remaining .data-bit").html().split(" ")[1]);
   	if ($("#fl-remaining .data-bit").html().split(" ")[1] !== "300") {
   		setCookie("filter_life_remaining", $("#fl-remaining .data-bit").html().split(" ")[1]);	
   	}
@@ -355,7 +354,7 @@ $(document).ready(function() {
 
 				$("#pH .data-elt .data-bit").html(rain_barrel.ph);
 				$("#TDS .data-elt .data-bit").html(rain_barrel.total_dissolved_solids);
-				$("#temp .data-elt .data-bit").html(rain_barrel.ph);
+				$("#temp .data-elt .data-bit").html(rain_barrel.temperature);
 
 				// update the data
 				$(".wl-gallons .circle-text").html(Math.min((Math.round(rain_barrel.current_volume * 100) / 100), rain_barrel.capacity_in_gallons) + " gallons");
@@ -501,11 +500,13 @@ $(document).ready(function() {
 
 				// temperature alert
 				if (rain_barrel.temperature < 32) {
+					console.log("IN HERE!!!");
 					alerts["temperature"] = "";
 					alerts["temperature"] = "Temperature is below freezing: You may want to disconnect your rain barrel"
 					temperature_flag++;
 					$(".logo .logo-letter").css('color', 'red');
 					$('#temp .data-status').removeClass('unsafe-icon legend-box checkmark');
+					$('#temp .data-status').html("");
 					$("#temp .data-status").addClass('unsafe-icon');
 					$("#temp .data-elt .data-bit").removeClass("green_highlight yellow_highlight");
 					$("#temp .data-elt .data-bit").addClass("red_highlight");
@@ -594,9 +595,9 @@ $(document).ready(function() {
 
 					if (marker == "temperature" && alerts[marker] !== "") {
 						if (!hide_alert && !new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						} else if (hide_alert && new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						}
 						if (temperature_flag == 1) {
 							$(".warning-text").append("<p id='temperature_warning'>"  + alerts[marker] + "</p>");	
@@ -627,7 +628,7 @@ $(document).ready(function() {
 				
 				
 				// hide warning box if everything is ok again
-				if ((rain_barrel.ph > 6 && rain_barrel.ph < 8) && rain_barrel.total_dissolved_solids < 400 && rain_barrel.filter_life_remaining >= 8) {
+				if ((rain_barrel.ph > 6 && rain_barrel.ph < 8) && rain_barrel.total_dissolved_solids < 400 && rain_barrel.filter_life_remaining >= 8 && rain_barrel.temperature >= 32) {
 					$("#alert").css('display', 'none');
 				}
 				// console.log(rain_barrel);
