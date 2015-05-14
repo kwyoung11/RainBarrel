@@ -1,4 +1,5 @@
 # Intro
+
 RainSense is a web interface for collecting data from sensor-equipped rain barrels. In this README a typical rain barrel
 set up will be presented.
 
