@@ -284,7 +284,8 @@ $barrel-borders: 0px dotted red;
 	position: absolute;
 	height: 60px;
 	width: 60px;
-	margin-top: -40px;
+	margin-top: -30px;
+	margin-left: -100px;
 	z-index: 500;
 }
 
@@ -294,6 +295,7 @@ $barrel-borders: 0px dotted red;
 	border: 0px solid red;
 	width: 100%;
 	margin: 0 auto;
+	margin-top: -6px;
 	height: 100%;
 	display: none;
 }
@@ -324,6 +326,7 @@ $barrel-borders: 0px dotted red;
 
 .fl-bar-label2 {
 	border: 0px solid blue;
+	margin-top: 20px;
 	text-align: center;
 }
 

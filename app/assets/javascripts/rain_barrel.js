@@ -95,7 +95,7 @@ $(document).ready(function() {
 		} else {
 			$(".fl-link").siblings('.legend').addClass('selected');
 			$(".fl-bar").animate({
-				top: 100 - (fl * fl_scale) + '%',
+				top: fl_top + '%',
 				height: fl_width_target + '%'
 			}, 2000, function() {
 			
@@ -129,6 +129,7 @@ $(document).ready(function() {
 				$(".circle-wl").find('.preview').show();
 				$("#water_level").show();
 
+				$("#wrapper .circle-wrap").removeClass("active");
 				$("#wrapper .circle-wrap").addClass("inactive");
 				$('.circle-wl').removeClass("inactive");
 				$('.circle-wl').addClass("active");
@@ -139,6 +140,7 @@ $(document).ready(function() {
 				$(".pH-bar").show();
 				$(".tds-bar").show();
 
+				$("#wrapper .circle-wrap").removeClass("active");
 				$("#wrapper .circle-wrap").addClass("inactive");
 				$('.circle-wq').removeClass("inactive");
 				$('.circle-wq').addClass("active");
@@ -165,12 +167,13 @@ $(document).ready(function() {
 				$(".fl-remaining-bar").show();
 				$('.filter-wrapper').show();
 
-				$("#wrapper .circle-fl").addClass("inactive");
+				$("#wrapper .circle-wrap").removeClass("active");
+				$("#wrapper .circle-wrap").addClass("inactive");
 				$('.circle-fl').removeClass("inactive");
 				$('.circle-fl').addClass("active");
 
 				$(".fl-bar").animate({
-					top: 100 - (fl * fl_scale) + '%',
+					top: fl_top + '%',
 					height: fl_width_target + '%'
 				}, 2000, function() {
 			
@@ -261,8 +264,12 @@ $(document).ready(function() {
 				fl_remaining_top = rain_barrel.filter_life_remaining * fl_scale;
 				fl_remaining_width_target = fl_remaining * fl_scale;
 
-				if (fl_remaining_width_target < 5) {
-					fl_remaining_width_target = 5;
+				if (fl_remaining_width_target < 12) {
+					fl_remaining_width_target = 12;
+				}
+
+				if (fl_top < 12) {
+					fl_top = 12;
 				}
 
 				// $('.fl-bar').css('display', 'block');
@@ -387,7 +394,7 @@ $(document).ready(function() {
 					$(".tds-bar").css('background', 'red');
 				}
 
-				$(".fl-status .circle-text").html(rain_barrel.filter_life_remaining + " days remaining");
+				$(".fl-status .circle-text").html(rain_barrel.filter_life_remaining + "  <small> days </small>");
 
 				// update the alerts
 				var i;
