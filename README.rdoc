@@ -1,18 +1,27 @@
+# Intro
 RainSense is a web interface for collecting data from sensor-equipped rain barrels. In this README a typical rain barrel
 set up will be presented.
 
-Hardware
+# Hardware
+
 Arduino Uno- R3 SMD ($30)
+
 Arduino WiFi Shield ($88)
+
 Breadboard ($3)
+
 HC-SR04 Ultrasonic Sensor ($3)
+
 Atlas Scientic pH Kit (http://www.atlas-scientific.com/product_pages/kits/ph-kit.html) ($130)
+
 Atlas Scientific K 1.0 Conductivity Kit (http://www.atlas-scientific.com/product_pages/kits/ec_k1_0_kit.html) ($200)
+
 Temperature Sensor (http://yourduino.com/sunshop2/index.php?l=product_detail&p=151) ($4)
 
 Hardware total cost: $459
 
-Setup
+# Setup
+
 Set the IP address for the WiFi shield to send to http://rainsense.herokuapp.com. 
 
 
