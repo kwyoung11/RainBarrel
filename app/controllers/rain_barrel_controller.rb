@@ -127,7 +127,8 @@ class RainBarrelController < ApplicationController
 	# converting curr height of water in barrel to cm^3 (ml) then to gallons
 	current_vol = ((14.2875**2)*Math::PI*json[:current_volume])*0.000264172 
 
-	@water_quality.update(temperature: json[:temperature], ph: json[:ph], total_dissolved_solids: json[:tds], current_volume: current_vol, capacity_in_gallons: 4.94) 
+  # capacity is actually 4.94, but setting to 4 for demo purposes
+	@water_quality.update(temperature: json[:temperature], ph: json[:ph], total_dissolved_solids: json[:tds], current_volume: current_vol, capacity_in_gallons: 4) 
 	
   File.open("posts.json", "a") do |s|
 		s.puts params

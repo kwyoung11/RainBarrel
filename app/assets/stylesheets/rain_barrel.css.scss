@@ -553,17 +553,52 @@ h3 {
     pointer-events: auto;
 }
 
+.logo {
+	margin: 3px 5px 0 30px;
+}
+
+.home .logo {
+	position: absolute;
+	margin-top: -120px;
+	margin-left: 0px;
+}
+
 .logo span {
-	-webkit-animation-name: flash-letter;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-duration: 3.2s;
-  -webkit-animation-timing-function: ease;
-  -webkit-animation-fill-mode: none;
-  opacity: 0.35;
+	opacity: 0.8;
+}
+
+.home .logo span {
+	// -webkit-animation-name: flash-letter;
+ //  -webkit-animation-iteration-count: infinite;
+ //  -webkit-animation-duration: 3.2s;
+ //  -webkit-animation-timing-function: ease;
+ //  -webkit-animation-fill-mode: none;
+  opacity: 0.5;
   color: #393;
 }
 
-@-webkit-keyframes flash-letter{0%{opacity:0.35}30%{opacity:0.8}40%{opacity:0.45}100%{opacity:0.21}}
+// @-webkit-keyframes flash-letter{0%{opacity:0.41}30%{opacity:0.8}40%{opacity:0.65}100%{opacity:0.41}}
+
+.logo:hover {
+	span {
+		-webkit-animation: lighten 0.8s linear 1;
+		-webkit-animation-fill-mode: forwards;
+	}
+
+	.arrow {
+		-webkit-animation: pulsate 1s linear infinite;
+		-webkit-animation-fill-mode: none;
+	}
+}
+
+.home .logo:hover {
+	span {
+		-webkit-animation: none;	
+	}
+}
+
+@-webkit-keyframes lighten {45%{color: #888}75%{color: #aaa}100%{color: #bbb}}
+@-webkit-keyframes pulsate {30%{margin-left: -22px}50%{margin-right: -24px}75%{margin-right: -22px}100%{margin-right: -20px}}
 
 .help {
 	position: absolute;
@@ -639,19 +674,24 @@ h3 {
 
 .arrow {
   color: #495269;
+  position: absolute;
   display: block;
   font-size: 12px;
   line-height: 12px;
   float: left;
-  margin: 3px 8px 0 22px;
+  letter-spacing: 1px;
+  margin: 4px 8px 0 -20px;
 }
 
 .where-i-am {
 	display: inline-block;
 	border: 0px solid red;
+	margin: 5px 5px;
 	h4 {
 		display: inline;
 		padding-left: 33px;
+		font-size: 22px;
+		vertical-align: middle;
 	}
 }
 
@@ -762,7 +802,7 @@ h3 {
 
 #nav_bar {
 	position: absolute;
-  top: 33%;
+  top: 45%;
   transform: translateY(-33%);
 	border: $wrap-borders;
 	left: 30%;

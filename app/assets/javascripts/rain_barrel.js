@@ -55,7 +55,6 @@ $(document).ready(function() {
 		}
 	});
 
-
 	// clicking on labels
 	$('.circle-wrap').click(function() {
 		$(".preview").hide();
@@ -269,8 +268,8 @@ $(document).ready(function() {
 				wq_tds_top_target = 100 - (rain_barrel.total_dissolved_solids * tds_scale); 
 				wq_tds_height_target = rain_barrel_height * ((rain_barrel.total_dissolved_solids * tds_scale)/100);
 
-				$('.pH-bar .bar-data').html(rain_barrel.ph);
-				$('.tds-bar .bar-data').html(rain_barrel.total_dissolved_solids);
+				$('.pH-bar .bar-data').html(format(rain_barrel.ph, ""));
+				$('.tds-bar .bar-data').html(format(rain_barrel.total_dissolved_solids, ""));
 
 				/* animations */
 				$('.circle-wrap').on('click', function() {
@@ -300,8 +299,8 @@ $(document).ready(function() {
 						}, 2000, function() {
 			
 						});
-						$('.bar-label1').show();
-						$('.bar-label2').show();
+						$('.bar-label1').css('display', 'block');
+						$('.bar-label2').css('display', 'block');
 					} else if ($(this).hasClass('circle-wl')) { // water level animation
 						$("#water_level").animate({
 							top: wl_top_target + "%",
@@ -378,7 +377,8 @@ $(document).ready(function() {
 						$("#pH .fix").addClass("highlight");
 					}
 					
-					$(".logo span").css('color', 'red');
+					$(".logo .logo-letter").css('color', 'red');
+					$('#pH .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#pH .data-status').addClass('unsafe-icon');
 				} else if (rain_barrel.ph > 8.0) {
 					alerts["pH"] = "";
@@ -392,20 +392,23 @@ $(document).ready(function() {
 						$("#pH .fix").addClass("highlight");
 					}
 
-					$(".logo span").css('color', 'red');
+					$(".logo .logo-letter").css('color', 'red');
+					$('#pH .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#pH .data-status').addClass('unsafe-icon');
 				} else if ((rain_barrel.ph >= 6 && rain_barrel.ph <= 6.5) || (rain_barrel.ph <= 8.0 && rain_barrel.ph >= 7.5)) {
 					$("#pH .data-elt .data-bit").removeClass("green_highlight red_highlight");
 					$("#pH .data-elt .data-bit").addClass("yellow_highlight");
-					$(".logo span").css('color', 'yellow');
+					$(".logo .logo-letter").css('color', 'yellow');
 					$("#pH .fix").removeClass("highlight");
+					$('#pH .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#pH .data-status').addClass('legend-box');
 				} else if (rain_barrel.ph > 6.5 && rain_barrel.ph < 7.5) {
 					$("#pH .data-elt .data-bit").removeClass("yellow_highlight red_highlight");
 					$("#pH .data-elt .data-bit").addClass("green_highlight");
-					$(".logo span").css('color', 'green');
+					$(".logo .logo-letter").css('color', 'green');
 
 					$("#pH .fix").removeClass("highlight");
+					$('#pH .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#pH .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
 
 				}
@@ -414,16 +417,18 @@ $(document).ready(function() {
 				if (rain_barrel.total_dissolved_solids <= 50) {
 					$("#TDS .data-elt .data-bit").removeClass("yellow_highlight red_highlight");
 					$("#TDS .data-elt .data-bit").addClass("green_highlight");
-					$(".logo span").css('color', 'green');
+					$(".logo .logo-letter").css('color', 'green');
 
 					$("#TDS .fix").removeClass("highlight");
+					$('#TDS .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#TDS .data-status').addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
 				} else if (rain_barrel.total_dissolved_solids > 50 && rain_barrel.total_dissolved_solids <= 400) {
 					$("#TDS .data-elt .data-bit").removeClass("green_highlight red_highlight");
 					$("#TDS .data-elt .data-bit").addClass("yellow_highlight");
-					$(".logo span").css('color', 'yellow');
+					$(".logo .logo-letter").css('color', 'yellow');
 
 					$("#TDS .fix").removeClass("highlight");
+					$('#TDS .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#TDS .data-status').addClass('legend-box');
 				} else if (rain_barrel.total_dissolved_solids > 400) {
 					alerts["TDS"] = "";
@@ -435,7 +440,8 @@ $(document).ready(function() {
 
 					$("#TDS .fix").addClass("highlight");
 					
-					$(".logo span").css('color', 'red');
+					$(".logo .logo-letter").css('color', 'red');
+					$('#TDS .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$('#TDS .data-status').addClass('unsafe-icon');
 				}
 
@@ -444,15 +450,17 @@ $(document).ready(function() {
 					alerts["filter"] = ""
 					alerts["filter"] = "Filter life remaining: " + rain_barrel.filter_life_remaining + " days";
 					filter_flag++;
-					$(".logo span").css('color', 'red');
+					$(".logo .logo-letter").css('color', 'red');
 				}
 
 				// overflow alert
+				// console.log(rain_barrel.current_volume);
+				// console.log(rain_barrel.capacity_in_gallons);
 				if (rain_barrel.current_volume >= rain_barrel.capacity_in_gallons) {
 					alerts["overflow"] = "";
-					alerts["overflow"] = "Barrel is overflowing: drain to collect more water, or leave as is"
+					alerts["overflow"] = "Barrel is overflowing: drain to collect more water"
 					overflow_flag++;
-					$(".logo span").css('color', 'red');
+					$(".logo .logo-letter").css('color', 'red');
 				}
 
 				// temperature alert
@@ -460,14 +468,16 @@ $(document).ready(function() {
 					alerts["temperature"] = "";
 					alerts["temperature"] = "Temperature is below freezing: You may want to disconnect your rain barrel"
 					temperature_flag++;
-					$(".logo span").css('color', 'red');
+					$(".logo .logo-letter").css('color', 'red');
+					$('#temp .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$("#temp .data-status").addClass('unsafe-icon');
 				} else {
+					$('#temp .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$("#temp .data-status").addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
-					$(".logo span").css('color', 'green');
+					$(".logo .logo-letter").css('color', 'green');
 				}
 
-				email_alerts = []
+				email_alerts = [];
 
 				// update alerts
 				for (marker in alerts) {
@@ -509,9 +519,9 @@ $(document).ready(function() {
 						$("#alert").css('display', 'block');
 						if (overflow_flag == 1) {
 							$(".warning-text").append("<p id='overflow_warning'>"  + alerts[marker] + "</p>");	
-							if (tds_flag == 0 && ph_flag == 0) {
-								$(".warning-link").attr('href', "/rain_barrel/filter_life");
-							}
+							// if (tds_flag == 0 && ph_flag == 0) {
+							// 	$(".warning-link").attr('href', "/rain_barrel/filter_life");
+							// }
 							// email_alerts.push(alerts[marker]);
 						} else {
 							$("#overflow_warning").html(alerts[marker]);
@@ -520,17 +530,23 @@ $(document).ready(function() {
 
 					if (marker == "temperature" && alerts[marker] !== "") {
 						$("#alert").css('display', 'block');
-						if (overflow_flag == 1) {
+						if (temperature_flag == 1) {
 							$(".warning-text").append("<p id='temperature_warning'>"  + alerts[marker] + "</p>");	
-							if (tds_flag == 0 && ph_flag == 0) {
-								$(".warning-link").attr('href', "/rain_barrel/filter_life");
-							}
+							// if (tds_flag == 0 && ph_flag == 0) {
+							// 	$(".warning-link").attr('href', "/rain_barrel/filter_life");
+							// }
 							// email_alerts.push(alerts[marker]);
 						} else {
 							$("#temperature_warning").html(alerts[marker]);
 						}	
 					}
+				}
 
+				// clear the alerts
+				alerts = {};
+
+				if (window.location.pathname == "/rain_barrel/water_quality") {
+					$(".warning-link").hide();
 				}
 
 				if ($(".landing").length > 0) {

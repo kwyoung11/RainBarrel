@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="/app/vendor/d3.js" charset="utf-8"></script>
 </head>
 <body>
 	<div class="top-bar"> 
@@ -34,15 +34,15 @@
 		<a href="/">
 		<h3 class="logo logo-small"> 
 				<span class='arrow'><</span>
-				<span>R</span>
-				<span>a</span>
-				<span>i</span>
-				<span>n</span>
-				<span>S</span>
-				<span>e</span>
-				<span>n</span>
-				<span>s</span>
-				<span>e</span> 
+				<span class="logo-letter">R</span>
+				<span class="logo-letter">a</span>
+				<span class="logo-letter">i</span>
+				<span class="logo-letter">n</span>
+				<span class="logo-letter">S</span>
+				<span class="logo-letter">e</span>
+				<span class="logo-letter">n</span>
+				<span class="logo-letter">s</span>
+				<span class="logo-letter">e</span> 
 			</h3>
 			<h4> <%= request.fullpath.split('/')[2].split('_').map(&:capitalize).join(' ') %> </h4>
 			</a>

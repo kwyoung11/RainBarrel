@@ -42,6 +42,8 @@ $barrel-borders: 0px dotted red;
 	transform: translateY(-50%);
 	display: inline-block;
 	left: 0;
+	border: 0px solid red;
+	width: 118px;
 }
 
 /* water level */
@@ -103,7 +105,6 @@ $barrel-borders: 0px dotted red;
 	top: 21%;
 	display: inline-block;
 	position: relative;
-	border: $wrap-borders;
 	height: auto;
 	width: 100%;
 	z-index: 500;
@@ -178,9 +179,11 @@ $barrel-borders: 0px dotted red;
 	top: 100%;
 	left: 25%;
 	height: 0px;
-	width: 30px;
+	width: 35px;
 	display: none;
 	border: $barrel-borders;
+	color: #000;
+	font-weight: bold;
 }
 
 .tds-bar {
@@ -189,9 +192,11 @@ $barrel-borders: 0px dotted red;
 	top: 100%;
 	left: 60%;
 	height: 0px;
-	width: 30px;
+	font-weight: bold;
+	width: 35px;
 	display: none;
 	border: $barrel-borders;
+	color: #000;
 }
 
 .bar-label1 {
