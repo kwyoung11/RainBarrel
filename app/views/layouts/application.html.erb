@@ -29,7 +29,7 @@
 			</ul>
 		</div>
 	</div>
-	
+
 <% if request.fullpath != "/"%>
 	<div class="where-i-am">
 		<a href="/">
@@ -55,15 +55,16 @@
 		</div> -->
 	<% end %>
 	<div class="page-wrap">
-
-		<div id='alert'> 
-			<div id="close-alert"> </div>
-			<div class="warning-text">
-				<span class="warning"> </span>
-				Warning: Water is unsafe to drink. Reasons:
+		<div class="alert-wrapper">
+			<div id='alert'> 
+				<div id="close-alert"> </div>
+				<div class="warning-text">
+					<span class="warning"> </span>
+					Warning: Water is unsafe to drink. Reasons:
+				</div>
+				
+				<%= link_to "More info >>", "	/rain_barrel/water_quality", {class: "warning-link"} %>
 			</div>
-			
-			<%= link_to "More info >>", "	/rain_barrel/water_quality", {class: "warning-link"} %>
 		</div>
 		<%= yield %>
 	</div>

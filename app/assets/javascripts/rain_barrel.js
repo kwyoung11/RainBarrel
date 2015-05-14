@@ -171,7 +171,7 @@ $(document).ready(function() {
 				$("#wrapper .circle-wrap").addClass("inactive");
 				$('.circle-fl').removeClass("inactive");
 				$('.circle-fl').addClass("active");
-
+				
 				$(".fl-bar").animate({
 					top: fl_top + '%',
 					height: fl_width_target + '%'
@@ -526,9 +526,9 @@ $(document).ready(function() {
 				for (marker in alerts) {
 					if (marker == "pH" && alerts[marker] !== "") {
 						if (!hide_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						} else if (hide_alert && new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						}
 						
 						if (ph_flag == 1) {
@@ -541,9 +541,9 @@ $(document).ready(function() {
 
 					if (marker == "TDS" && alerts[marker] !== "") {
 						if (!hide_alert && !new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						} else if (hide_alert && new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						}
 						if (tds_flag == 1) {
 							$(".warning-text").append("<p id='tds_warning'>"  + alerts[marker] + "</p>");	
@@ -556,9 +556,9 @@ $(document).ready(function() {
 					if (marker == "filter" && alerts[marker] !== "") {
 						// console.log($("#alert").css('display'));
 						if (!hide_alert && !new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						} else if (hide_alert && new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						}
 						if (filter_flag == 1) {
 							$(".warning-text").append("<p id='filter_warning'>"  + alerts[marker] + "</p>");	
@@ -573,9 +573,9 @@ $(document).ready(function() {
 
 					if (marker == "overflow" && alerts[marker] !== "") {
 						if (!hide_alert && !new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						} else if (hide_alert && new_alert) {
-							$("#alert").css('display', 'inline-block');
+							$("#alert").css('display', 'block');
 						} 
 						if (overflow_flag == 1) {
 							$(".warning-text").append("<p id='overflow_warning'>"  + alerts[marker] + "</p>");	
