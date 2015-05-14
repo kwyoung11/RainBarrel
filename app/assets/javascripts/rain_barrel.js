@@ -1,14 +1,20 @@
 $(document).ready(function() {
-	
-	console.log(window.location.pathname);
-	
+		
 	if (window.location.pathname == "/") {
 		if ($(".landing-page").length > 0) {
 			$("body").addClass("landing");	
 		} else {
 			$("body").addClass("home");
 		}
+	} else if (window.location.pathname == "/rain_barrel/water_usage") {
+		$("body").addClass("water_usage");
 	}
+
+	var hide_alert = false;
+	$("#close-alert").click(function() {
+		$("#alert").slideUp();
+		hide_alert = true;
+	});
 	
 	function setCookie(key, value) {
       var expires = new Date();
@@ -89,19 +95,20 @@ $(document).ready(function() {
 		} else {
 			$(".fl-link").siblings('.legend').addClass('selected');
 			$(".fl-bar").animate({
-				top: 100 - (fl * fl_scale) + '%'
+				top: 100 - (fl * fl_scale) + '%',
+				height: fl_width_target + '%'
 			}, 2000, function() {
 			
 			});
 		
 			$(".fl-remaining-bar").animate({
 				height: fl_remaining_width_target + "%",
-			}, 3000, function() {
+			}, 2000, function() {
 			
 			});
 		}
 
-			siblings('.legend').removeClass('selected').addClass('selected');
+			// siblings('.legend').removeClass('selected').addClass('selected');
 		if ($(this).hasClass('circle-fl')) {
 			// $("#barrel").addClass("rotate");
 		}
@@ -163,14 +170,15 @@ $(document).ready(function() {
 				$('.circle-fl').addClass("active");
 
 				$(".fl-bar").animate({
-					top: 100 - (fl * fl_scale) + '%'
+					top: 100 - (fl * fl_scale) + '%',
+					height: fl_width_target + '%'
 				}, 2000, function() {
 			
 				});
 		
 				$(".fl-remaining-bar").animate({
 					height: fl_remaining_width_target + "%",
-				}, 3000, function() {
+				}, 2000, function() {
 			
 				});
 		}
@@ -215,7 +223,10 @@ $(document).ready(function() {
 			url: "/rain_barrel/stats",
 			type: "GET",
 			success: function(rain_barrel) {
-				var current_water_level = rain_barrel['current_volume'];
+				var current_water_level;
+				if (rain_barrel['current_volume'] >= 0) {
+					current_water_level = rain_barrel['current_volume'];	
+				}
 				var capacity_in_gallons = rain_barrel['capacity_in_gallons'];
 				var rain_barrel_height = parseInt($("#barrel").css('height'));
 				var rain_barrel_width = parseInt($("#barrel").css('width'));
@@ -225,6 +236,13 @@ $(document).ready(function() {
 				/* wl */
 				var wl_top_target = 100 - percent_filled;
 				var wl_height_target = rain_barrel_height * times_full;
+				if (wl_top_target < 0) {
+					wl_top_target = -1;
+				}
+
+				if (wl_height_target > rain_barrel_height) {
+					wl_height_target = rain_barrel_height + 1;
+				}
 
 				$("#water_level").animate({
 					top: wl_top_target + "%",
@@ -242,6 +260,10 @@ $(document).ready(function() {
 				fl_width_target = fl * fl_scale;
 				fl_remaining_top = rain_barrel.filter_life_remaining * fl_scale;
 				fl_remaining_width_target = fl_remaining * fl_scale;
+
+				if (fl_remaining_width_target < 5) {
+					fl_remaining_width_target = 5;
+				}
 
 				// $('.fl-bar').css('display', 'block');
 				// $(".fl-bar").animate({
@@ -267,6 +289,13 @@ $(document).ready(function() {
 				var tds_scale = 100 / 400;
 				wq_tds_top_target = 100 - (rain_barrel.total_dissolved_solids * tds_scale); 
 				wq_tds_height_target = rain_barrel_height * ((rain_barrel.total_dissolved_solids * tds_scale)/100);
+				if (wq_tds_height_target > rain_barrel_height) {
+					wq_tds_height_target = rain_barrel_height;
+				}
+
+				if (wq_tds_top_target < 0) {
+					wq_tds_top_target = 0;
+				}
 
 				$('.pH-bar .bar-data').html(format(rain_barrel.ph, ""));
 				$('.tds-bar .bar-data').html(format(rain_barrel.total_dissolved_solids, ""));
@@ -322,8 +351,8 @@ $(document).ready(function() {
 
 
 				// update the data
-				$(".wl-gallons .circle-text").html((Math.round(rain_barrel.current_volume * 100) / 100) + " gallons");
-				$(".wl-percent .circle-text").html(Math.floor(percent_filled) + "% full");
+				$(".wl-gallons .circle-text").html(Math.min((Math.round(rain_barrel.current_volume * 100) / 100), rain_barrel.capacity_in_gallons) + " gallons");
+				$(".wl-percent .circle-text").html(Math.min(Math.floor(percent_filled), 100) + "% full");
 
 
 				var status;
@@ -479,10 +508,22 @@ $(document).ready(function() {
 
 				email_alerts = [];
 
+				var new_alert = false;
+				if (ph_flag == 1 || tds_flag == 1 || filter_flag == 1 || overflow_flag == 1 || temperature_flag == 1) {
+					new_alert = true;
+				}
+
+				console.log(hide_alert);
+
 				// update alerts
 				for (marker in alerts) {
 					if (marker == "pH" && alerts[marker] !== "") {
-						$("#alert").css('display', 'block');
+						if (!hide_alert) {
+							$("#alert").css('display', 'inline-block');
+						} else if (hide_alert && new_alert) {
+							$("#alert").css('display', 'inline-block');
+						}
+						
 						if (ph_flag == 1) {
 							$(".warning-text").append("<p id='ph_warning'>"  + alerts[marker] + "</p>");	
 							email_alerts.push(alerts[marker]);
@@ -492,7 +533,11 @@ $(document).ready(function() {
 					}
 
 					if (marker == "TDS" && alerts[marker] !== "") {
-						$("#alert").css('display', 'block');
+						if (!hide_alert && !new_alert) {
+							$("#alert").css('display', 'inline-block');
+						} else if (hide_alert && new_alert) {
+							$("#alert").css('display', 'inline-block');
+						}
 						if (tds_flag == 1) {
 							$(".warning-text").append("<p id='tds_warning'>"  + alerts[marker] + "</p>");	
 							email_alerts.push(alerts[marker]);
@@ -503,7 +548,11 @@ $(document).ready(function() {
 
 					if (marker == "filter" && alerts[marker] !== "") {
 						// console.log($("#alert").css('display'));
-						$("#alert").css('display', 'block');
+						if (!hide_alert && !new_alert) {
+							$("#alert").css('display', 'inline-block');
+						} else if (hide_alert && new_alert) {
+							$("#alert").css('display', 'inline-block');
+						}
 						if (filter_flag == 1) {
 							$(".warning-text").append("<p id='filter_warning'>"  + alerts[marker] + "</p>");	
 							if (tds_flag == 0 && ph_flag == 0) {
@@ -516,7 +565,11 @@ $(document).ready(function() {
 					}
 
 					if (marker == "overflow" && alerts[marker] !== "") {
-						$("#alert").css('display', 'block');
+						if (!hide_alert && !new_alert) {
+							$("#alert").css('display', 'inline-block');
+						} else if (hide_alert && new_alert) {
+							$("#alert").css('display', 'inline-block');
+						} 
 						if (overflow_flag == 1) {
 							$(".warning-text").append("<p id='overflow_warning'>"  + alerts[marker] + "</p>");	
 							// if (tds_flag == 0 && ph_flag == 0) {
@@ -529,7 +582,11 @@ $(document).ready(function() {
 					}
 
 					if (marker == "temperature" && alerts[marker] !== "") {
-						$("#alert").css('display', 'block');
+						if (!hide_alert && !new_alert) {
+							$("#alert").css('display', 'inline-block');
+						} else if (hide_alert && new_alert) {
+							$("#alert").css('display', 'inline-block');
+						}
 						if (temperature_flag == 1) {
 							$(".warning-text").append("<p id='temperature_warning'>"  + alerts[marker] + "</p>");	
 							// if (tds_flag == 0 && ph_flag == 0) {

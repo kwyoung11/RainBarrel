@@ -22,10 +22,12 @@
 .graph_wrap {
 	width: 900px;
 	border: 0px solid blue;
-	margin: 0 auto;
+	margin: 0px auto;
+	margin-top: 50px;
 	background: #222;
 	border-radius: 25px;
-	padding: 20px 0px 20px 0px;
+	padding: 50px 70px 50px 70px;
+	overflow: auto;
 }
 
 /************
@@ -87,7 +89,7 @@ Profile page
 }
 
 .chart text {
-  fill: #17d;
+  fill: #fff;
 	pointer-events: none;
 }
 
@@ -158,7 +160,7 @@ Profile page
 .graph-tooltip {
 	background-color: rgba(40, 40, 40, 0.6);
 	color: #fff;
-  opacity: 0.9;
+  opacity: 0;
   padding: 5px;
 	text-align: center;
 	border-radius: 10px;
@@ -224,7 +226,7 @@ Profile page
 
 #date-period {
 	border: 0px solid red;
-	width: 250px;
+	width: 238px;
 	margin: 20px auto;
 }
 
@@ -251,12 +253,16 @@ Profile page
 }
 
 #chart_select select {
-	width: 180px;
-	height: 30px;
 	float: left;
 	margin-top: 10px;
-	margin-left: -200px;
+	margin-left: 0px;
+	width: 270px;
+	font-size: 18px;
+	height: 35px;
+	color: #06c;
+	border-radius: 4px;
 }
+
 
 // #metric_select li {
 // 	margin-top: 15px;
@@ -274,13 +280,18 @@ Profile page
 	}
 }
 
-#metric_select select {
-	background-color: #fff;
-	border: 1px solid #999;
-	height: 30px;
-	color: #444;
-	display: inline-block;
-}
+// #metric_select {
+// 	margin-top: 30px;
+// }
+
+// #metric_select select {
+// 	background-color: #fff;
+// 	border: 1px solid #999;
+// 	height: 60px;
+// 	color: #444;
+// 	display: inline-block;
+// 	margin-top: 30px;
+// }
 
 #metric_select option {
 	background-color: red;
@@ -313,19 +324,27 @@ Profile page
 #time_scale li {
 	float: right;
 	border: 0px solid #aaa;
-	padding: 3px;
+	padding: 7px;
 	margin: 20px 5px 0px 0px;
-
 }
 
-#time_scale li:hover {
+#time_scale li.time-period {
+	background: #283141;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+
+#time_scale li.time-period:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }
 
 #time_scale li.current {
-	background: rgba(65, 131, 196, 0.4);
+	background: rgba(65, 131, 196, 0.8);
 	border-bottom: 0px solid red;	
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .selection_label {
@@ -338,6 +357,9 @@ Profile page
 	margin: 20px auto;
 	text-align: center;
 	overflow: hidden;
+}
+
+.meta_stats:hover {
 }
 
 #meta_stats_water_collected {
@@ -364,4 +386,16 @@ Profile page
 	height: 100px;
 	float: left;
 	margin: 0px 0px 0px 0px;
+	p {
+		color: #39f;
+	}
+}
+
+.data-stat:hover {
+	border: 1px solid #39f;
+	cursor: pointer;
+}
+
+.data-stat-active {
+	border: 1px solid #39f;
 }

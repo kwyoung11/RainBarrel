@@ -44,24 +44,34 @@ function toIntArray(arr) {
       toolTipMouseOver(tooltip);
 
       // Update graph when time or metric changes
-      $("ul#time_scale li, #metric_select").on('click change', function () {
+      $("ul#time_scale li").on('click', function () {
         
         if ($(this).hasClass('time-period')) {
           $("#time_scale li").removeClass("current");
           $(this).addClass('current');
-        } else if ($(this).is("#metric_select")) {
+        } 
+
+        time = $("ul#time_scale li.current").text();
+        updateGraph(svg, x, y, xAxis, tooltip, time, metric);
+      }); 
+
+
+      $("#metric_select").on('change', function () {
+        if ($(this).is("#metric_select")) {
           var newMetric = $("#metric_select option:selected").attr("value").split(" ");
           newMetric = newMetric[0].toLowerCase() + "_" + newMetric[1].toLowerCase();
-          console.log("#meta_stats_" + newMetric);
           $(".meta_stats").hide();
           $("#meta_stats_" + newMetric).show();
+          $('.explanation').hide();
         }
 
-        var newTime = $("ul#time_scale li.current").text(),
-          newMetric = $("#metric_select option:selected").attr("value").split(" ");
-          newMetric = newMetric[0] + " " + newMetric[1];
-          updateGraph(svg, x, y, xAxis, tooltip, newTime, newMetric);
+          metric = $("#metric_select option:selected").attr("value").split(" ");
+          metric = metric[0] + " " + metric[1];
+          updateGraph(svg, x, y, xAxis, tooltip, time, metric);
       }); 
+
+
+
       
     });
   } // end initialize function
@@ -93,14 +103,15 @@ function toIntArray(arr) {
 
   // Draw bars, labels and xAxis
   function enterSelections(data, svg, x, y, tooltip, xAxis, time, metric, flag) {
-    console.log(data);
     var bar = svg.selectAll("rect").data(data, function(d) { return d.date; });
     var text = svg.selectAll("text").data(data, function(d) { return d.date; });
     var circle = svg.selectAll("circle").data(data, function(d) {return d.date; });
-    var noDataColor = "#eee";
-    var dataColor = "rgba(65,131,196,0.4)";
+    var noDataColor = "rgba(150,150,150,0.2)";
+    var dataColor = "rgba(65,131,175,.9)";
     var circleDataColor = "rgba(220,131,65,0.6)";
     var transparent = "rgba(196,131,65,0.0)";
+
+
 
     if (flag == "Update") {
       bar.transition().duration(duration).delay(delay)
@@ -119,9 +130,13 @@ function toIntArray(arr) {
           .attr("cy", function(d) { return y(d.load_volume) + 20; });
     }
   
+
+
     bar.enter().append("rect")
         .attr("x", function(d) { return x(d.date); })
         .attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
+        .attr("rx", 5)
+        .attr("ry", 5)
         .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
         .attr("width", barWidth).attr("class", "bar")
         .style("fill", function(d) { return d.load_volume == 0 ? noDataColor : dataColor})
@@ -136,12 +151,16 @@ function toIntArray(arr) {
         return d.load_volume == 0 ? null : format(d.load_volume) 
       });
     
-    if (time == "Days") {
+
+      console.log("METRIC: " + metric);
+    if (time == "Days" && (metric == "water_collected" || metric == "Water Collected")) {
       circle.enter().append("circle")
         .attr("cx", function(d) { return x(d.date); })
         .attr("cy", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
         .attr("r", 8).attr("class", "circle")
         .style("fill", function(d) { return d.load_volume == 0 ? transparent : circleDataColor });
+    } else {
+      circle.style("opacity", "0");  
     }
 
     svg.append('g').attr('class', 'x axis')
@@ -151,7 +170,8 @@ function toIntArray(arr) {
     // Remove rect and text elements not in current dataset.  
     if (flag == "Update") { bar.exit().remove(); text.exit().remove(); circle.exit().remove(); }
 
-    circle.exit().remove();
+    
+
   }
 
   function sendAjaxRequest(time, metric) {

@@ -29,7 +29,8 @@
 			</ul>
 		</div>
 	</div>
-	<% if request.fullpath != "/"%>
+	
+<% if request.fullpath != "/"%>
 	<div class="where-i-am">
 		<a href="/">
 		<h3 class="logo logo-small"> 
@@ -44,6 +45,7 @@
 				<span class="logo-letter">s</span>
 				<span class="logo-letter">e</span> 
 			</h3>
+		</br></br>
 			<h4> <%= request.fullpath.split('/')[2].split('_').map(&:capitalize).join(' ') %> </h4>
 			</a>
 		</div>
@@ -53,7 +55,9 @@
 		</div> -->
 	<% end %>
 	<div class="page-wrap">
+
 		<div id='alert'> 
+			<div id="close-alert"> </div>
 			<div class="warning-text">
 				<span class="warning"> </span>
 				Warning: Water is unsafe to drink. Reasons:

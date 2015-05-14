@@ -1,0 +1,2018 @@
+/* circles, previews */
+/* line 6, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-wrap {
+  border: 0px dotted red;
+  height: 100px;
+  width: 100px;
+  z-index: 1000;
+}
+
+/* line 13, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-wrap:hover {
+  cursor: pointer;
+}
+
+/* line 17, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle {
+  background: #384151;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* line 25, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.active .circle {
+  background: #39f;
+}
+
+/* line 29, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.inactive .circle {
+  background: #384151;
+}
+
+/* line 33, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle:hover {
+  background: #39f;
+  cursor: pointer;
+}
+
+/* line 38, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-text {
+  position: absolute;
+  top: 50%;
+  z-index: 1000;
+  transform: translateY(-50%);
+  display: inline-block;
+  left: 0;
+  border: 0px solid red;
+  width: 118px;
+}
+
+/* water level */
+/* line 51, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-wl {
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: translateY(137px);
+}
+
+/* line 59, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-label {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 79%;
+  transform: translateY(-50%);
+  height: 38px;
+  width: 38px;
+}
+/* line 67, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-label .circle-text {
+  display: none;
+}
+
+/* line 76, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-label:hover {
+  animation-name: enlarge;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  margin-left: -18px;
+}
+/* line 77, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-label:hover .circle-text {
+  display: block;
+}
+
+@keyframes enlarge {
+  /* line 89, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+  from {
+    padding: 0px;
+    margin-left: 0px;
+  }
+
+  /* line 89, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+  to {
+    padding: 18px;
+    margin-left: -18px;
+  }
+}
+
+/* line 92, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-percent {
+  position: absolute;
+  top: 32%;
+  display: inline-block;
+  position: relative;
+  border: 0px dotted green;
+  height: auto;
+  width: 100%;
+  z-index: 500;
+}
+
+/* line 103, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-gallons {
+  position: absolute;
+  top: 21%;
+  display: inline-block;
+  position: relative;
+  height: auto;
+  width: 100%;
+  z-index: 500;
+}
+
+/* line 113, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wl-line {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 0px;
+  width: 100%;
+  border: 1px dotted #645;
+}
+
+/* water quality */
+/* line 123, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-wq {
+  position: absolute;
+  left: 82%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+}
+
+/* line 131, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wq-graphic {
+  overflow: visible !important;
+}
+
+/* line 135, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wq-label {
+  position: absolute;
+  display: block;
+  height: 40px;
+  width: 40px;
+  z-index: 1000;
+  left: -13%;
+}
+/* line 143, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wq-label .circle-text {
+  display: none;
+}
+
+/* line 148, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-prev-text {
+  display: inline-block;
+  margin-top: 25%;
+}
+
+/* line 153, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wq-label:hover {
+  animation-name: enlarge_two;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  margin-left: -30px;
+}
+/* line 154, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wq-label:hover .circle-text {
+  display: block;
+}
+
+@keyframes enlarge_two {
+  /* line 165, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+  from {
+    padding: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  /* line 165, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+  to {
+    padding: 30px;
+    margin-left: -30px;
+    margin-top: -30px;
+  }
+}
+
+/* line 168, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.wq-status {
+  display: none;
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  z-index: 500;
+}
+
+/* line 176, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.pH-bar {
+  position: relative;
+  overflow: visible !important;
+  top: 100%;
+  left: 25%;
+  height: 0px;
+  width: 35px;
+  display: none;
+  border: 0px dotted red;
+  color: #000;
+  font-weight: bold;
+}
+
+/* line 189, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.tds-bar {
+  position: absolute;
+  overflow: visible !important;
+  top: 100%;
+  left: 60%;
+  height: 0px;
+  font-weight: bold;
+  width: 35px;
+  display: none;
+  border: 0px dotted red;
+  color: #000;
+}
+
+/* line 202, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.bar-label1 {
+  position: fixed;
+  text-align: center;
+  left: 36%;
+  font-size: 13px;
+  color: #bbb;
+  top: 83%;
+  z-index: 50000;
+  display: none;
+}
+
+/* line 213, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.bar-label2 {
+  position: fixed;
+  text-align: center;
+  left: 59%;
+  top: 83%;
+  font-size: 13px;
+  color: #bbb;
+  bottom: -25px;
+  z-index: 50000;
+  display: none;
+}
+
+/* line 226, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.bar-data {
+  font-size: 14px;
+  margin: 0px auto;
+  padding-top: 5px;
+  text-align: center;
+}
+
+/* line 233, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.ph-scale {
+  border-image: -webkit-linear-gradient(top, #af3823 0%, #c62a1f 21%, #eaea25 29%, #dee82c 37%, #24b733 50%, #dce52d 63%, #dce52d 72%, #ea352e 82%, #ef3921 100%);
+}
+
+/* filter life */
+/* line 242, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.circle-fl {
+  position: absolute;
+  left: 47%;
+  top: 25.3%;
+  transform: translateY(-50%);
+  display: block;
+}
+
+/* line 250, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-label {
+  position: absolute;
+  display: block;
+  height: 38px;
+  width: 38px;
+  top: -10%;
+  left: -10%;
+  z-index: 1000;
+}
+/* line 259, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-label .circle-text {
+  display: none;
+}
+
+/* line 264, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-label:hover {
+  text-align: center;
+  animation-name: enlarge_two;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  margin-left: -18px;
+}
+/* line 267, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-label:hover .circle-text {
+  display: inline-block;
+  text-align: center;
+}
+
+@keyframes enlarge_two {
+  /* line 279, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+  from {
+    padding: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  /* line 279, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+  to {
+    padding: 18px;
+    margin-left: -18px;
+    margin-top: -18px;
+  }
+}
+
+/* line 282, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-status {
+  display: none;
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  margin-top: -40px;
+  z-index: 500;
+}
+
+/* line 291, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.filter-wrapper {
+  position: relative;
+  display: inline-block;
+  border: 1px solid red;
+  width: 30px;
+  margin: 0 auto;
+  height: 100%;
+  display: none;
+}
+
+/* line 301, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-bar {
+  position: absolute;
+  top: 100%;
+  height: 0;
+  width: 30px;
+  background: #aaa;
+  display: none;
+}
+
+/* line 310, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/barrel.css.scss */
+.fl-remaining-bar {
+  position: absolute;
+  background: yellow;
+  top: 0%;
+  height: 0;
+  width: 30px;
+  display: none;
+}
+/********************************************
+*
+* ANALYTICS
+*
+********************************************/
+/* line 8, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#workout_analytics {
+  height: auto;
+  width: auto;
+  display: block;
+  border: 0px solid red;
+}
+
+/* line 15, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#graphContainer {
+  border: 0px solid red;
+  display: inline-block;
+  margin: 0 auto;
+  width: auto;
+}
+
+/* line 22, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.graph_wrap {
+  width: 900px;
+  border: 0px solid blue;
+  margin: 0px auto;
+  margin-top: 50px;
+  background: #222;
+  border-radius: 25px;
+  padding: 20px 0px 20px 0px;
+  overflow: auto;
+}
+
+/************
+
+Profile page
+
+************/
+/* line 39, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#graph {
+  border: 0px solid red;
+  margin: 0 auto;
+  width: auto;
+}
+
+/* line 45, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.workouts_graph {
+  position: relative;
+  border: 0px solid red;
+  padding: 10px;
+  width: auto;
+  margin: 20px 0px 0px 0px;
+  box-shadow: 0 0 10px #444;
+  background: #fffefc;
+}
+
+/* line 58, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.workouts_graph a {
+  width: 100px;
+  border: 0px solid red;
+  background: #08D;
+  padding: 10px;
+  text-decoration: none;
+  color: #ddd;
+  border-radius: 5px;
+  box-shadow: #444 5px 5px 5px;
+}
+
+/* line 69, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.workouts_graph a:hover {
+  background: #0AF;
+  color: #fff;
+  margin-left: 2px;
+  margin-top: 2px;
+  box-shadow: #444 3px 3px 3px;
+}
+
+/*******************************
+*
+* Chart-Specific CSS goes here
+*
+*******************************/
+/* line 83, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.chart {
+  border: 0px solid black;
+  width: auto;
+  margin: 0 auto;
+  height: auto;
+  font-size: 10px;
+}
+
+/* line 91, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.chart text {
+  fill: #fff;
+  pointer-events: none;
+}
+
+/* line 96, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/* line 105, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.chart rect.bar {
+  fill: red;
+  color: white;
+  border-radius: 15px;
+  pointer-events: fill;
+}
+
+/* line 112, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.chart rect.bar:hover {
+  fill: red;
+  color: white;
+  border-radius: 5px;
+}
+
+/* line 118, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.chart .circle {
+  fill: red;
+}
+
+/* line 122, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.graph-legend {
+  border: 0px solid red;
+  font-size: 12px;
+  height: 30px;
+  width: 200px;
+}
+
+/* line 129, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.overflow-key {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: rgba(220, 131, 65, 0.6);
+  margin-top: 10px;
+  margin-left: 10px;
+  vertical-align: bottom;
+}
+
+/* line 139, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.key-text {
+  vertical-align: bottom;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+/* line 145, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.key-equal {
+  vertical-align: bottom;
+  margin-top: -10px;
+  margin-left: 30px;
+}
+
+/************
+*
+* Chart Tooltip Implementation. 
+* See: http://viget.com/inspire/css-pointer-events-and-a-pure-css3-animating-tooltip
+*
+**************/
+/* line 160, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.graph-tooltip {
+  background-color: rgba(40, 40, 40, 0.6);
+  color: #fff;
+  opacity: 0.9;
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+  position: absolute;
+  visibility: visible;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  height: auto;
+  width: auto;
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* CSS Triangles - see Trevor's post */
+/* line 191, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.graph-tooltip:after {
+  border-left: solid transparent 10px;
+  border-right: solid transparent 10px;
+  border-top: solid rgba(0, 0, 0, 0.6) 10px;
+  bottom: -10px;
+  content: " ";
+  height: 0;
+  left: 50%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}
+
+/************
+*
+* Chart options div: Metric, Category and Time scale options go here.
+*
+**************/
+/* line 219, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#chart_select {
+  border: 0px solid red;
+  overflow: hidden;
+  width: 860px;
+  margin: 0px 0px 0px 30px;
+  border-bottom: 1px solid #666;
+}
+
+/* line 227, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#date-period {
+  border: 0px solid red;
+  width: 238px;
+  margin: 20px auto;
+}
+
+/* line 233, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#chart_select ul {
+  list-style-type: none;
+  float: right;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px;
+}
+
+/* line 240, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.metric-text {
+  border: 0px solid red;
+  float: left;
+  display: inline-block;
+  width: 38%;
+  left: 0;
+  margin-top: 18px;
+  margin-left: -200px;
+}
+
+/* line 250, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#chart_select li {
+  float: left;
+  padding-right: 5px;
+}
+
+/* line 255, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#chart_select select {
+  float: left;
+  margin-top: 10px;
+  margin-left: 0px;
+  width: 300px;
+  font-size: 18px;
+  background: #444;
+  height: 35px;
+  color: #06c;
+  border-radius: 4px;
+}
+
+/* line 272, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#metric-select-wrap {
+  border: 1px solid red;
+  float: left;
+  width: 800px;
+  display: inline-block;
+  padding: 0;
+}
+/* line 278, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#metric-select-wrap li {
+  float: left;
+  border: 1px solid green;
+}
+
+/* line 297, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#metric_select option {
+  background-color: red;
+  color: #eee;
+}
+
+/* line 302, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#chart_title {
+  width: 200px;
+  border: 0px solid red;
+  margin: 0px auto;
+  color: #bbb;
+  margin-top: 30px;
+  float: left;
+}
+
+/* line 311, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#chart_title span.arrow {
+  color: #D55;
+  text-shadow: 1px 1px 1px;
+}
+
+/* line 316, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#time_scale {
+  list-style: none;
+  font-size: 14px;
+  border: 0px solid red;
+  display: inline-block;
+  left: -10%;
+  margin: 0px 10px 0px 0px;
+}
+
+/* line 325, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#time_scale li {
+  float: right;
+  border: 0px solid #aaa;
+  padding: 7px;
+  margin: 20px 5px 0px 0px;
+}
+
+/* line 332, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#time_scale li.time-period {
+  background: #283141;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* line 339, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#time_scale li.time-period:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* line 344, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#time_scale li.current {
+  background: rgba(65, 131, 196, 0.8);
+  border-bottom: 0px solid red;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* line 351, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.selection_label {
+  display: block;
+}
+
+/* line 355, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.meta_stats {
+  border: 0px solid #333;
+  display: inline-block;
+  margin: 20px auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* line 366, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#meta_stats_water_collected {
+  margin-left: 13%;
+}
+
+/* line 370, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#meta_stats_water_used {
+  margin-left: 27%;
+  display: none;
+}
+
+/* line 375, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+#meta_stats_amount_overflown {
+  margin-left: 6%;
+  display: none;
+}
+
+/* line 382, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.data-stat {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #666;
+  width: auto;
+  height: 100px;
+  float: left;
+  margin: 0px 0px 0px 0px;
+}
+/* line 390, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.data-stat p {
+  color: #39f;
+}
+
+/* line 395, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.data-stat:hover {
+  border: 1px solid #39f;
+  cursor: pointer;
+}
+
+/* line 400, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/graph.css.scss */
+.data-stat-active {
+  border: 1px solid #39f;
+}
+/* registration */
+/* line 61, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.pitch {
+  position: absolute;
+  left: 55%;
+  top: 25%;
+  color: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: rgba(40, 40, 40, 0.7);
+  width: 350px;
+}
+
+/* line 73, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.landing-page {
+  background-image: url("/assets/Water_Barrel.jpg");
+  border-radius: 25px;
+}
+
+/* line 78, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.new-user-wrap {
+  position: relative;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  opacity: 0.9;
+  background: #272d35;
+  width: 30%;
+  min-width: 200px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+/* line 90, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.new-user-wrap h1 {
+  text-align: center;
+}
+
+/* line 95, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line {
+  position: relative;
+  display: inline-block;
+  width: 96%;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  border-bottom: 1px solid #666;
+  margin-bottom: 25px;
+}
+/* line 105, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line input {
+  border-radius: 3px;
+  height: 25px;
+}
+/* line 110, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line input#user_street_address {
+  width: 90%;
+}
+/* line 114, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line input#user_city {
+  width: 80px;
+}
+/* line 118, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line select#user_state {
+  width: 80px;
+  height: 32px;
+  position: relative;
+  display: block;
+}
+/* line 125, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line input#user_zip_code {
+  width: 70px;
+}
+/* line 129, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line .field {
+  float: left;
+  display: block;
+  width: 49%;
+  min-width: 140px;
+  margin-bottom: 12px;
+}
+
+/* line 140, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line3 .field {
+  width: 100%;
+}
+
+/* line 144, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.line4 .field {
+  min-width: 100px;
+  width: 33%;
+}
+
+/* line 149, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.actions {
+  text-align: center;
+  margin: 0 auto;
+}
+/* line 150, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+.actions input {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* responsive modifications */
+@media screen and (max-width: 800px) {
+  /* line 162, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+  .pitch {
+    display: none;
+  }
+
+  /* line 167, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+  .line .field {
+    width: 90%;
+  }
+  /* line 171, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+  .line input {
+    width: 90% !important;
+  }
+  /* line 175, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/landing_page.css.scss */
+  .line select {
+    width: 90% !important;
+  }
+}
+/* line 65, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.centered-text {
+  text-align: center;
+}
+
+/* line 69, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+body {
+  background: #171d25;
+  color: #d1d3ef;
+  font: 17px "Lucida Grande", verdana, sans-serif;
+}
+
+/* line 75, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+a {
+  color: #d1d3ef;
+  text-decoration: none;
+}
+
+/* line 80, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+small {
+  font: 13px "Lucida Grande", verdana, sans-serif;
+  color: #bbb;
+}
+
+/* line 85, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+h3 {
+  padding-left: 13px;
+  color: #aaa;
+}
+
+/* line 90, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.title {
+  margin: 10px auto;
+  text-align: center;
+}
+
+/* line 95, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.center {
+  position: relative;
+  margin: 0px auto;
+  border: 0px dotted green;
+  width: 12%;
+  max-width: 40%;
+}
+/* line 101, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.center h1 {
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* wrappers */
+/* line 109, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#nav-bar-wrap {
+  position: relative;
+  height: 98vh;
+  width: 39%;
+  min-width: 160px;
+  float: left;
+  border: 0px dotted green;
+}
+
+/* line 118, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#app-wrapper {
+  width: 60%;
+  max-width: 600px;
+  height: 100vh;
+  float: left;
+  position: relative;
+  border: 0px dotted green;
+}
+
+/* top bar */
+/* line 130, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.top-bar {
+  position: relative;
+  display: inline-block;
+  float: right;
+  margin-right: 20px;
+  border: 0px dotted red;
+  height: 30px;
+}
+
+/* line 139, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.landing .top-bar {
+  float: none;
+  display: block;
+}
+
+/* line 144, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#top-bar-nav {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  white-space: nowrap;
+  min-width: 195px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 10px;
+  margin-right: 100px;
+}
+/* line 153, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#top-bar-nav li {
+  display: inline-block;
+  width: 49%;
+  min-width: 95px;
+  text-align: center;
+}
+
+/* line 163, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.login-triangle-up {
+  content: "";
+  position: absolute;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #444444;
+  left: 49%;
+  margin-top: -25px;
+}
+
+/* line 169, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.login-popup {
+  position: absolute;
+  background-color: rgba(40, 40, 40, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  display: none;
+  border: 0px dotted red;
+  height: auto;
+  width: 200px;
+  margin-left: -72px;
+  top: 100%;
+  z-index: 1000;
+}
+
+/* line 184, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.login .field {
+  margin-bottom: 10px;
+}
+
+/* line 189, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.sessions {
+  width: 25%;
+  max-width: 250px;
+  min-width: 180px;
+  float: right;
+  text-align: center;
+  border: 0px dotted red;
+}
+/* line 196, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.sessions a {
+  padding: 0 15px;
+}
+
+/* barrel graphic */
+/* line 203, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.water_quality_link {
+  color: #ccc;
+  padding-top: 30px;
+  text-decoration: none;
+  text-align: center;
+  border: 0px dotted red;
+  display: block;
+  height: 100%;
+}
+
+/* line 213, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#wrapper {
+  position: relative;
+  height: 600px;
+  width: 300px;
+  top: 33%;
+  transform: translateY(-33%);
+  border: 0px dotted red;
+  margin: 0 auto;
+}
+
+/* line 223, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#barrel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  border: 8px solid #444;
+  border-radius: 20%;
+  height: 375px;
+  width: 195px;
+  overflow: hidden;
+}
+
+/* line 235, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#water_level {
+  position: absolute;
+  display: block;
+  text-align: center;
+  top: 100%;
+  left: -2px;
+  background: rgba(30, 90, 250, 0.8);
+  border: 1px solid #39f;
+  height: 0px;
+  width: 210px;
+}
+
+/* legend, explanations */
+/* line 250, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#legend_wrapper {
+  width: 80%;
+  max-width: 800px;
+  border: 0px solid #444;
+  margin: 20px auto;
+}
+
+/* line 257, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#legend {
+  width: 100%;
+  border: 0px solid #444;
+  display: inline-block;
+}
+
+/* line 264, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.legend-elt {
+  border: 0px solid #444;
+  float: left;
+  width: 24%;
+  min-width: 100px;
+  vertical-align: top;
+}
+
+/* line 272, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.legend-box {
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  background: yellow;
+  border-radius: 50%;
+}
+
+/* line 280, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#legend-label {
+  min-width: 120px;
+  font-weight: bold;
+}
+
+/* line 285, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#ideal .legend-box {
+  background-color: green;
+}
+
+/* line 288, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#drinkable .legend-box {
+  background-color: yellow;
+  border-radius: 50%;
+}
+
+/* line 292, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#unsafe .legend-box {
+  background-color: red;
+}
+
+/* line 296, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#data {
+  margin: 40px auto;
+  border: 0px dotted green;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* line 303, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.data-elt-wrapper {
+  position: relative;
+  border: 0px dotted green;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+/* line 312, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.data-elt {
+  position: relative;
+  float: left;
+  margin: 15px;
+  width: 30%;
+  min-width: 140px;
+  border: 0px dotted red;
+  padding-bottom: 15px;
+}
+
+/* line 322, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.data-status {
+  border: 0px solid red;
+  position: absolute;
+  display: inline-block;
+  vertical-align: bottom;
+  left: -17px;
+  top: 15px;
+  margin-right: 10px;
+}
+
+/* line 333, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.explanation {
+  position: relative;
+  float: left;
+  width: 58%;
+  border: 0px dotted red;
+  margin: 15px;
+}
+
+/* line 341, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.water_usage .explanation {
+  position: relative;
+  display: none;
+  width: 600px;
+  text-align: center;
+  border: 1px solid red;
+  margin: 0 auto;
+  float: none;
+  padding: 30px;
+}
+
+/* line 352, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.usage-section .data-bit {
+  color: #a78fd9;
+  padding: 0px 5px;
+}
+
+/* highlights */
+/* line 362, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.green_highlight {
+  color: green;
+  font-weight: bold;
+}
+
+/* line 366, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.yellow_highlight {
+  color: yellow;
+  font-weight: bold;
+}
+
+/* line 370, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.red_highlight {
+  color: red;
+  font-weight: bold;
+}
+
+/* line 375, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.highlight {
+  background-color: #FAFAD2;
+  color: #222;
+  font-weight: bold;
+}
+
+/* alerts */
+/* line 387, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#alert {
+  text-align: center;
+  width: 70%;
+  top: 0;
+  bottom: 0;
+  max-width: 500px;
+  border: 0px dashed #e23;
+  margin: 0 auto;
+  margin-top: -20px;
+  margin-left: 32%;
+  display: none;
+  background: #c72341;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  padding-top: 22px;
+  box-shadow: 2px 2px 5px -2px #f31;
+  margin-bottom: 25px;
+}
+
+/* line 407, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.warning {
+  position: relative;
+  height: 20px;
+  width: 30px;
+  margin: 15px;
+  border: 0px solid red;
+}
+
+/* line 416, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.warning:before {
+  content: "!";
+  position: absolute;
+  z-index: 2;
+  margin-top: 2px;
+  margin-left: -1px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* line 427, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.warning:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  border-width: 0 11px 18px;
+  border-style: solid;
+  border-color: #F8D201 transparent;
+  border-radius: 20%;
+  margin-top: 0px;
+  margin-left: -10px;
+  background: transparent;
+}
+
+/* line 440, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.warning-text {
+  padding: 10px;
+}
+
+/* line 444, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.landing #alert {
+  display: none !important;
+}
+
+/* line 448, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.landing .warning-text {
+  display: none;
+}
+
+/* line 452, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.landing .warning-link {
+  display: none;
+}
+
+/* line 456, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#close-alert {
+  float: right;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #333;
+}
+
+/* line 464, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#close-alert::after {
+  content: "x";
+  position: absolute;
+  left: 67.4%;
+  top: 2.7%;
+}
+
+/* line 471, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#close-alert:hover {
+  cursor: pointer;
+  color: yellow;
+}
+
+/* line 476, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.warning-link {
+  color: #333;
+  font-weight: bold;
+  z-index: 100000;
+  float: right;
+}
+
+/* line 483, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.fix_link {
+  color: #aaa;
+  font-weight: bold;
+}
+
+/* line 488, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.fix {
+  display: none;
+  border: 0px dotted green;
+  margin-left: 20px;
+}
+
+/* icons, logos, buttons */
+/* line 499, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon_home {
+  width: 1px;
+  position: absolute;
+  left: 20px;
+  border-bottom: 0.938em solid #d1d3ef;
+  border-left: .938em solid transparent;
+  border-right: .938em solid transparent;
+}
+
+/* line 508, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon_home::before {
+  content: "";
+  position: absolute;
+  margin-top: 15px;
+  margin-left: -10px;
+  width: 8px;
+  height: 11px;
+  background: #d1d3ef;
+}
+
+/* line 518, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon_home::after {
+  content: "";
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 3px;
+  width: 8px;
+  height: 11px;
+  background: #d1d3ef;
+}
+
+/* line 528, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon_home_link {
+  position: absolute;
+  margin: -5px -20px;
+  padding: 5px;
+  z-index: 100;
+  width: 30px;
+  height: 30px;
+  display: block;
+  border: 1px dotted #3399ff;
+  border-radius: 50%;
+  -webkit-animation: rotate 12s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  /* line 542, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 543, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/* line 546, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.rotate {
+  -webkit-animation: barrel-rotate 0.5s linear 1;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes barrel-rotate {
+  /* line 553, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 554, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  to {
+    -webkit-transform: rotate(90deg);
+  }
+}
+
+/* line 557, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon_home_link:hover {
+  border: 1px solid #3399ff;
+}
+
+/* line 561, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.logo {
+  margin-bottom: 30px;
+}
+
+/* line 566, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.tooltip {
+  display: none;
+  background: #222;
+  color: #fff;
+  position: absolute;
+  padding: 8px;
+  padding-left: 10px;
+  left: 100%;
+  margin-left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0px solid red;
+  width: 300px;
+  height: auto;
+}
+
+/* line 582, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.tooltip_triangle {
+  position: absolute;
+  border-top: solid transparent 20px;
+  border-bottom: solid transparent 20px;
+  border-right: solid #222 20px;
+  opacity: 0;
+  left: 100%;
+  top: -10px;
+  margin-left: 10px;
+  margin-top: 0px;
+  content: "";
+  height: 0;
+  width: 0;
+}
+
+/* line 597, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.help:hover .tooltip_triangle {
+  opacity: 1;
+}
+
+/* line 601, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.help:hover .tooltip {
+  display: block;
+  pointer-events: auto;
+}
+
+/* line 606, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.logo {
+  margin: 3px 5px 0 30px;
+}
+
+/* line 610, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.home .logo {
+  position: absolute;
+  margin-top: -120px;
+  margin-left: 0px;
+}
+
+/* line 616, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.logo span {
+  opacity: 0.8;
+}
+
+/* line 620, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.home .logo span {
+  opacity: 0.5;
+  color: #393;
+}
+
+/* line 633, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.logo:hover span {
+  -webkit-animation: lighten 0.8s linear 1;
+  -webkit-animation-fill-mode: forwards;
+}
+/* line 638, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.logo:hover .arrow {
+  -webkit-animation: pulsate 1s linear infinite;
+  -webkit-animation-fill-mode: none;
+}
+
+/* line 645, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.home .logo:hover span {
+  -webkit-animation: none;
+}
+
+@-webkit-keyframes lighten {
+  /* line 650, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  45% {
+    color: #888;
+  }
+
+  /* line 650, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  75% {
+    color: #aaa;
+  }
+
+  /* line 650, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  100% {
+    color: #bbb;
+  }
+}
+
+@-webkit-keyframes pulsate {
+  /* line 651, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  30% {
+    margin-left: -22px;
+  }
+
+  /* line 651, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  50% {
+    margin-right: -24px;
+  }
+
+  /* line 651, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  75% {
+    margin-right: -22px;
+  }
+
+  /* line 651, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  100% {
+    margin-right: -20px;
+  }
+}
+
+/* line 653, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.help {
+  position: absolute;
+  color: #2385BA;
+  height: 20px;
+  width: 20px;
+  margin-top: -7px;
+  display: inline-block;
+  border: 0px dotted green;
+  vertical-align: super;
+}
+
+/* line 664, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.help:before {
+  content: "?";
+  left: 100%;
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  padding: 2px;
+  border: 0px dotted green;
+  margin: 0px 0px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 15px;
+  text-align: center;
+  color: #fff;
+  background: #2385BA;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+/* line 686, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.btn {
+  background: #436b99;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #4984b4 10%, #619bcb 90%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4984b4), color-stop(90%, #619bcb));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4984b4 10%, #619bcb 90%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4984b4 10%, #619bcb 90%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4984b4 10%, #619bcb 90%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #4984b4 10%, #619bcb 90%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$c-stop1', endColorstr='$c-stop2',GradientType=0 );
+  /* IE6-9 */
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 0px #3f799e, 0px 3px 15px rgba(0, 0, 0, 0.4), inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px 0px 3px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 1px 1px 0px #3f799e, 0px 3px 15px rgba(0, 0, 0, 0.4), inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px 0px 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 0px #3f799e, 0px 3px 15px rgba(0, 0, 0, 0.4), inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px 0px 3px rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 1.0em;
+  color: white;
+  border: 1px solid #2d6898;
+  padding: 10px;
+  vertical-align: middle;
+  display: block;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+}
+/* line 700, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.btn:hover {
+  background: #436b99;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #4e89b9 10%, #66a0d0 90%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e89b9), color-stop(90%, #66a0d0));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4e89b9 10%, #66a0d0 90%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4e89b9 10%, #66a0d0 90%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4e89b9 10%, #66a0d0 90%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #4e89b9 10%, #66a0d0 90%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$c-stop1', endColorstr='$c-stop2',GradientType=0 );
+  /* IE6-9 */
+  text-decoration: none;
+}
+
+/* line 706, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.fix-link-wrapper {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  border: 0px solid red;
+}
+
+/* line 713, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.triangle-down {
+  content: "";
+  position: absolute;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #663344;
+  margin-top: -8px;
+  left: 103%;
+}
+
+/* line 719, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.triangle-up {
+  content: "";
+  position: absolute;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #3399ff;
+  margin-top: -8px;
+  left: 103%;
+}
+
+/* line 725, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.arrow {
+  color: #495269;
+  position: absolute;
+  display: block;
+  font-size: 12px;
+  line-height: 12px;
+  float: left;
+  letter-spacing: 1px;
+  margin: 4px 8px 0 -20px;
+}
+
+/* line 736, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.where-i-am {
+  position: relative;
+  display: inline-block;
+  border: 0px solid red;
+  margin: 5px 5px;
+  width: 15%;
+  float: left;
+}
+/* line 743, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.where-i-am h4 {
+  display: inline;
+  padding-left: 33px;
+  font-size: 22px;
+  vertical-align: middle;
+}
+
+/* line 751, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.logo-small {
+  display: inline-block;
+  font-size: 15px;
+  padding: 0;
+}
+
+/* line 757, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.checkmark {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(45deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+}
+
+/* line 766, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.checkmark_circle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background-color: green;
+  border-radius: 11px;
+  left: 0;
+  top: 0;
+}
+
+/* line 776, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.checkmark_stem {
+  position: absolute;
+  width: 3px;
+  height: 9px;
+  background-color: #fff;
+  left: 11px;
+  top: 6px;
+}
+
+/* line 785, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.checkmark_kick {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: #fff;
+  left: 8px;
+  top: 12px;
+}
+
+/* line 795, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.unsafe-icon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: #FA6900;
+  border-radius: 5px;
+}
+
+/* line 803, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.unsafe-icon:after {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "\274c";
+  font-size: 20px;
+  color: #FFF;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* navigation */
+/* line 856, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#nav_bar {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-33%);
+  border: 0px dotted green;
+  left: 30%;
+}
+
+/* line 864, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#nav_list {
+  font-size: 19px;
+  list-style-type: none;
+  text-align: left;
+  padding: 0;
+}
+/* line 869, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#nav_list li {
+  margin: 15px;
+  margin-bottom: 65px;
+}
+/* line 875, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+#nav_list a {
+  display: block;
+  padding: 0 12px 0 0px;
+  margin-bottom: 40px;
+  height: auto;
+  border: 0px dotted red;
+}
+
+/* line 884, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.legend {
+  content: "";
+  position: absolute;
+  background: #384151;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  z-index: 1000;
+  left: -40px;
+  height: 42px;
+  width: 42px;
+}
+
+/* line 897, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.selected {
+  -webkit-animation: fill-selected 1.2s linear 1;
+  -webkit-animation-fill-mode: forwards;
+  background: #39f;
+}
+
+@-webkit-keyframes fill-selected {
+  /* line 903, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  0% {
+    opacity: 0.35;
+  }
+
+  /* line 903, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  30% {
+    opacity: 0.8;
+  }
+
+  /* line 903, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  40% {
+    opacity: 0.95;
+  }
+
+  /* line 903, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  100% {
+    opacity: 1.0;
+  }
+}
+
+/* water usage page */
+/* line 906, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.usage-section h3 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 911, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.page-wrap {
+  margin: 20px;
+}
+
+/* filter life page */
+/* line 917, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.reset-fl-link {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+/* line 926, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon-undo {
+  position: relative;
+  float: left;
+  width: 40%;
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+/* line 937, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon-undo a::before {
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  left: 1px;
+  width: 9px;
+  height: 9px;
+  border: 3px solid #c55500;
+  margin-top: -6px;
+  background: transparent;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+/* line 952, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.icon-undo a::after {
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  left: 9px;
+  border: 4px solid #171d25;
+  border-width: 5px 2px 5px 5px;
+  border-left-color: #c55500;
+  margin: -9px 0 0;
+  background: transparent;
+}
+
+/* line 964, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.filter-reset-wrap {
+  position: relative;
+  min-width: 300px;
+  height: 50px;
+  margin: 0px;
+}
+
+/* line 971, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+.filter-reset {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-width: 150px;
+  max-width: 300px;
+  display: inline-block;
+  z-index: 1000;
+}
+
+/* responsive modifications */
+@media screen and (max-width: 800px) {
+  /* line 988, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  .top-bar {
+    display: block;
+    float: none;
+  }
+
+  /* navigation */
+  /* line 994, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #nav-bar-wrap {
+    height: 200px;
+    width: 32%;
+    min-width: 230px;
+    left: 1%;
+    float: none;
+    margin: 0 auto;
+    border: 0px solid red;
+    z-index: 5000;
+    margin-bottom: 50px;
+  }
+
+  /* line 1006, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #nav_bar {
+    position: relative;
+    top: 50%;
+    left: 0;
+  }
+
+  /* line 1012, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #nav_list {
+    text-align: center;
+  }
+  /* line 1014, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #nav_list li {
+    margin-bottom: 25px;
+  }
+  /* line 1017, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #nav_list a {
+    margin-bottom: 0px;
+  }
+
+  /* barrel */
+  /* line 1023, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #app-wrapper {
+    width: 100%;
+  }
+
+  /* line 1027, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/rain_barrel.css.scss */
+  #wrapper {
+    margin: 0 auto;
+  }
+}
+/* line 32, /Users/kevinyoung/Documents/UMD/Spring 2015/CMSC434/rain_barrel/app/assets/stylesheets/scaffolds.css.scss */
+.field label {
+  display: inline-block;
+  border: 0px solid red;
+  margin-bottom: 5px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+

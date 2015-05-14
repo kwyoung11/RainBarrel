@@ -1,14 +1,13 @@
 <section id="usage" class="usage-section">
 	<div class="graph_wrap">
 		<div id="chart_select">
-			<p id="chart_title"> <span class="title_text"> </span> </p>
 				<%= select("metric", "select", %w[Water\ Collected\ (gallons) Water\ Used\ (gallons) Amount\ Overflown\ (gallons)]) %> 
 			
 			<ul id="time_scale">
 				<li class="time-period">Months</li>
 				<li class="time-period">Weeks</li>
 				<li class="time-period current">Days</li>
-				<li> Select time period: </li>
+				<li class="prompt"> Select time period: </li>
 			</ul>
 		</div>
 		<div class="graph-legend"> 
@@ -25,99 +24,54 @@
 			
 		<div class="meta_stats" id="meta_stats_water_collected">
 			<!-- WORKOUT STATS-->
-  		<div class="data-stat">
+  		<div class="data-stat" id="twc">
   	 		<h3> Total Water Collected </h3>
   	    <p><%= DailyWaterLog.sum(:water_collected).to_i %> gallons</p>
 			</div>
-			<div class="data-stat">
+			<div class="data-stat" id="emc">
   	 		<h3> Estimated Max Collection (annually) </h3>
   	    <p><%= DailyWaterLog.sum(:water_collected).to_i * 7 %> gallons</p>
 			</div>
-		<!-- 	<div class="explanation"> The total amount of water, in gallons, that your rain barrel has collected. </div> 
-			<div class="explanation"> The estimated amount of water that you could potentially collect, based on the square feet of your roof and rainfall patterns in your area. </div>  -->
 		</div>
 
 		<div class="meta_stats" id="meta_stats_water_used">
-			<div class="data-stat">
+			<div class="data-stat" id="twu">
 		 		<h3> Total Water Used </h3>
   	  	<p><%= DailyWaterLog.sum(:water_used).to_i %> gallons <p>
 			</div>	
-			<div class="data-stat">
+			<div class="data-stat" id="twl">
 		 		<h3> Total Water Lost </h3>
   	  	<p><%= DailyWaterLog.sum(:water_used).to_i / 2 %> gallons <p>
 			</div>
 		</div>
 
 		<div class="meta_stats" id="meta_stats_amount_overflown">
-			<div class="data-stat">
+			<div class="data-stat" id="two">
 		 		<h3> Total Water Overflown </h3>
   	  	<p><%= DailyWaterLog.sum(:amount_overflown).to_i %> gallons <p>
 			</div>	
-			<div class="data-stat">
+			<div class="data-stat" id="noe">
 		 		<h3> # of Overflow Events </h3>
   	  	<p> <%= DailyWaterLog.where(overflowed: true).count %> <p>
 			</div>
-			<div class="data-stat">
+			<div class="data-stat" id="awo">
 		 		<h3> Avg. Water Overflown </h3>
   	  	<p> <%= DailyWaterLog.sum(:amount_overflown).to_i / DailyWaterLog.where(overflowed: true).count %> <p>
 			</div>
 		</div>
-	</div>
-
-
-
-
-
-
-	<h3> Usage </h3>
-	<div id="data"> 
-		<div id="twc" class="data-elt-wrapper"> 
-			<div class="data-elt"> Water collected: 
-				<span class="data-bit">397 gallons </span>
-			</div>
-			<div class="explanation"> The total amount of water, in gallons, that your rain barrel has collected. </div> 
-		</div>
+		
+		<!-- Water Collected -->
+		<div class="explanation twc"> The total amount of water, in gallons, that your rain barrel has collected. </div> 
+		<div class="explanation emc"> The estimated amount of water that you could potentially collect, based on the square feet of your roof and rainfall patterns in your area. </div> 
 	
-		<div id="twu" class="data-elt-wrapper"> 
-			<div class="data-elt"> Water used:
-				<span class="data-bit"> 274 gallons </span> 
-			</div>
-			<div class="explanation"> The total amount of water, in gallons, which you have used 	for various purposes. </div>
-	</div>
-</section>
+		<!-- Water Used -->
+		<div class="explanation twu"> The total amount of water, in gallons, which you have used 	for various purposes. </div>
+		<div class="explanation twl"> The total amount of water lost from overflow if you had started the day with an empty barrel. </div>
 
-<section id="overflows" class="usage-section">
-	<h3> Overflows </h3>
-	<div id="data"> 
-		<div id="noe" class="data-elt-wrapper"> 
-			<div class="data-elt"> Overflow events: 
-				<span class="data-bit"> 9 </span>
-			</div>
-			<div class="explanation"> The total number of times that water has overflowed from the rain barrel. </div> 
-		</div>
-	
-		<div id="two" class="data-elt-wrapper"> 
-			<div class="data-elt"> Water overflown: 
-				<span class="data-bit"> 33 gallons </span> 
-			</div>
-			<div class="explanation"> The total amount of water, in gallons, which has overflown from the rain barrel. </div>
-	</div>
+		<!-- Amount Overflown -->
+		<div class="explanation two"> The total amount of water, in gallons, which has overflown from the rain barrel. </div>
+		<div class="explanation noe"> The total number of times that water has overflowed from the rain barrel. </div> 
+		<div class="explanation awo"> The average amount of water, in gallons, which overflows from the rain barrel during an overflow event. </div>
 
-	<div id="two-avg" class="data-elt-wrapper"> 
-			<div class="data-elt"> Avg. water overflown: 
-				<span class="data-bit"> 3.6 gallons </span> 
-			</div>
-			<div class="explanation"> The average amount of water, in gallons, which overflows from the rain barrel during an overflow event. </div>
 	</div>
-</section>
-
-<section id="other" class="usage-section">
-	<h3> Other </h3>
-	<div id="data"> 
-		<div id="pmc" class="data-elt-wrapper"> 
-			<div class="data-elt"> Estimated max collection: 
-				<span class="data-bit"> 1,020 gallons </span>
-			</div>
-			<div class="explanation"> The estimated amount of water that you could potentially collect, based on the square feet of your roof and rainfall patterns in your area. </div> 
-		</div>
 </section>

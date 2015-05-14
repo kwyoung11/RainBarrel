@@ -27,8 +27,8 @@ function updateXDomain(data, x, time) {
 }
 
 function updateYDomain(data, y, time) {
-  console.log(d3.max(data, function(d) { return d.load_volume; }));
-  y.domain([0, d3.max(data, function(d) { return d.load_volume; })]);
+  console.log("d3.max: " + d3.max(data, function(d) { return d.load_volume; }));
+  y.domain([0, d3.max(data, function(d) { return parseInt(d.load_volume); })]);
 }
 
 function setXDomain(time, w, margin) {

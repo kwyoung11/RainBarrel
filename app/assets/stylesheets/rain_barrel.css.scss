@@ -338,6 +338,17 @@ h3 {
 	margin: 15px;
 }
 
+.water_usage .explanation {
+	position: relative;
+	display: none;
+	width: 600px;
+	text-align: center;
+	border: 0px solid red;
+	margin: 0 auto;
+	float: none;
+	padding: 30px;
+}
+
 .usage-section .data-bit {
 	color: #a78fd9;
 	padding: 0px 5px;
@@ -376,10 +387,21 @@ h3 {
 #alert {
 	text-align: center;
 	width: 70%;
+	top: 0;
+	bottom: 0;
 	max-width: 500px;
-	border: 1px dashed #e23;
+	border: 0px dashed #e23;
 	margin: 0 auto;
+	margin-top: -20px;
+	margin-left: 32%;
 	display: none;
+	background: #c72341;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding: 10px;
+	padding-top: 22px;
+	box-shadow: 2px 2px 5px -2px #f31;
+	margin-bottom: 25px;
 }
 
 .warning {
@@ -431,8 +453,36 @@ h3 {
 	display: none;
 }
 
+#close-alert {
+	float: right;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #333;
+}
+
+#close-alert::after {
+	content: "x";
+	position: absolute;
+	left: 67.4%;
+	top: 2.7%;
+}
+
+#close-alert:hover {
+	cursor: pointer;
+	color: yellow;
+}
+
+.warning-link {
+	color: #333;
+	font-weight: bold;
+	z-index: 100000;
+	float: right;
+}
+
 .fix_link {
 	color: #aaa;
+	font-weight: bold;
 }
 
 .fix {
@@ -672,6 +722,11 @@ h3 {
 	left: 103%;
 }
 
+.col-7 {
+	width: 70%;
+	float: left;
+}
+
 .arrow {
   color: #495269;
   position: absolute;
@@ -684,12 +739,16 @@ h3 {
 }
 
 .where-i-am {
+	position: relative;
 	display: inline-block;
 	border: 0px solid red;
 	margin: 5px 5px;
+	width: 12%;
+	min-width: 160px;
+	float: left;
 	h4 {
 		display: inline;
-		padding-left: 33px;
+		padding-left: 10px;
 		font-size: 22px;
 		vertical-align: middle;
 	}
@@ -850,13 +909,24 @@ h3 {
 @-webkit-keyframes fill-selected{0%{opacity:0.35}30%{opacity:0.8}40%{opacity:0.95}100%{opacity:1.0}}
 
 /* water usage page */
+
+.usage-section {
+	margin: 0 auto;
+}
+
 .usage-section h3 {
 	margin: 0 auto;
 	text-align: center;
 }
 
 .page-wrap {
-	margin: 20px;
+	margin: 20px auto;
+	width: 80%;
+	float: left;
+}
+
+.home .page-wrap {
+	width: 100%;
 }
 
 /* filter life page */

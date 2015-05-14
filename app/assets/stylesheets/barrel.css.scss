@@ -43,7 +43,7 @@ $barrel-borders: 0px dotted red;
 	display: inline-block;
 	left: 0;
 	border: 0px solid red;
-	width: 118px;
+	width: auto;
 }
 
 /* water level */
@@ -291,8 +291,8 @@ $barrel-borders: 0px dotted red;
 .filter-wrapper {
 	position: relative;
 	display: inline-block;
-	border: 1px solid red;
-	width: 30px;
+	border: 0px solid red;
+	width: 100%;
 	margin: 0 auto;
 	height: 100%;
 	display: none;
@@ -302,8 +302,8 @@ $barrel-borders: 0px dotted red;
 	position: absolute;
 	top: 100%;
 	height: 0;
-	width: 30px;
-	background: #aaa;
+	width: 100%;
+	background: red;
 	display: none;
 }
 
@@ -312,7 +312,18 @@ $barrel-borders: 0px dotted red;
 	background: yellow;
 	top: 0%;
 	height: 0;
-	width: 30px;
+	width: 100%;
 	display: none;
+}
+
+.fl-bar-label1 {
+	border: 0px solid blue;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.fl-bar-label2 {
+	border: 0px solid blue;
+	text-align: center;
 }
 
