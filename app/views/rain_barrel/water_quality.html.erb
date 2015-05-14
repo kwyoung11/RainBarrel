@@ -66,7 +66,9 @@
 
 	<div id="temp" class="data-elt-wrapper"> 
 		<div class="data-status"></div> 
-		<div class="data-elt"> Current Temperature: <%= @water_quality.temperature %> </div>
+		<div class="data-elt"> Current Temperature: 
+			<span class="<%= @temp_color + " data-bit" %>"> <%= @water_quality.temperature %> </span> 
+		</div>
 		<div class="explanation"> The temperature of the water in the barrel. 
 			
 			<br/><br/>

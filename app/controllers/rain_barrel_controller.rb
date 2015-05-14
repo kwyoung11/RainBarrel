@@ -16,6 +16,8 @@ class RainBarrelController < ApplicationController
   	@TDS_color = "green_highlight"
   	@TDS_color = "yellow_highlight" if (@water_quality.total_dissolved_solids > 50 && @water_quality.total_dissolved_solids < 400)
   	@TDS_color = "red_highlight" if (@water_quality.total_dissolved_solids > 400);
+    @temp_color = "green_highlight"
+    @temp_color = "red_highlight" if (@water_quality.temperature < 32)
   	@alerts = []
   	@alerts << "pH is too high" if (@water_quality.ph < 6.0 || @water_quality.ph > 8.0)
   	@alerts << "TDS is too high" if (@water_quality.total_dissolved_solids > 400)

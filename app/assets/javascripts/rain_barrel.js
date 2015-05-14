@@ -171,7 +171,7 @@ $(document).ready(function() {
 				$("#wrapper .circle-wrap").addClass("inactive");
 				$('.circle-fl').removeClass("inactive");
 				$('.circle-fl').addClass("active");
-				
+
 				$(".fl-bar").animate({
 					top: fl_top + '%',
 					height: fl_width_target + '%'
@@ -355,7 +355,7 @@ $(document).ready(function() {
 
 				$("#pH .data-elt .data-bit").html(rain_barrel.ph);
 				$("#TDS .data-elt .data-bit").html(rain_barrel.total_dissolved_solids);
-
+				$("#temp .data-elt .data-bit").html(rain_barrel.ph);
 
 				// update the data
 				$(".wl-gallons .circle-text").html(Math.min((Math.round(rain_barrel.current_volume * 100) / 100), rain_barrel.capacity_in_gallons) + " gallons");
@@ -507,10 +507,14 @@ $(document).ready(function() {
 					$(".logo .logo-letter").css('color', 'red');
 					$('#temp .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$("#temp .data-status").addClass('unsafe-icon');
+					$("#temp .data-elt .data-bit").removeClass("green_highlight yellow_highlight");
+					$("#temp .data-elt .data-bit").addClass("red_highlight");
 				} else {
 					$('#temp .data-status').removeClass('unsafe-icon legend-box checkmark');
 					$("#temp .data-status").addClass('checkmark').html('<div class="checkmark_circle"></div><div class="checkmark_stem"></div><div class="checkmark_kick"></div>');
 					$(".logo .logo-letter").css('color', 'green');
+					$("#temp .data-elt .data-bit").removeClass("red_highlight yellow_highlight");
+					$("#temp .data-elt .data-bit").addClass("green_highlight");
 				}
 
 				email_alerts = [];
