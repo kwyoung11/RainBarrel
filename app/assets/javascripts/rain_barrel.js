@@ -226,9 +226,13 @@ $(document).ready(function() {
 			type: "GET",
 			success: function(rain_barrel) {
 				var current_water_level;
-				if (rain_barrel['current_volume'] >= 0) {
+				if (rain_barrel['current_volume'] < 0) {
+					current_water_level = 0;
+				} else {
 					current_water_level = rain_barrel['current_volume'];	
-				}
+				} 
+
+
 				var capacity_in_gallons = rain_barrel['capacity_in_gallons'];
 				var rain_barrel_height = parseInt($("#barrel").css('height'));
 				var rain_barrel_width = parseInt($("#barrel").css('width'));
