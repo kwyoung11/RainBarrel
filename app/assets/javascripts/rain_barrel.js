@@ -361,7 +361,7 @@ $(document).ready(function() {
 				$("#temp .data-elt .data-bit").html(rain_barrel.temperature);
 
 				// update the data
-				$(".wl-gallons .circle-text").html(Math.min((Math.round(rain_barrel.current_volume * 100) / 100), rain_barrel.capacity_in_gallons) + " gallons");
+				$(".wl-gallons .circle-text").html(Math.min((Math.round(current_water_level * 100) / 100), rain_barrel.capacity_in_gallons) + " gallons");
 				$(".wl-percent .circle-text").html(Math.min(Math.floor(percent_filled), 100) + "% full");
 
 
@@ -493,9 +493,9 @@ $(document).ready(function() {
 				}
 
 				// overflow alert
-				// console.log(rain_barrel.current_volume);
+				// console.log(current_water_level);
 				// console.log(rain_barrel.capacity_in_gallons);
-				if (rain_barrel.current_volume >= rain_barrel.capacity_in_gallons) {
+				if (current_water_level >= rain_barrel.capacity_in_gallons) {
 					alerts["overflow"] = "";
 					alerts["overflow"] = "Barrel is overflowing: drain to collect more water"
 					overflow_flag++;
