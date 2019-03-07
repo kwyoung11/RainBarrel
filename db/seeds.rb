@@ -30,7 +30,7 @@ records = []
 	
 	# iterate over data points
 	while line = file.gets do
-		timestamp = DateTime.new(2015,1,1) + count.days
+		timestamp = DateTime.new(2018,12,1) + count.days
 		drain = Random.rand(2)
 		amount_to_drain = Random.rand(0..40);
 		ph = Random.rand(5.0..9.0)
@@ -103,5 +103,6 @@ records.each do |r|
 		ph: r[:ph],
 		tds: r[:tds],
 		created_at: r[:created_at],
-		updated_at: r[:updated_at])
+		updated_at: r[:updated_at],
+		user_id: 1)
 end

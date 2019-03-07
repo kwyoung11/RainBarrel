@@ -35,7 +35,6 @@ $(document).ready(function() {
 
   $(".reset-fl-link").click(function() {
   	var num = getCookie("filter_life_remaining");
-  	console.log(num);
   	$.ajax({
   		url: "/rain_barrel/reset_filter_life_remaining",
   		type: "GET",
@@ -220,14 +219,12 @@ $(document).ready(function() {
 	var temperature_flag = 0;
 	var overflow_flag = 0;
 	var ping = function () {
-		// console.log("in ping");
+
 		$.ajax({
 			url: "/rain_barrel/stats",
 			type: "GET",
 			success: function(rain_barrel) {
 				var current_water_level;
-				console.log(rain_barrel['current_volume']);
-				console.log(rain_barrel['current_volume'] < 0);
 				if (rain_barrel['current_volume'] < 0) {
 					current_water_level = 0;
 				} else {
@@ -290,8 +287,6 @@ $(document).ready(function() {
 				// }, 3000, function() {
 			
 				// });
-
-				
 
 				/* wq */
 				var ph_scale = 100 / 14;
@@ -408,7 +403,7 @@ $(document).ready(function() {
 				// pH alert
 				if (rain_barrel.ph < 6.0) {
 					alerts["pH"] = "";
-					alerts["pH"] = "pH is too low (" + rain_barrel.ph + ")";
+					alerts["pH"] = "pH is too low (" + Math.round(rain_barrel.ph) + ")";
 					ph_flag++;
 					$("#pH .data-elt .data-bit").removeClass("green_highlight yellow_highlight");
 					$("#pH .data-elt .data-bit").addClass("red_highlight");
@@ -423,7 +418,7 @@ $(document).ready(function() {
 					$('#pH .data-status').addClass('unsafe-icon');
 				} else if (rain_barrel.ph > 8.0) {
 					alerts["pH"] = "";
-					alerts["pH"] = "pH is too high (" + rain_barrel.ph + ")";
+					alerts["pH"] = "pH is too high (" + Math.round(rain_barrel.ph) + ")";
 					ph_flag++;
 					$("#pH .data-elt .data-bit").removeClass("green_highlight yellow_highlight");
 					$("#pH .data-elt .data-bit").addClass("red_highlight");
@@ -495,8 +490,6 @@ $(document).ready(function() {
 				}
 
 				// overflow alert
-				// console.log(current_water_level);
-				// console.log(rain_barrel.capacity_in_gallons);
 				if (current_water_level >= rain_barrel.capacity_in_gallons) {
 					alerts["overflow"] = "";
 					alerts["overflow"] = "Barrel is overflowing: drain to collect more water"
@@ -506,7 +499,6 @@ $(document).ready(function() {
 
 				// temperature alert
 				if (rain_barrel.temperature < 32) {
-					console.log("IN HERE!!!");
 					alerts["temperature"] = "";
 					alerts["temperature"] = "Temperature is below freezing: You may want to disconnect your rain barrel"
 					temperature_flag++;
@@ -531,7 +523,6 @@ $(document).ready(function() {
 					new_alert = true;
 				}
 
-				console.log(hide_alert);
 
 				// update alerts
 				for (marker in alerts) {
@@ -565,7 +556,7 @@ $(document).ready(function() {
 					}
 
 					if (marker == "filter" && alerts[marker] !== "") {
-						// console.log($("#alert").css('display'));
+				
 						if (!hide_alert && !new_alert) {
 							$("#alert").css('display', 'block');
 						} else if (hide_alert && new_alert) {
@@ -637,7 +628,7 @@ $(document).ready(function() {
 				if ((rain_barrel.ph > 6 && rain_barrel.ph < 8) && rain_barrel.total_dissolved_solids < 400 && rain_barrel.filter_life_remaining >= 8 && rain_barrel.temperature >= 32) {
 					$("#alert").css('display', 'none');
 				}
-				// console.log(rain_barrel);
+		
 				
 				// wait 1 second
 				setTimeout(function () {
@@ -656,7 +647,6 @@ $(document).ready(function() {
 			type: 'GET',
 			data: { alerts: alert_string },
 			success: function(response) {
-				console.log("e-mailed the alert!");
 			}
 		})
 	}

@@ -459,18 +459,19 @@ h3 {
 }
 
 #close-alert {
-	float: right;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background: #333;
+	position: absolute;
+    left: 94%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #333;
 }
 
 #close-alert::after {
 	content: "x";
-	position: absolute;
-	left: 95.1%;
-	top: 14.1%;
+    position: absolute;
+    left: 20%;
+    top: -10%;
 }
 
 #close-alert:hover {
